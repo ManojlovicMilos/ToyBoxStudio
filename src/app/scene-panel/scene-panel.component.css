@@ -1,0 +1,19 @@
+.dock
+{
+    overflow: hidden;
+}
+.left-dock
+{
+    height: 100vh;
+    background-color: #111111;
+}
+.middle-dock
+{
+    height: 100vh;
+    background-color: #222222;
+}
+.right-dock
+{
+    height: 100vh;
+    background-color: #111111;
+}
