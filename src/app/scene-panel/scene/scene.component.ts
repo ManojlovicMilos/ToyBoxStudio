@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
 
 @Component(
 {
-    selector: 'scene-object-manager',
-    templateUrl: './scene-object-manager.component.html',
-    styleUrls: ['./scene-object-manager.component.css']
+    selector: 'scene',
+    templateUrl: './scene.component.html',
+    styleUrls: ['./scene.component.css']
 })
-export class SceneObjectManagerComponent
+export class SceneComponent
 {
     public constructor()
     {

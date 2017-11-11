@@ -1,24 +1,25 @@
-.title
+.def
 {
     margin: 0px;
     padding: 0px;
+}
+.title
+{
     padding-top: 2px;
     height: 25px;
     padding-left: 30px;
     font-size:13px;
+    width:100%;
     background-color: #333333;
 }
 .body
 {
-    margin: 0px;
-    padding: 0px;
     height: 400px;
     min-height: 400px;
 }
 .types
 {
-    margin: 0px;
-    padding: 0px;
+    padding-top: 5px;
     height: 100%;
     background-color: #222222;
 }
@@ -27,9 +28,28 @@
     cursor: default;
     width: 100%;
     font-size:11px;
-    padding-left: 40px;
+    padding-left: 15px;
+    list-style: none;
 }
 .type:hover
 {
     background-color: #111111;
+}
+.items
+{
+    padding-top: 5px;
+    height: 100%;
+    color: white;
+}
+.item
+{
+    cursor: default;
+    width: 100%;
+    font-size:11px;
+    padding-left: 15px;
+    list-style: none;
+}
+.item:hover
+{
+    background-color: #222222;
 }

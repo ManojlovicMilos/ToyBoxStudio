@@ -1,0 +1,19 @@
+.def
+{
+    margin: 0px;
+    padding: 0px;
+}
+.title
+{
+    padding-top: 2px;
+    height: 25px;
+    padding-left: 30px;
+    font-size:13px;
+    width:100%;
+    background-color: #333333;
+}
+.body
+{
+    height: 400px;
+    min-height: 400px;
+}

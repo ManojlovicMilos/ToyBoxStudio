@@ -1,19 +1,27 @@
-.dock
+.main
 {
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
 }
 .left-dock
 {
+    margin: 0px;
+    padding: 0px;
     height: 100vh;
     background-color: #111111;
 }
 .middle-dock
 {
+    margin: 0px;
+    padding: 0px;
     height: 100vh;
     background-color: #222222;
 }
 .right-dock
 {
+    margin: 0px;
+    padding: 0px;
     height: 100vh;
     background-color: #111111;
 }

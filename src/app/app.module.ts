@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GamePanelComponent } from "./game-panel/game-panel.component";
 import { ScenePanelComponent } from "./scene-panel/scene-panel.component";
-import { SceneObjectManagerComponent } from "./scene-panel/scene-object-manager/scene-object-manager.component";
+import { ObjectsComponent } from "./scene-panel/objects/objects.component";
 import { LibraryComponent } from "./scene-panel/library/library.component";
+import { SceneComponent } from "./scene-panel/scene/scene.component";
 
 @NgModule(
 {
@@ -14,8 +15,9 @@ import { LibraryComponent } from "./scene-panel/library/library.component";
     AppComponent,
     GamePanelComponent,
     ScenePanelComponent,
-    SceneObjectManagerComponent,
-    LibraryComponent
+    ObjectsComponent,
+    LibraryComponent,
+    SceneComponent
   ],
   imports: [BrowserModule],
   providers: [],
