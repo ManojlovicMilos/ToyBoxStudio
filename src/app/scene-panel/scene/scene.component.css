@@ -17,3 +17,21 @@
     height: 400px;
     min-height: 400px;
 }
+.objects
+{
+    padding-top: 5px;
+    height: 100%;
+    color: white;
+}
+.object
+{
+    cursor: default;
+    width: 100%;
+    font-size:11px;
+    padding-left: 15px;
+    list-style: none;
+}
+.object:hover
+{
+    background-color: #222222;
+}

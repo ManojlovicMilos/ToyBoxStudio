@@ -1,6 +1,8 @@
 import Engineer from "./../../engineer";
 
-import { Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
+
+import { SceneContainer } from "./../scene-panel.model";
 
 @Component(
 {
@@ -10,12 +12,9 @@ import { Component } from '@angular/core';
 })
 export class SceneComponent
 {
+    @Input() private Container:SceneContainer;
     public constructor()
     {
         
-    }
-    public ngOnInit() : void
-    {
-
     }
 }

@@ -1,5 +1,5 @@
 import Engineer from "./../../engineer";
-import { Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 import { SceneObjectManager, SceneObjectManagerItem } from "./objects.model";
 
@@ -11,21 +11,22 @@ import { SceneObjectManager, SceneObjectManagerItem } from "./objects.model";
 })
 export class ObjectsComponent
 {
+    @Input() private Scene:any;
     private _Model:SceneObjectManager;
     public get Model():SceneObjectManager { return this._Model; }
     public constructor()
     {
         this._Model = new SceneObjectManager();
-        this._Model.AddItem("Sprite", new Engineer.Engine.Sprite(), ["SceneObject", "Sprite"]);
-        this._Model.AddItem("Tile", new Engineer.Engine.Tile(), ["SceneObject", "Tile"]);
+        this._Model.AddItem("Sprite", new Engineer.Engine.Sprite(), ["SceneObject", "Sprite"], "/assets/icons/sprite-icon.png");
+        this._Model.AddItem("Tile", new Engineer.Engine.Tile(), ["SceneObject", "Tile"], "/assets/icons/tile-icon.png");
         this._Model.ApplyFilter("All");
     }
     public ApplyFilter(Tag:string) : void
     {
         this._Model.ApplyFilter(Tag);
     }
-    public ngOnInit() : void
+    public ApplyItem(Item:SceneObjectManagerItem) : void
     {
-
+        Item.Apply(this.Scene);
     }
 }

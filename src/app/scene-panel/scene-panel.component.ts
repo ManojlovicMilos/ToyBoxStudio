@@ -1,6 +1,6 @@
-import Engineer from "./../engineer";
-
 import { Component } from '@angular/core';
+
+import { SceneContainer } from "./scene-panel.model";
 
 @Component(
 {
@@ -10,14 +10,10 @@ import { Component } from '@angular/core';
 })
 export class ScenePanelComponent
 {
-    private _Scene:any;
-    public get Scene():any { return this._Scene; }
+    private _Model:SceneContainer;
+    public get Model():SceneContainer { return this._Model; }
     public constructor()
     {
-        this._Scene = new Engineer.Engine.Scene2D();
-    }
-    public ngOnInit() : void
-    {
-
+        this._Model = new SceneContainer();
     }
 }

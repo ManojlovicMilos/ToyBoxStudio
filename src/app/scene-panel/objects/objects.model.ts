@@ -14,9 +14,9 @@ class SceneObjectManager
         this._Filters.push("All");
         this._FilteredItems = [];
     }
-    public AddItem(Name:string, Object:any, Tags?:string[])
+    public AddItem(Name:string, Object:any, Tags?:string[], Icon?:string)
     {
-        let NewItem = new SceneObjectManagerItem(Name, Object, Tags);
+        let NewItem = new SceneObjectManagerItem(Name, Object, Tags, Icon);
         NewItem.Tags.push("All");
         this._Items.push(NewItem);
         if(Tags)
@@ -45,17 +45,21 @@ class SceneObjectManager
 class SceneObjectManagerItem
 {
     private _Name:string;
+    private _Icon:string;
     private _Object:any;
     private _Tags:string[];
     public get Name():string { return this._Name; }
+    public get Icon():string { return this._Icon; }
     public get Object():any { return this._Object; }
     public get Tags():string[] { return this._Tags; }
-    public constructor(Name:string, Object:any, Tags?:string[])
+    public constructor(Name:string, Object:any, Tags?:string[], Icon?:string)
     {
         this._Name = Name;
         this._Object = Object;
         if(Tags) this._Tags = Tags;
         else this._Tags = [];
+        if(Icon) this._Icon = Icon;
+        else this._Icon = "/assets/icons/default-icon.png";
     }
     public Apply(Scene:any) : void
     {

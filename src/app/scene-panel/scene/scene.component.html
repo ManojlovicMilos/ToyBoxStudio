@@ -1,6 +1,8 @@
 <div class="def main">
     <p class="def title">Scene</p>
     <div class="row def body">
-
+        <ul class="def objects col-md-12">
+            <li *ngFor="let Object of Container.Scene.Objects" class="object">{{ Object.Name }}</li>
+        </ul>
     </div>
 </div>
