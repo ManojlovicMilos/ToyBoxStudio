@@ -5,7 +5,12 @@
             <li *ngFor="let Filter of Model.Filters" (click) = "ApplyFilter(Filter)" class="type">{{ Filter }}</li>
         </ul>
         <ul class="def items col-md-8">
-            <li *ngFor="let Item of Model.Items" (click) = "ApplyItem(Item)" class="item">{{ Item.Name }}</li>
+            <li *ngFor="let Item of Model.Items" (click) = "ApplyItem(Item)" class="def item row">
+                <div class="col-md-3">
+                    <img class="icon" [src]="Item.Icon" />
+                </div>
+                <p class="col-md-9 item-title">{{ Item.Name }}</p>
+            </li>
         </ul>
     </div>
 </div>

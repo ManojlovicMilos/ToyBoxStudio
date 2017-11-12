@@ -45,11 +45,21 @@
 {
     cursor: default;
     width: 100%;
-    font-size:11px;
-    padding-left: 15px;
+    font-size:15px;
+    padding-top:10px;
+    padding-bottom: 5px;
     list-style: none;
+}
+.item-title
+{
+    padding-top: 3px;
 }
 .item:hover
 {
     background-color: #222222;
+}
+.icon
+{
+    width: 30px;
+    height: 30px;
 }
