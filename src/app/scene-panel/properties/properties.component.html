@@ -1,0 +1,8 @@
+<div class="def main">
+    <p class="def title">Properties</p>
+    <div class="row def body">
+        <scene-properties *ngIf="Container.Selected!=null && Container.Selected == Container.Scene" class="col-md-12" [Container]="Container"></scene-properties>
+        <scene-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene" class="col-md-12" [Container]="Container"></scene-object-properties>
+        <draw-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfType('Drawn')" class="col-md-12" [Container]="Container"></draw-object-properties>
+    </div>
+</div>

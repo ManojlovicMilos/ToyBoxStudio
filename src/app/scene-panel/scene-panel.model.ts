@@ -12,7 +12,7 @@ class SceneContainer
 	constructor ()
 	{
         this._Scene = new Engineer.Engine.Scene2D();
-        this._Scene.Name = "Current";
+        this._Scene.Name = "New Scene";
         this._Scene.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
     }
 }
