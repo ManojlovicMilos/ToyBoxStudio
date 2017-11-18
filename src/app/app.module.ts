@@ -7,6 +7,7 @@ import { ScenePanelComponent } from "./scene-panel/scene-panel.component";
 import { ObjectsComponent } from "./scene-panel/objects/objects.component";
 import { LibraryComponent } from "./scene-panel/library/library.component";
 import { SceneComponent } from "./scene-panel/scene/scene.component";
+import { ViewComponent } from "./scene-panel/view/view.component";
 
 @NgModule(
 {
@@ -17,7 +18,8 @@ import { SceneComponent } from "./scene-panel/scene/scene.component";
     ScenePanelComponent,
     ObjectsComponent,
     LibraryComponent,
-    SceneComponent
+    SceneComponent,
+    ViewComponent
   ],
   imports: [BrowserModule],
   providers: [],

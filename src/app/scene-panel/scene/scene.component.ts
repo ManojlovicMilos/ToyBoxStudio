@@ -17,4 +17,8 @@ export class SceneComponent
     {
         
     }
+    private Select(Object)
+    {
+        this.Container.Selected = Object;
+    }
 }

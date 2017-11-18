@@ -1,5 +1,7 @@
 export { SceneObjectManager, SceneObjectManagerItem }
 
+import Engineer from "./../../engineer";
+
 class SceneObjectManager
 {
     private _Filters:string[];

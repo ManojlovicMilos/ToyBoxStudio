@@ -4,5 +4,6 @@
     padding: 0px;
     color: white;
     overflow: hidden;
+    user-select: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
