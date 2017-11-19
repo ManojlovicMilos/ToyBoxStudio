@@ -29,13 +29,13 @@ export class ViewComponent
         this._Canvas.addEventListener("resize", this.Resize.bind(this));
         this._Game.AddScene(this.Container.Scene);
         this._Runner = new Engineer.Runner.Runner(this._Game, Engineer.Draw.DrawEngineType.ThreeJS);
-        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height));
+        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
         this._Runner.SwitchScene("New Scene");
         this._Runner.Run();
         this._Transform = new TransformController(this.Container);
     }
     private Resize() : void
     {
-        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height));
+        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
     }
 }
