@@ -30,11 +30,12 @@ class TransformController
         if(Args.MouseButton == Engineer.Engine.MouseButton.Left)
         {
             this._OnMove = false;
+            this._LastLocation = null;
         }
     }
     private MouseMove(Game:any, Args:any) : void
     {
-        if(this._OnMove && this._SceneContainer.Selected)
+        if(this._OnMove && this._SceneContainer.Selected && !!this._LastLocation)
         {
             let Translation:any = this._SceneContainer.Selected.Trans.Translation;
             this._SceneContainer.Selected.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - this._LastLocation.X), Translation.Y + (Args.Location.Y - this._LastLocation.Y), Translation.Z);
