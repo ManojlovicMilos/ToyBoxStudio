@@ -2,6 +2,7 @@
 {
     margin: 0px;
     padding: 0px;
+    height: auto;
 }
 .title
 {
@@ -16,7 +17,6 @@
 {
     background-color: #282828;
     font-size: 10px;
-    height: auto;
 }
 .label
 {
