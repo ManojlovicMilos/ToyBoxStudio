@@ -1,6 +1,7 @@
 import Engineer from "./../../engineer";
 import { Input, Component } from '@angular/core';
 
+import { SceneContainer } from "./../scene-panel.model";
 import { SceneObjectManager, SceneObjectManagerItem } from "./objects.model";
 
 @Component(
@@ -11,7 +12,7 @@ import { SceneObjectManager, SceneObjectManagerItem } from "./objects.model";
 })
 export class ObjectsComponent
 {
-    @Input() private Scene:any;
+    @Input() private Container:SceneContainer;
     private _Model:SceneObjectManager;
     public get Model():SceneObjectManager { return this._Model; }
     public constructor()
@@ -28,6 +29,7 @@ export class ObjectsComponent
         NewTile.Name = "New Tile";
         NewTile.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
         NewTile.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
+        NewTile.Events.MouseDown.push(this.Clicked.bind(this));
         this._Model.AddItem("Tile", NewTile, ["SceneObject", "Tile"], "/assets/icons/tile-icon.png");
         
         this._Model.ApplyFilter("All");
@@ -38,6 +40,11 @@ export class ObjectsComponent
     }
     public ApplyItem(Item:SceneObjectManagerItem) : void
     {
-        Item.Apply(this.Scene);
+        Item.Apply(this.Container.Scene);
+        this.Container.InvokeUpdate();
+    }
+    public Clicked()
+    {
+        console.log("Clicked!");
     }
 }

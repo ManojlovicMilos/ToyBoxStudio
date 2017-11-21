@@ -4,42 +4,84 @@ import Engineer from "./../../engineer";
 
 import { SceneContainer } from "./../scene-panel.model";
 
+const TransformEventsSetKey:string = "EDITOR_TRANSFORM_EVENTS_SET";
+const TransformLastLocationKey:string = "EDITOR_TRANSFORM_LAST_LOCATION";
+
 class TransformController
 {
-    private _OnMove:boolean;
-    private _LastLocation:any;
     private _SceneContainer:SceneContainer;
 	constructor (SceneContainer:SceneContainer)
 	{
-        this._OnMove = false;
         this._SceneContainer = SceneContainer;
-        this._SceneContainer.Scene.Events.MouseDown.push(this.MouseDown.bind(this));
-        this._SceneContainer.Scene.Events.MouseUp.push(this.MouseUp.bind(this));
-        this._SceneContainer.Scene.Events.MouseMove.push(this.MouseMove.bind(this));
+        this._SceneContainer.Update.push(this.Update.bind(this));
+        this.Update();
     }
-    private MouseDown(Game:any, Args:any) : void
+    private Update() : void
+    {
+        this.SetSceneEvents();
+        this.SetObjectsEvents();
+    }
+    private SetSceneEvents() : void
+    {
+        if(!this._SceneContainer.Scene.Data[TransformEventsSetKey])
+        {
+            this._SceneContainer.Scene.Events.MouseDown.push(this.SceneMouseDown.bind(this));
+            this._SceneContainer.Scene.Events.MouseUp.push(this.SceneMouseUp.bind(this));
+            this._SceneContainer.Scene.Events.MouseMove.push(this.SceneMouseMove.bind(this));
+            this._SceneContainer.Scene.Data[TransformEventsSetKey] = true;
+        }
+    }
+    private SetObjectsEvents() : void
+    {
+        for(let i in this._SceneContainer.Scene.Objects)
+        {
+            if(!this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey])
+            {
+                this._SceneContainer.Scene.Objects[i].Events.MouseDown.push(this.ObjectMouseDown.bind(this));
+                this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey] = true;
+            }
+        }
+    }
+    private SceneMouseDown(Game:any, Args:any) : void
     {
         if(Args.MouseButton == Engineer.Engine.MouseButton.Left)
         {
-            this._OnMove = true;
-            this._LastLocation = Args.Location;
+            this._SceneContainer.Scene.Data[TransformLastLocationKey] = Args.Location;
         }
     }
-    private MouseUp(Game:any, Args:any) : void
+    private SceneMouseUp(Game:any, Args:any) : void
     {
         if(Args.MouseButton == Engineer.Engine.MouseButton.Left)
         {
-            this._OnMove = false;
-            this._LastLocation = null;
+            this._SceneContainer.Scene.Data[TransformLastLocationKey] = null;
+            if(this._SceneContainer.Selected)
+            {
+                this._SceneContainer.Selected.Data[TransformLastLocationKey] = null;
+            }
         }
     }
-    private MouseMove(Game:any, Args:any) : void
+    private SceneMouseMove(Game:any, Args:any) : void
     {
-        if(this._OnMove && this._SceneContainer.Selected && !!this._LastLocation)
+        let Target = (this._SceneContainer.Selected && this._SceneContainer.Selected .Data[TransformLastLocationKey]) ? this._SceneContainer.Selected : this._SceneContainer.Scene;
+        if(Target && Target.Data[TransformLastLocationKey])
         {
-            let Translation:any = this._SceneContainer.Selected.Trans.Translation;
-            this._SceneContainer.Selected.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - this._LastLocation.X), Translation.Y + (Args.Location.Y - this._LastLocation.Y), Translation.Z);
+            let Translation:any = Target.Trans.Translation;
+            let LastLocation = Target.Data[TransformLastLocationKey];
+            Target.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - LastLocation.X), Translation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z);
+            Target.Data[TransformLastLocationKey] = Args.Location;
         }
-        this._LastLocation = Args.Location;
+    }
+    private ObjectMouseDown(Game:any, Args:any) : boolean
+    {
+        if(Args.MouseButton == Engineer.Engine.MouseButton.Left)
+        {
+            if(Args.Sender && this._SceneContainer.Scene.Objects.indexOf(Args.Sender) != -1)
+            {
+                this._SceneContainer.Selected = Args.Sender;
+                this._SceneContainer.Selected .Data[TransformLastLocationKey] = Args.Location;
+                return true;
+            }
+        }
+        return false;
     }
 }
