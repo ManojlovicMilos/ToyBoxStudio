@@ -86,9 +86,30 @@ class TransformController
     }
     private SceneMouseMove(Game:any, Args:any) : void
     {
-        let Target = (this._SceneContainer.Selected && this._SceneContainer.Selected .Data[TransformLastLocationKey]) ? this._SceneContainer.Selected : this._SceneContainer.Scene;
-        if(Target && Target.Data[TransformLastLocationKey])
+        if(this._SceneContainer.Selected && this._SceneContainer.Selected.Data[TransformLastLocationKey])
         {
+            let Target = this._SceneContainer.Selected
+            let LastLocation = Target.Data[TransformLastLocationKey];
+            if(this._Mode == TransformMode.Translate)
+            {
+                let Translation:any = Target.Trans.Translation;
+                Target.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - LastLocation.X), Translation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z);
+            }
+            else if(this._Mode == TransformMode.Rotate)
+            {
+                let Rotation:any = Target.Trans.Rotation;
+                Target.Trans.Rotation = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, Rotation.Z + (Args.Location.X - LastLocation.X));
+            }
+            else if(this._Mode == TransformMode.Scale)
+            {
+                let Scale:any = Target.Trans.Scale;
+                Target.Trans.Scale = new Engineer.Math.Vertex(Scale.X + (Args.Location.X - LastLocation.X), Scale.Y + (Args.Location.Y - LastLocation.Y), Scale.Z);
+            }
+            Target.Data[TransformLastLocationKey] = Args.Location;
+        }
+        else if(this._SceneContainer.Scene.Data[TransformLastLocationKey])
+        {
+            let Target = this._SceneContainer.Scene;
             let Translation:any = Target.Trans.Translation;
             let LastLocation = Target.Data[TransformLastLocationKey];
             Target.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - LastLocation.X), Translation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z);
