@@ -1,17 +1,41 @@
 export { TransformController }
 
-import Engineer from "./../../engineer";
+import Engineer from "./../../../engineer";
 
-import { SceneContainer } from "./../scene-panel.model";
+import { SceneContainer } from "./../../scene-panel.model";
 
 const TransformEventsSetKey:string = "EDITOR_TRANSFORM_EVENTS_SET";
 const TransformLastLocationKey:string = "EDITOR_TRANSFORM_LAST_LOCATION";
 
+enum TransformMode
+{
+    Translate = 0,
+    Rotate = 1,
+    Scale = 2
+}
+enum TransformSnapMode
+{
+    NoSnap = 0,
+    AutoSnap = 1,
+    FixedSnap = 2
+}
 class TransformController
 {
+    private _Mode:TransformMode;
+    private _SnapMode:TransformSnapMode;
+    private _FixedSnapOffset:number;
     private _SceneContainer:SceneContainer;
+    public get Mode():TransformMode { return this._Mode; }
+    public set Mode(value:TransformMode) { this._Mode = value; }
+    public get SnapMode():TransformSnapMode { return this._SnapMode; }
+    public set SnapMode(value:TransformSnapMode) { this._SnapMode = value; }
+    public get FixedSnapOffset():number { return this._FixedSnapOffset; }
+    public set FixedSnapOffset(value:number) { this._FixedSnapOffset = value; }
 	constructor (SceneContainer:SceneContainer)
 	{
+        this._Mode = TransformMode.Translate;
+        this._SnapMode = TransformSnapMode.NoSnap;
+        this._FixedSnapOffset = 100;
         this._SceneContainer = SceneContainer;
         this._SceneContainer.Update.push(this.Update.bind(this));
         this.Update();

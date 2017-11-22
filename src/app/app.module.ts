@@ -9,6 +9,7 @@ import { ObjectsComponent } from "./scene-panel/objects/objects.component";
 import { LibraryComponent } from "./scene-panel/library/library.component";
 import { SceneComponent } from "./scene-panel/scene/scene.component";
 import { PropertiesComponent } from "./scene-panel/properties/properties.component";
+import { TransformComponent } from "./scene-panel/view/transform/transform.component";
 import { ViewComponent } from "./scene-panel/view/view.component";
 import { ScenePropertiesComponent } from "./scene-panel/properties/scene-properties/scene-properties.component";
 import { SceneObjectPropertiesComponent } from "./scene-panel/properties/scene-object-properties/scene-object-properties.component";
@@ -25,6 +26,7 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
     LibraryComponent,
     SceneComponent,
     PropertiesComponent,
+    TransformComponent,
     ViewComponent,
     ScenePropertiesComponent,
     SceneObjectPropertiesComponent,

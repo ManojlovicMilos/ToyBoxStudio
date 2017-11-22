@@ -33,10 +33,10 @@
 }
 .object-selected
 {
-    color:black;
-    background-color: white;
+    background-color: #FF9900;
 }
 .object:hover
 {
+    color:white;
     background-color: #222222;
 }

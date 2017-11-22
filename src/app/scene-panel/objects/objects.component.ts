@@ -29,7 +29,6 @@ export class ObjectsComponent
         NewTile.Name = "New Tile";
         NewTile.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
         NewTile.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
-        NewTile.Events.MouseDown.push(this.Clicked.bind(this));
         this._Model.AddItem("Tile", NewTile, ["SceneObject", "Tile"], "/assets/icons/tile-icon.png");
         
         this._Model.ApplyFilter("All");
@@ -42,9 +41,5 @@ export class ObjectsComponent
     {
         Item.Apply(this.Container.Scene);
         this.Container.InvokeUpdate();
-    }
-    public Clicked()
-    {
-        console.log("Clicked!");
     }
 }

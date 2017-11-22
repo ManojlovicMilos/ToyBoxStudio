@@ -3,7 +3,6 @@ import Engineer from "./../../engineer";
 import { Input, Component } from '@angular/core';
 
 import { SceneContainer } from "./../scene-panel.model";
-import { TransformController } from "./transform.controller";
 
 @Component(
 {
@@ -17,7 +16,6 @@ export class ViewComponent
     private _Game:any;
     private _Runner:any;
     private _Canvas:HTMLCanvasElement;
-    private _Transform:TransformController;
     public constructor()
     {
         this._Game = new Engineer.Engine.Game();
@@ -32,7 +30,6 @@ export class ViewComponent
         this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
         this._Runner.SwitchScene("New Scene");
         this._Runner.Run();
-        this._Transform = new TransformController(this.Container);
     }
     private Resize() : void
     {
