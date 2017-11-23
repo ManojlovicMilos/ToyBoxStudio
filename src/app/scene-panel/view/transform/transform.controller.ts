@@ -6,6 +6,9 @@ import { SceneContainer } from "./../../scene-panel.model";
 
 const TransformEventsSetKey:string = "EDITOR_TRANSFORM_EVENTS_SET";
 const TransformLastLocationKey:string = "EDITOR_TRANSFORM_LAST_LOCATION";
+const TransformUnsnappedTranslationKey:string = "EDITOR_TRANSFORM_UNSNAPPED_TRANSLATION";
+const TransformUnsnappedRotationKey:string = "EDITOR_TRANSFORM_UNSNAPPED_ROTATION";
+const TransformUnsnappedScaleKey:string = "EDITOR_TRANSFORM_UNSNAPPED_SCALE";
 
 enum TransformMode
 {
@@ -81,6 +84,9 @@ class TransformController
             if(this._SceneContainer.Selected)
             {
                 this._SceneContainer.Selected.Data[TransformLastLocationKey] = null;
+                this._SceneContainer.Selected.Data[TransformUnsnappedTranslationKey] = null;
+                this._SceneContainer.Selected.Data[TransformUnsnappedRotationKey] = null;
+                this._SceneContainer.Selected.Data[TransformUnsnappedScaleKey] = null;
             }
         }
     }
@@ -93,17 +99,26 @@ class TransformController
             if(this._Mode == TransformMode.Translate)
             {
                 let Translation:any = Target.Trans.Translation;
-                Target.Trans.Translation = new Engineer.Math.Vertex(Translation.X + (Args.Location.X - LastLocation.X), Translation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z);
+                let UnsnappedTranslation:any = Target.Data[TransformUnsnappedTranslationKey];
+                if(!UnsnappedTranslation) UnsnappedTranslation = Translation;
+                Target.Trans.Translation = this.Snap2DValue(new Engineer.Math.Vertex(UnsnappedTranslation.X + (Args.Location.X - LastLocation.X), UnsnappedTranslation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z));
+                Target.Data[TransformUnsnappedTranslationKey] = new Engineer.Math.Vertex(UnsnappedTranslation.X + (Args.Location.X - LastLocation.X), UnsnappedTranslation.Y + (Args.Location.Y - LastLocation.Y), Translation.Z);
             }
             else if(this._Mode == TransformMode.Rotate)
             {
                 let Rotation:any = Target.Trans.Rotation;
-                Target.Trans.Rotation = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, Rotation.Z + (Args.Location.X - LastLocation.X));
+                let UnsnappedRotation:any = Target.Data[TransformUnsnappedRotationKey];
+                if(!UnsnappedRotation) UnsnappedRotation = Rotation;
+                Target.Trans.Rotation = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, this.CalculateNewOffset(UnsnappedRotation.Z + (Args.Location.X - LastLocation.X)));
+                Target.Data[TransformUnsnappedRotationKey] = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, UnsnappedRotation.Z + (Args.Location.X - LastLocation.X));
             }
             else if(this._Mode == TransformMode.Scale)
             {
                 let Scale:any = Target.Trans.Scale;
-                Target.Trans.Scale = new Engineer.Math.Vertex(Scale.X + (Args.Location.X - LastLocation.X), Scale.Y + (Args.Location.Y - LastLocation.Y), Scale.Z);
+                let UnsnappedScale:any = Target.Data[TransformUnsnappedScaleKey];
+                if(!UnsnappedScale) UnsnappedScale = Scale;
+                Target.Trans.Scale = this.Snap2DValue(new Engineer.Math.Vertex(UnsnappedScale.X + (Args.Location.X - LastLocation.X), UnsnappedScale.Y + (Args.Location.Y - LastLocation.Y), Scale.Z));
+                Target.Data[TransformUnsnappedScaleKey] = new Engineer.Math.Vertex(UnsnappedScale.X + (Args.Location.X - LastLocation.X), UnsnappedScale.Y + (Args.Location.Y - LastLocation.Y), Scale.Z);
             }
             Target.Data[TransformLastLocationKey] = Args.Location;
         }
@@ -128,5 +143,33 @@ class TransformController
             }
         }
         return false;
+    }
+    private Snap2DValue(Value:any) : any
+    {
+        if(this._SnapMode == TransformSnapMode.NoSnap)
+        {
+            return Value;
+        }
+        else if(this._SnapMode == TransformSnapMode.FixedSnap)
+        {
+            return new Engineer.Math.Vertex(this.CalculateNewOffset(Value.X), this.CalculateNewOffset(Value.Y), Value.Z);
+        }
+        else return Value;
+    }
+    private CalculateNewOffset(Value:number) : number
+    {
+        let Negative:boolean = Value < 0;
+        Value = Math.abs(Value);
+        let Ammount:number = Math.floor(Value / this._FixedSnapOffset);
+        let NewValue:number = Ammount * this._FixedSnapOffset + this.CalculateExtraOffset(Value);
+        if(Negative) NewValue *= -1;
+        return NewValue;
+    }
+    private CalculateExtraOffset(Value:number) : number
+    {
+        let NewValue = Value;
+        while(NewValue > this._FixedSnapOffset) NewValue -= this._FixedSnapOffset;
+        if(NewValue > this._FixedSnapOffset / 2) return this._FixedSnapOffset;
+        return 0;
     }
 }
