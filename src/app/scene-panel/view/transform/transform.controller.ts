@@ -109,7 +109,7 @@ class TransformController
                 let Rotation:any = Target.Trans.Rotation;
                 let UnsnappedRotation:any = Target.Data[TransformUnsnappedRotationKey];
                 if(!UnsnappedRotation) UnsnappedRotation = Rotation;
-                Target.Trans.Rotation = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, this.CalculateNewOffset(UnsnappedRotation.Z + (Args.Location.X - LastLocation.X)));
+                Target.Trans.Rotation = this.SnapRotation(new Engineer.Math.Vertex(Rotation.X, Rotation.Y, UnsnappedRotation.Z + (Args.Location.X - LastLocation.X)));
                 Target.Data[TransformUnsnappedRotationKey] = new Engineer.Math.Vertex(Rotation.X, Rotation.Y, UnsnappedRotation.Z + (Args.Location.X - LastLocation.X));
             }
             else if(this._Mode == TransformMode.Scale)
@@ -153,6 +153,18 @@ class TransformController
         else if(this._SnapMode == TransformSnapMode.FixedSnap)
         {
             return new Engineer.Math.Vertex(this.CalculateNewOffset(Value.X), this.CalculateNewOffset(Value.Y), Value.Z);
+        }
+        else return Value;
+    }
+    private SnapRotation(Value:any) : any
+    {
+        if(this._SnapMode == TransformSnapMode.NoSnap)
+        {
+            return Value;
+        }
+        else if(this._SnapMode == TransformSnapMode.FixedSnap)
+        {
+            return new Engineer.Math.Vertex(Value.X, Value.Y, this.CalculateNewOffset(Value.Z));
         }
         else return Value;
     }
