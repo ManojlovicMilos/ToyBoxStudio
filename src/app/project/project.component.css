@@ -1,3 +1,8 @@
+.def
+{
+    margin: 0px;
+    padding: 0px;
+}
 .main
 {
     margin: 0px;
@@ -5,8 +10,6 @@
 }
 .title
 {
-    margin: 0px;
-    padding: 0px;
     padding-top: 2px;
     height: 25px;
     padding-left: 30px;
@@ -14,17 +17,25 @@
     width:100%;
     background-color: #333333;
 }
+.header
+{
+    padding-top: 12px;
+    height: 50px;
+    font-size:25px;
+    width:100%;
+    background-color: #222222;
+}
+.icon
+{
+    color:white;
+}
 .body
 {
-    margin: 0px;
-    padding: 0px;
-    height: 60vh;
-    min-height: 60vh;
+    height: 95vh;
+    min-height: 95vh;
 }
 .tree
 {
-    margin: 0px;
-    padding: 0px;
     height: 100%;
     border-color: #222222;
     border-width: 2px;

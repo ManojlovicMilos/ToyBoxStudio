@@ -1,7 +1,10 @@
-.page
+.def
 {
     margin: 0px;
     padding: 0px;
+}
+.page
+{
     color: white;
     overflow: hidden;
     user-select: none;
