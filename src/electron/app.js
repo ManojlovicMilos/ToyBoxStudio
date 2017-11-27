@@ -1,36 +1,34 @@
-export { App }
+'use strict';
 
-import { app, BrowserWindow } from 'electron';
+const { app, BrowserWindow } = require("electron");
 
-import { Window } from "./window";
+const Window = require("./window");
 
 class App
 {
-    private _App;
-    private _MainWindow;
-    public constructor()
+    constructor()
     {
         this._App = app;
         this.Init();
     }
-    private Init() : void
+    Init()
     {
         this.Event("ready", this.CreateMainWindow.bind(this));
         this.Event("activate", this.CreateMainWindow.bind(this));
         this.Event("window-all-closed", this.AllWindowsClosed.bind(this));
     }
-    public Event(Name:string, Callback:Function) : void
+    Event(Name, Callback)
     {
         this._App.on(Name, () => Callback());
     }
-    private CreateMainWindow() : void
+    CreateMainWindow()
     {
         if(!this._MainWindow)
         {
             this._MainWindow = new Window(1366, 768);
         }
     }
-    private AllWindowsClosed() : void
+    AllWindowsClosed()
     {
         if (process.platform !== 'darwin')
         {
@@ -38,3 +36,5 @@ class App
         }
     }
 }
+
+module.exports = App;
