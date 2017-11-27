@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ProjectComponent } from "./project/project.component";
+import { SearchComponent } from "./search/search.component";
 import { TabComponent } from "./tab-navigation/tab/tab.component";
 import { TabNavigationComponent } from "./tab-navigation/tab-navigation.component";
 
@@ -25,6 +26,7 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
   [
     AppComponent,
     ProjectComponent,
+    SearchComponent,
     TabComponent,
     TabNavigationComponent,
 

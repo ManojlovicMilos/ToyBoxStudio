@@ -10,3 +10,30 @@
     user-select: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.navigation
+{
+    width:4%;
+    height: 100vh;
+    float:left;
+    font-size:30px;
+    text-align: center;
+    background-color: #333333;
+}
+.icon
+{
+    color:#AAAAAA;
+}
+.icon-selected
+{
+    color:white;
+}
+.icon:hover
+{
+    color:white;
+}
+.content
+{
+    width:96%;
+    float:left;
+    overflow: hidden;
+}

@@ -10,5 +10,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
-  title = 'ToyBox Studio';
+  private _Title:string;
+  private _SideBarOption:number;
+  public constructor()
+  {
+    this._Title = 'ToyBox Studio';
+    this._SideBarOption = 0;
+  }
+  private SelectOption(Option:number) : void
+  {
+    if(Option == this._SideBarOption) this._SideBarOption = -1;
+    else this._SideBarOption = Option;
+  }
 }
