@@ -7,13 +7,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --watch",
     "prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "ng build && electron .",
-    "electron-ts": "ng build && tsc && electron ."
+    "electron": "ng build --prod && electron .",
+    "electron-dev": "electron . --serve"
   },
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
+    "electron-reload": "^1.2.2",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",

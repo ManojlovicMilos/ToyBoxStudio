@@ -23,13 +23,13 @@ export class ObjectsComponent
         NewSprite.Name = "New Sprite";
         NewSprite.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
         NewSprite.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
-        this._Model.AddItem("Sprite", NewSprite, ["SceneObject", "Sprite"], "/assets/icons/sprite-icon.png");
+        this._Model.AddItem("Sprite", NewSprite, ["SceneObject", "Sprite"], "./assets/icons/sprite-icon.png");
 
         let NewTile = new Engineer.Engine.Tile();
         NewTile.Name = "New Tile";
         NewTile.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
         NewTile.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
-        this._Model.AddItem("Tile", NewTile, ["SceneObject", "Tile"], "/assets/icons/tile-icon.png");
+        this._Model.AddItem("Tile", NewTile, ["SceneObject", "Tile"], "./assets/icons/tile-icon.png");
         
         this._Model.ApplyFilter("All");
     }

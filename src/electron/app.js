@@ -2,6 +2,18 @@
 
 const { app, BrowserWindow } = require("electron");
 
+const Path = __dirname + "/../../dist/"
+
+const args = process.argv.slice(1);
+let serve = args.some(val => val === '--serve');
+if (serve)
+{
+    require('electron-reload')
+    (__dirname,{
+        electron: require('${__dirname}/../../node_modules/electron')
+    });
+}
+
 const Window = require("./window");
 
 class App
@@ -25,7 +37,7 @@ class App
     {
         if(!this._MainWindow)
         {
-            this._MainWindow = new Window(1366, 768);
+            this._MainWindow = new Window(1366, 768, Path + "index.html");
         }
     }
     AllWindowsClosed()
