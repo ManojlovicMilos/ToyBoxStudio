@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { Component } from '@angular/core';
 
+import { Project } from "./project/project.model";
+
 @Component(
 {
   selector: 'app-root',
@@ -10,6 +12,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
+  private _Current:Project;
   private _Title:string;
   private _SideBarOption:number;
   public constructor()

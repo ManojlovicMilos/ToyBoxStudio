@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="def page">
+<div *ngIf="_Current != null" class="def page">
     <div class="def navigation">
         <i class="icon fa fa-files-o" [ngClass]="{'icon-selected': _SideBarOption == 0}" (click)="SelectOption(0)"></i>
         <i class="icon fa fa-search" [ngClass]="{'icon-selected': _SideBarOption == 1}" (click)="SelectOption(1)"></i>
@@ -15,4 +15,7 @@
         </div>
     </div>
 </div>
-
+<div *ngIf="_Current == null" class="def page">
+    <p class="no-project">No Project Is Loaded</p>
+</div>
+    

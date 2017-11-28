@@ -37,3 +37,10 @@
     float:left;
     overflow: hidden;
 }
+.no-project
+{
+    text-align: center;
+    font-size: 32px;
+    color:white;
+    margin-top: 200px;
+}

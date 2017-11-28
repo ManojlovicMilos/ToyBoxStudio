@@ -15,6 +15,7 @@ if (serve)
 }
 
 const Window = require("./window");
+const ProjectIO = require("./project");
 
 class App
 {
@@ -25,20 +26,26 @@ class App
     }
     Init()
     {
-        this.Event("ready", this.CreateMainWindow.bind(this));
-        this.Event("activate", this.CreateMainWindow.bind(this));
+        this.Event("ready", this.ApplicationReady.bind(this));
         this.Event("window-all-closed", this.AllWindowsClosed.bind(this));
     }
     Event(Name, Callback)
     {
         this._App.on(Name, () => Callback());
     }
+    ApplicationReady()
+    {
+        this.CreateMainWindow();
+        this.CreateProjectIO();
+    }
     CreateMainWindow()
     {
-        if(!this._MainWindow)
-        {
-            this._MainWindow = new Window(1366, 768, Path + "index.html");
-        }
+        this._MainWindow = new Window(1366, 768, Path + "index.html");
+    }
+    CreateProjectIO()
+    {
+        this._ProjectIO = new ProjectIO(this._MainWindow);
+        this._MainWindow.ActivateMenu();
     }
     AllWindowsClosed()
     {

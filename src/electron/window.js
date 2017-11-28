@@ -6,6 +6,7 @@ const MainMenu = require("./menu");
 
 class Window
 {
+    get MainMenu() { return this._Menu; }
     constructor(Width, Height, Path)
     {
         this.Init(Width, Height, Path);
@@ -14,11 +15,14 @@ class Window
     {
         this._Menu = new MainMenu();
         this._Window = new BrowserWindow({width: Width, height: Height, darkTheme:true});
-        this._Window.setMenu(this._Menu.Menu);
         this._Window.loadURL(Path);
         this.Event("closed", this.Close.bind(this));
         globalShortcut.register('CommandOrControl+R', this.Reload.bind(this));
         globalShortcut.register('CommandOrControl+D', this.DevTools.bind(this));
+    }
+    ActivateMenu()
+    {
+        this._Window.setMenu(this._Menu.Menu);
     }
     Reload()
     {
