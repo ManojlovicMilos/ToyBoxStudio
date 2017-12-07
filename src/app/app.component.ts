@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
-
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { ElectronService } from 'ngx-electron';
 
 import { Project } from "./project/project.model";
 
@@ -12,13 +12,27 @@ import { Project } from "./project/project.model";
 })
 export class AppComponent
 {
-  private _Current:Project;
   private _Title:string;
+  private _Current:Project;
   private _SideBarOption:number;
-  public constructor()
+  public constructor(private _ElectronService: ElectronService, private Reference: ChangeDetectorRef)
   {
     this._Title = 'ToyBox Studio';
     this._SideBarOption = 0;
+    this._Current = new Project();
+  }
+  public ngOnInit() : void
+  {
+    if(this._ElectronService.isElectronApp)
+    {
+        this._ElectronService.ipcRenderer.on('project-loaded' , this.ProjectLoaded.bind(this));
+    }
+  }
+  private ProjectLoaded(Event, Data)
+  {
+      this._Current.Load(Data);
+      //this.Reference.detach();
+      //this.Reference.detectChanges();
   }
   private SelectOption(Option:number) : void
   {

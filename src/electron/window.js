@@ -7,6 +7,7 @@ const MainMenu = require("./menu");
 class Window
 {
     get MainMenu() { return this._Menu; }
+    get Window() { return this._Window; }
     constructor(Width, Height, Path)
     {
         this.Init(Width, Height, Path);

@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgxElectronModule } from 'ngx-electron';
 
 import { AppComponent } from './app.component';
 import { ProjectComponent } from "./project/project.component";
+import { TreeNodeComponent } from "./project/tree-node/tree-node.component";
 import { SearchComponent } from "./search/search.component";
 import { TabComponent } from "./tab-navigation/tab/tab.component";
 import { TabNavigationComponent } from "./tab-navigation/tab-navigation.component";
@@ -26,6 +28,7 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
   [
     AppComponent,
     ProjectComponent,
+    TreeNodeComponent,
     SearchComponent,
     TabComponent,
     TabNavigationComponent,
@@ -42,7 +45,7 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
     SceneObjectPropertiesComponent,
     DrawObjectPropertiesComponent
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, NgxElectronModule],
   providers: [],
   bootstrap: [AppComponent]
 })

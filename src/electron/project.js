@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, Menu, MenuItem, dialog } = require('electron');
+const { app, Menu, MenuItem, dialog, ipcMain } = require('electron');
 
 const FileSystem = require("./fsmanager");
 
@@ -31,7 +31,7 @@ class ProjectIO
             this._FS.CreateProjectDirectories(filename);
             this._FS.CreateNewProjectConfig(filename);
             let DirTree = this._FS.ReadDirectoryTree(filename);
-            console.log(DirTree);
+            this._Window.Window.webContents.send('project-loaded' , DirTree);
         }
     }
 }

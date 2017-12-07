@@ -1,12 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="_Current != null" class="def page">
+<div *ngIf="_Current.Tree != null" class="def page">
     <div class="def navigation">
         <i class="icon fa fa-files-o" [ngClass]="{'icon-selected': _SideBarOption == 0}" (click)="SelectOption(0)"></i>
         <i class="icon fa fa-search" [ngClass]="{'icon-selected': _SideBarOption == 1}" (click)="SelectOption(1)"></i>
     </div>
     <div class="def content row">
         <div *ngIf="_SideBarOption != -1" class="def col-md-2">
-            <project *ngIf="_SideBarOption == 0"></project>
+            <project *ngIf="_SideBarOption == 0" [Current]="_Current"></project>
             <search *ngIf="_SideBarOption == 1"></search>
         </div>
         <div class="def" [ngClass]="{'col-md-10': _SideBarOption != -1, 'col-md-12': _SideBarOption == -1}">
@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="_Current == null" class="def page">
+<div *ngIf="_Current.Tree == null" class="def page">
     <p class="no-project">No Project Is Loaded</p>
 </div>
     

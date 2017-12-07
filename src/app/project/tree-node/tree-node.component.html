@@ -1,0 +1,10 @@
+<div *ngIf="Node" class="def">
+    <div class="def row">
+        <i *ngIf="Node.Children" class="icon fa col-md-1" [ngClass]="{'fa-plus-square-o': !_Expanded, 'fa-minus-square-o': _Expanded}" (click)="ToggleExpand()"></i>
+        <div *ngIf="!NodeChildren" class="col-md-1" ></div>
+        <p class="text col-md-10">{{Node.Name}}</p>
+    </div>
+    <div *ngIf="_Expanded"  class="def children">
+        <tree-node *ngFor="let Child of Node.Children" [Node]="Child"></tree-node>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import Engineer from "./../engineer";
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Project } from "./project.model";
 
 @Component(
 {
@@ -10,12 +12,9 @@ import { Component } from '@angular/core';
 })
 export class ProjectComponent
 {
-    public constructor()
-    {
-        
-    }
+    @Input() private Current:Project;
+    public constructor() {}
     public ngOnInit() : void
     {
-
     }
 }
