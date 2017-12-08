@@ -5,7 +5,16 @@
 }
 .icon
 {
-    color:white
+    margin-top:6px;
+    margin-left:5px;
+    color:white;
+    float:left;
+    width:18px;
+}
+.filler
+{
+    float:left;
+    min-width:18px;
 }
 .children
 {
