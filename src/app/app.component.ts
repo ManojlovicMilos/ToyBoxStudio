@@ -19,7 +19,7 @@ export class AppComponent
   {
     this._Title = 'ToyBox Studio';
     this._SideBarOption = 0;
-    this._Current = new Project();
+    this._Current = new Project(this._ElectronService);
   }
   public ngOnInit() : void
   {

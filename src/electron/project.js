@@ -16,6 +16,7 @@ class ProjectIO
     {
         this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this)]);
         this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this)]);
+        ipcMain.on("save-file", this.SaveFile.bind(this));
     }
     NewProject()
     {
@@ -47,6 +48,12 @@ class ProjectIO
     AddScene()
     {
         this._Window.Window.webContents.send('add-scene');
+    }
+    SaveFile(Event, Args)
+    {
+        let Path = Args[0];
+        let File = Args[1];
+        this._FS.WriteFile(Path, JSON.stringify(File));
     }
 }
 

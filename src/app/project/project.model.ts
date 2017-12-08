@@ -1,6 +1,7 @@
 export { Project }
 
 import Engineer from "./../engineer";
+import { ElectronService } from 'ngx-electron';
 
 import { Tab, TabValueType } from "./../tab-navigation/tab/tab.model";
 
@@ -8,6 +9,7 @@ class Project
 {
     private _Name:string;
     private _Tree:any;
+    private _Electron:ElectronService;
     private _CurrentTab:Tab;
     private _OpenTabs:Tab[];
     public get Name():string { return this._Name; }
@@ -17,12 +19,13 @@ class Project
     public get Assets():any { return this._Tree.Children[0]; }
     public get Scenes():any { return this.Assets.Children[1]; }
     public get SceneObjects():any { return this.Assets.Children[0]; }
-	public constructor ()
+	public constructor (ElectronService: ElectronService)
 	{
         this._Name = "";
         this._Tree = null;
         this._CurrentTab = null;
         this._OpenTabs = [];
+        this._Electron = ElectronService;
     }
     public Load(DirTree) : void
     {
@@ -33,7 +36,10 @@ class Project
     {
         if(Node.Value != null)
         {
-
+            if(this._Electron.isElectronApp)
+            {
+                this._Electron.ipcRenderer.send("save-file", [Node.Path, Node.Value.Serialize()]);
+            }
         }
     }
     public CreateScene(Name:string)
