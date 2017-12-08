@@ -9,11 +9,19 @@
     width:120px;
     text-align: center;
 }
-.title
+.title-off
 {
     padding-top: 2px;
     height: 25px;
     font-size:13px;
     width:100%;
     background-color: #222222;
+}
+.title-on
+{
+    padding-top: 2px;
+    height: 25px;
+    font-size:13px;
+    width:100%;
+    background-color: #333333;
 }

@@ -11,11 +11,10 @@ class SceneContainer
     public get Selected():any { return this._Selected; }
     public set Selected(value:any) { this._Selected = value; }
     public get Update():Function[] { return this._Update; }
-	constructor ()
+	constructor (Scene:any)
 	{
-        this._Scene = new Engineer.Engine.Scene2D();
-        this._Scene.Name = "New Scene";
-        this._Scene.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
+        if(Scene) this._Scene = Scene;
+        else this._Scene = new Engineer.Engine.Scene2D();
         this._Update = [];
     }
     public InvokeUpdate() : void

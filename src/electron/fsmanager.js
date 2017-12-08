@@ -40,9 +40,7 @@ class FileSystem
         {
             Name: ProjectName,
             CreatedAt: Date.now(),
-            Version: 0,
-            Assets: [],
-            StartSceneIndex: 0
+            Version: 0
         };
         this.WriteFile(Location + "/toybox-config.json", JSON.stringify(ProjectConfig));
     }
@@ -54,7 +52,7 @@ class FileSystem
         {
             if(fs.statSync(Location + "/" +Locations[i]).isFile())
             {
-                TreeNode.Children.push({ Name: Locations[i], Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i] });
+                TreeNode.Children.push({ Name: Locations[i], Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i], Value:null });
             }
             else
             {

@@ -1,3 +1,3 @@
 <div class="def main">
-    <tab *ngFor="let Tab of Tabs" [Text]="Tab.Text"></tab>
+    <tab *ngFor="let Tab of Current.OpenTabs" [Text]="Tab.Text" [Current]="Tab == Current.CurrentTab"></tab>
 </div>

@@ -26,6 +26,7 @@ export class AppComponent
     if(this._ElectronService.isElectronApp)
     {
         this._ElectronService.ipcRenderer.on('project-loaded' , this.ProjectLoaded.bind(this));
+        this._ElectronService.ipcRenderer.on('add-scene' , this.AddScene.bind(this));
     }
   }
   private ProjectLoaded(Event, Data)
@@ -34,9 +35,14 @@ export class AppComponent
         this._Current.Load(Data);
       }.bind(this));
   }
+  private AddScene(Event)
+  {
+      this._Zone.run(function() {
+        this._Current.CreateScene("NewScene");
+      }.bind(this));
+  }
   private SelectOption(Option:number) : void
   {
-    console.log(Option);
     if(Option == this._SideBarOption) this._SideBarOption = -1;
     else this._SideBarOption = Option;
   }

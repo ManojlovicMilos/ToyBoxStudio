@@ -9,9 +9,9 @@
             <project *ngIf="_SideBarOption == 0" [Current]="_Current"></project>
             <search *ngIf="_SideBarOption == 1"></search>
         </div>
-        <div class="def" [ngClass]="{'col-md-10': _SideBarOption != -1, 'col-md-12': _SideBarOption == -1}">
-            <tab-navigation></tab-navigation>
-            <scene-panel></scene-panel>
+        <div *ngIf="_Current.CurrentTab" class="def" [ngClass]="{'col-md-10': _SideBarOption != -1, 'col-md-12': _SideBarOption == -1}">
+            <tab-navigation [Current]="_Current"></tab-navigation>
+            <scene-panel *ngIf="_Current.CurrentTab.Type == 0" [Scene]="_Current.CurrentTab.Value"></scene-panel>
         </div>
     </div>
 </div>

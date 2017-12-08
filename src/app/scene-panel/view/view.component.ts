@@ -28,7 +28,7 @@ export class ViewComponent
         this._Game.AddScene(this.Container.Scene);
         this._Runner = new Engineer.Runner.Runner(this._Game, Engineer.Draw.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
-        this._Runner.SwitchScene("New Scene");
+        this._Runner.SwitchScene(this.Container.Scene.Name);
         this._Runner.Run();
     }
     private Resize() : void

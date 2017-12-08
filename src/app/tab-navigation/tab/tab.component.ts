@@ -8,6 +8,7 @@ import { Input, Component } from '@angular/core';
 })
 export class TabComponent
 {
+    @Input() private Current:boolean;
     @Input() private Text:string;
     private ngOnInit() : void
     {

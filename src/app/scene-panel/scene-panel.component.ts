@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 import { SceneContainer } from "./scene-panel.model";
 
@@ -10,10 +10,12 @@ import { SceneContainer } from "./scene-panel.model";
 })
 export class ScenePanelComponent
 {
+    @Input() private Scene:any;
     private _Model:SceneContainer;
     public get Model():SceneContainer { return this._Model; }
-    public constructor()
+    public constructor() {}
+    private ngOnInit() : void
     {
-        this._Model = new SceneContainer();
+        this._Model = new SceneContainer(this.Scene);
     }
 }

@@ -13,26 +13,26 @@ class MainMenu
     Init()
     {
         this._Menu = new Menu();
-        this.CreateProjectMenu();
         this.CreateHelpMenu();
     }
     CreateFileMenu(Actions)
     {
         let NewOptionItem = new MenuItem({label:"New", click:Actions[0]});
-        let OpenOptionItem = new MenuItem({label:"Open"});
+        let OpenOptionItem = new MenuItem({label:"Open", click:Actions[1]});
         let SaveOptionItem = new MenuItem({label:"Save"});
         let Separator = new MenuItem({type:"separator"});
         let ExitOptionItem = new MenuItem({label:"Exit", click:this.Exit.bind(this)});
         this._FileMenuItem = new MenuItem({label:"File", submenu:[NewOptionItem, OpenOptionItem, SaveOptionItem, Separator, ExitOptionItem]});
         this._Menu.insert(0, this._FileMenuItem);
     }
-    CreateProjectMenu()
+    CreateProjectMenu(Actions)
     {
         let RunOptionItem = new MenuItem({label:"Run"});
         let Separator = new MenuItem({type:"separator"});
-        let AddOptionItem = new MenuItem({label:"Add"});
+        let AddScene = new MenuItem({label:"Scene", click:Actions[0]});
+        let AddOptionItem = new MenuItem({label:"Add", submenu:[AddScene]});
         this._ProjectMenuItem = new MenuItem({label:"Project", submenu:[RunOptionItem, Separator, AddOptionItem]});
-        this._Menu.append(this._ProjectMenuItem);
+        this._Menu.insert(1, this._ProjectMenuItem);
     }
     CreateHelpMenu()
     {

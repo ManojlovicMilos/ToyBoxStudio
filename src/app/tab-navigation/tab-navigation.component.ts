@@ -1,5 +1,6 @@
 import { Input, Component } from '@angular/core';
 
+import { Project } from "./../project/project.model";
 import { Tab, TabValueType } from "./tab/tab.model";
 
 @Component(
@@ -10,11 +11,9 @@ import { Tab, TabValueType } from "./tab/tab.model";
 })
 export class TabNavigationComponent
 {
-    //@Input()
-    private Tabs:Tab[];
+    @Input() private Current:Project;
     private ngOnInit() : void
     {
-        this.Tabs = [];
-        this.Tabs.push(new Tab("Example Scene", null, TabValueType.Scene));
+        
     }
 }
