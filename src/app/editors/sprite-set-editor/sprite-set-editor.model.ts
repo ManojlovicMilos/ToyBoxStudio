@@ -1,0 +1,44 @@
+export { SpriteSetContainer }
+
+import Engineer from "./../../engineer";
+
+import { ActionController } from "./../controllers/action-manager.controller";
+
+class SpriteSetContainer
+{
+    private _SpriteSet:any;
+    private _Selected:any;
+    private _Update:Function[];
+    private _Actions:ActionController;
+    public get SpriteSet():any { return this._SpriteSet; }
+    public set SpriteSet(value:any) { this._SpriteSet = value; }
+    public get Selected():any { return this._Selected; }
+    public set Selected(value:any) { this._Selected = value; }
+    public get Update():Function[] { return this._Update; }
+	constructor (SpriteSet:any)
+	{
+        if(SpriteSet) this._SpriteSet = SpriteSet;
+        else this._SpriteSet = new Engineer.Engine.SpriteSet(null, "NewSpriteSet");
+        this._Update = [];
+        this._Actions = new ActionController();
+    }
+    public InvokeUpdate() : void
+    {
+        for(let i = 0; i < this._Update.length; i++)
+        {
+            this._Update[i]();
+        }
+    }
+    public SetAction(Action:any) : void
+    {
+        this._Actions.PushAction(Action);
+    }
+    public Undo() : void
+    {
+        this._Actions.Undo();
+    }
+    public Redo() : void
+    {
+        this._Actions.Redo();
+    }
+}
