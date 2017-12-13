@@ -8,6 +8,7 @@ class SceneContainer
     private _Selected:any;
     private _Update:Function[];
     public get Scene():any { return this._Scene; }
+    public set Scene(value:any) { this._Scene = value; this._Selected = null; }
     public get Selected():any { return this._Selected; }
     public set Selected(value:any) { this._Selected = value; }
     public get Update():Function[] { return this._Update; }

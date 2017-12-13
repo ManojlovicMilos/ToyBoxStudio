@@ -1,3 +1,4 @@
-<div class="def main">
-    <p class="def" [ngClass]="{'title-on': Current, 'title-off': !Current}">{{Text}}</p>
+<div class="def main row">
+    <p class="def col-md-10" [ngClass]="{'title-on': Current, 'title-off': !Current}" (click)="Switch()">{{Tab.Text}}</p>
+    <p class="def col-md-2" [ngClass]="{'close-on': Current, 'close-off': !Current}" (click)="Close()">X</p>
 </div>

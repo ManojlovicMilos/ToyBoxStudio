@@ -19,6 +19,8 @@ class Project
     public get Assets():any { return this._Tree.Children[0]; }
     public get Scenes():any { return this.Assets.Children[1]; }
     public get SceneObjects():any { return this.Assets.Children[0]; }
+    public get Value():any { return this._CurrentTab.Value; }
+    public set Value(value:any) { this._CurrentTab.Value = value; }
 	public constructor (ElectronService: ElectronService)
 	{
         this._Name = "";
@@ -97,5 +99,9 @@ class Project
         let NewTab = new Tab(Node, Scene, TabValueType.Scene);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
+    }
+    public SwitchTab(Tab:Tab)
+    {
+        this._CurrentTab = Tab;
     }
 }

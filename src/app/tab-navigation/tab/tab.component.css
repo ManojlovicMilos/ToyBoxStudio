@@ -8,6 +8,7 @@
     float:left;
     width:120px;
     text-align: center;
+    cursor: pointer;
 }
 .title-off
 {
@@ -24,4 +25,18 @@
     font-size:13px;
     width:100%;
     background-color: #333333;
+}
+.close-off
+{
+    padding-top: 2px;
+    height: 25px;
+    font-size:13px;
+    background-color: #1E90FF;
+}
+.close-on
+{
+    padding-top: 2px;
+    height: 25px;
+    font-size:13px;
+    background-color: #FF8000;
 }

@@ -16,4 +16,8 @@ export class TabNavigationComponent
     {
         
     }
+    private SwitchTab(Tab:Tab)
+    {
+        this.Current.SwitchTab(Tab);
+    }
 }
