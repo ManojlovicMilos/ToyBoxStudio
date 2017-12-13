@@ -1,6 +1,6 @@
 <div class="main">
     <p class="def title">Project</p>
     <div *ngIf="!!Current.Tree" class="def body">
-        <tree-node [Node] = Current.Tree></tree-node>
+        <tree-node (Open)="Open($event)" [Node] = "Current.Tree"></tree-node>
     </div>
 </div>

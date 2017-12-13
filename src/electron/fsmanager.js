@@ -21,6 +21,10 @@ class FileSystem
     {
         fs.writeFileSync(Location, Data);
     }
+    ReadFile(Location)
+    {
+        return JSON.parse(fs.readFileSync(Location, "utf8"));
+    }
     CreateProjectDirectories(Location)
     {
         fs.mkdirSync(Location);

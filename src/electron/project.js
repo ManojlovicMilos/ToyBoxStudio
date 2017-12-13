@@ -17,6 +17,7 @@ class ProjectIO
         this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this)]);
         this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this)]);
         ipcMain.on("save-file", this.SaveFile.bind(this));
+        ipcMain.on("open-file", this.ReadFile.bind(this));
     }
     NewProject()
     {
@@ -54,6 +55,13 @@ class ProjectIO
         let Path = Args[0];
         let File = Args[1];
         this._FS.WriteFile(Path, JSON.stringify(File));
+    }
+    ReadFile(Event, Args)
+    {
+        let Path = Args[0];
+        console.log(Path);
+        let Data = this._FS.ReadFile(Path);
+        Event.returnValue = Data;
     }
 }
 

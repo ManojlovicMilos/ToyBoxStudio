@@ -38,7 +38,43 @@ class Project
         {
             if(this._Electron.isElectronApp)
             {
-                this._Electron.ipcRenderer.send("save-file", [Node.Path, Node.Value.Serialize()]);
+                let Data = 
+                {
+                    Type: Node.DataType,
+                    Data: Node.Value.Serialize()
+                }
+                this._Electron.ipcRenderer.send("save-file", [Node.Path, Data]);
+            }
+        }
+    }
+    private CheckOpen(Node)
+    {
+        for(let i in this._OpenTabs)
+        {
+            if(this._OpenTabs[i].Node == Node)
+            {
+                this._CurrentTab = this._OpenTabs[i];
+                return true;
+            }
+        }
+        return false;
+    }
+    public OpenFile(Node)
+    {
+        if(this.CheckOpen(Node)) return;
+        if(Node.Type != "File") return;
+        if(this._Electron.isElectronApp)
+        {
+            let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
+            Node.DataType = Data.Type;
+            if(Data.Type == "Scene")
+            {
+                let Scene = new Engineer.Engine.Scene2D();
+                Scene.Deserialize(Data.Data);
+                Node.Value = Scene;
+                let NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
+                this._OpenTabs.push(NewTab);
+                this._CurrentTab = NewTab;
             }
         }
     }
@@ -50,13 +86,15 @@ class Project
         let Node = 
         {
             Name: Name + ".tsn",
+            Type: "File",
+            DataType: "Scene",
             Path: this.Scenes.Path + "/" + Name + ".tsn",
             Extension: "tsn",
             Value: Scene
         }
         this.Scenes.Children.push(Node);
         this.SaveFile(Node);
-        let NewTab = new Tab(Name, Scene, TabValueType.Scene);
+        let NewTab = new Tab(Node, Scene, TabValueType.Scene);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }

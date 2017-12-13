@@ -36,9 +36,15 @@ class MainMenu
     }
     CreateHelpMenu()
     {
-        let HelpOptionItem = new MenuItem({label:"Help"});
+        let HelpOptionItem = new MenuItem({label:"Help", click:this.ShowHelp.bind(this)});
         this._HelpMenuItem = new MenuItem({label:"Help", submenu:[HelpOptionItem]});
         this._Menu.append(this._HelpMenuItem);
+    }
+    ShowHelp()
+    {
+        this._HelpWindow = new BrowserWindow({width: 800, height: 600, darkTheme:true});
+        this._HelpWindow.setMenu(null);
+        this._HelpWindow.loadURL("www.google.com");
     }
     Exit()
     {

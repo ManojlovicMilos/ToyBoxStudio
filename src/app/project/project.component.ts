@@ -17,4 +17,8 @@ export class ProjectComponent
     public ngOnInit() : void
     {
     }
+    public Open(Node) : void
+    {
+        this.Current.OpenFile(Node);
+    }
 }
