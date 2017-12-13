@@ -49,7 +49,12 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
     SceneObjectPropertiesComponent,
     DrawObjectPropertiesComponent
   ],
-  imports: [BrowserModule, FormsModule, NgxElectronModule],
+  imports:
+  [
+    BrowserModule,
+    FormsModule,
+    NgxElectronModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -15,6 +15,8 @@ export class AppComponent
   private _ModalShown:boolean;
   private _ModalTitle:string;
   private _ModalConfirm:string;
+  private _ModalTextValue:string;
+  private _ModalCallback:Function;
   private _Title:string;
   private _Current:Project;
   private _SideBarOption:number;
@@ -31,8 +33,8 @@ export class AppComponent
   {
     if(this._ElectronService.isElectronApp)
     {
-        this._ElectronService.ipcRenderer.on('project-loaded' , this.ProjectLoaded.bind(this));
-        this._ElectronService.ipcRenderer.on('add-scene' , this.AddScene.bind(this));
+        this._ElectronService.ipcRenderer.on('project-loaded' , this.ProjectLoadedHandler.bind(this));
+        this._ElectronService.ipcRenderer.on('add-scene' , this.AddSceneHandler.bind(this));
     }
   }
   private ProjectLoadedHandler(Event, Data) { this._Zone.run(function() { this.ProjectLoaded(Data) }.bind(this));}
@@ -40,18 +42,30 @@ export class AppComponent
   private ProjectLoaded(Data)
   {
     this._Current.Load(Data);
-    console.log(this._Current);
   }
   private AddScene()
   {
+    this._ModalCallback = this.AddSceneComplete.bind(this);
     this.ShowModal("New Scene", "Create Scene");
-    //this._Current.CreateScene("NewScene");
+  }
+  private AddSceneComplete(Value)
+  {
+    this._Current.CreateScene(Value);
   }
   private ShowModal(Title:string, Confirm:string)
   {
     this._ModalShown = true;
     this._ModalTitle = Title;
     this._ModalConfirm = Confirm;
+  }
+  private HideModal(Event)
+  {
+    this._ModalShown = false;
+  }
+  private ModalComplete(Result)
+  {
+    this._ModalShown = false;
+    this._ModalCallback(Result);
   }
   private SelectOption(Option:number) : void
   {

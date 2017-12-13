@@ -15,10 +15,11 @@ export class TextDialogComponent
     public constructor()
     {
         this._Value = "Enter Value";
+        this.OnComplete = new EventEmitter();
     }
     public ngOnInit() : void {}
     public Complete() : void 
     {
-        //this.OnComplete.emit(this._Value);
+        this.OnComplete.emit(this._Value);
     }
 }

@@ -47,6 +47,7 @@
 .modal-content
 {
     background-color: #282828;
+    z-index: 9;
     position: absolute;
     top:200px;
     left:35%;
