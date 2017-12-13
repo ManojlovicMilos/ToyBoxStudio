@@ -12,11 +12,17 @@ import { Project } from "./project/project.model";
 })
 export class AppComponent
 {
+  private _ModalShown:boolean;
+  private _ModalTitle:string;
+  private _ModalConfirm:string;
   private _Title:string;
   private _Current:Project;
   private _SideBarOption:number;
   public constructor(private _ElectronService: ElectronService, private _Zone:NgZone)
   {
+    this._ModalShown = false;
+    this._ModalTitle = "Dialog";
+    this._ModalConfirm = "OK";
     this._Title = 'ToyBox Studio';
     this._SideBarOption = 0;
     this._Current = new Project(this._ElectronService);
@@ -29,17 +35,23 @@ export class AppComponent
         this._ElectronService.ipcRenderer.on('add-scene' , this.AddScene.bind(this));
     }
   }
-  private ProjectLoaded(Event, Data)
+  private ProjectLoadedHandler(Event, Data) { this._Zone.run(function() { this.ProjectLoaded(Data) }.bind(this));}
+  private AddSceneHandler(Event, Data) { this._Zone.run(this.AddScene.bind(this)); }
+  private ProjectLoaded(Data)
   {
-      this._Zone.run(function() {
-        this._Current.Load(Data);
-      }.bind(this));
+    this._Current.Load(Data);
+    console.log(this._Current);
   }
-  private AddScene(Event)
+  private AddScene()
   {
-      this._Zone.run(function() {
-        this._Current.CreateScene("NewScene");
-      }.bind(this));
+    this.ShowModal("New Scene", "Create Scene");
+    //this._Current.CreateScene("NewScene");
+  }
+  private ShowModal(Title:string, Confirm:string)
+  {
+    this._ModalShown = true;
+    this._ModalTitle = Title;
+    this._ModalConfirm = Confirm;
   }
   private SelectOption(Option:number) : void
   {

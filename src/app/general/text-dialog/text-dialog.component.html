@@ -1,8 +1,12 @@
 <div class="def main">
-    <p class="def title">Input Text</p>
+    <p class="def title">{{Title}}</p>
     <div class="row def body">
-        <input type="text" class="col-md-12" [(ngModel)]="_Value" />
-        <div class="col-md-3"></div>
-        <input type="button" class="col-md-12 btn" (click)="Complete()" />
+        <div class="row def col-md-1"></div>
+        <div class="row def col-md-10">
+            <input type="text" class="col-md-12" [(ngModel)]="_Value" />
+            <div class="col-md-3"></div>
+            <input type="button" class="btn confirm col-md-12" value="{{Confirm}}" (click)="Complete()" />
+        </div>
+        <div class="row def col-md-1"></div>
     </div>
 </div>

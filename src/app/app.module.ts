@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxElectronModule } from 'ngx-electron';
 
+import { TextDialogComponent } from "./general/text-dialog/text-dialog.component";
+
 import { AppComponent } from './app.component';
 import { ProjectComponent } from "./project/project.component";
 import { TreeNodeComponent } from "./project/tree-node/tree-node.component";
@@ -26,6 +28,8 @@ import { DrawObjectPropertiesComponent } from "./scene-panel/properties/draw-obj
 {
   declarations:
   [
+    TextDialogComponent,
+
     AppComponent,
     ProjectComponent,
     TreeNodeComponent,

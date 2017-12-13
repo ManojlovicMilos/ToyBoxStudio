@@ -18,4 +18,8 @@
 <div *ngIf="_Current.Tree == null" class="def page">
     <p class="no-project">No Project Is Loaded</p>
 </div>
-    
+<div *ngIf="_ModalShown" class="def modal-overlay">
+    <div class="def modal-content">
+        <text-dialog [Title]="_ModalTitle" [Confirm]="_ModalConfirm"></text-dialog>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component(
 {
@@ -9,9 +8,11 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class TextDialogComponent
 {
+    @Input() private Title:string;
+    @Input() private Confirm:string;
     @Output() private OnComplete:any;
     private _Value:string;
-    public constructor(public dialogRef: MatDialogRef<TextDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any)
+    public constructor()
     {
         this._Value = "Enter Value";
     }
