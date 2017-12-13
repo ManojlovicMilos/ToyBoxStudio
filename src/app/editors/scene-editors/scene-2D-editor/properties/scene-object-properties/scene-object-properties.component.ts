@@ -1,8 +1,8 @@
-import Engineer from "./../../../engineer";
+import Engineer from "./../../../../../engineer";
 
 import { Input, Component } from '@angular/core';
 
-import { SceneContainer } from "./../../scene-panel.model";
+import { SceneContainer } from "./../../scene-2D-editor.model";
 
 @Component(
 {

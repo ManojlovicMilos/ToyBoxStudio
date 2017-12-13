@@ -13,7 +13,7 @@
             <tab-navigation [Current]="_Current"></tab-navigation>
             <div *ngFor="let Tab of _Current.OpenTabs" class="def">
                 <div *ngIf="Tab == _Current.CurrentTab" class="def">
-                    <scene-panel *ngIf="Tab.Type == 0" [Scene]="Tab.Value"></scene-panel>
+                    <scene-2D-editor *ngIf="Tab.Type == 0" [Scene]="Tab.Value"></scene-2D-editor>
                 </div>
             </div>
         </div>

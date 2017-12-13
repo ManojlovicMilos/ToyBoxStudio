@@ -1,8 +1,8 @@
 export { TransformController }
 
-import Engineer from "./../../../engineer";
+import Engineer from "./../../../../../engineer";
 
-import { SceneContainer } from "./../../scene-panel.model";
+import { SceneContainer } from "./../../scene-2D-editor.model";
 
 const TransformEventsSetKey:string = "EDITOR_TRANSFORM_EVENTS_SET";
 const TransformLastLocationKey:string = "EDITOR_TRANSFORM_LAST_LOCATION";

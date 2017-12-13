@@ -1,14 +1,14 @@
 import { Input, Component } from '@angular/core';
 
-import { SceneContainer } from "./scene-panel.model";
+import { SceneContainer } from "./scene-2D-editor.model";
 
 @Component(
 {
-    selector: 'scene-panel',
-    templateUrl: './scene-panel.component.html',
-    styleUrls: ['./scene-panel.component.css']
+    selector: 'scene-2D-editor',
+    templateUrl: './scene-2D-editor.component.html',
+    styleUrls: ['./scene-2D-editor.component.css']
 })
-export class ScenePanelComponent
+export class Scene2DEditorComponent
 {
     @Input() private Scene:any;
     private _Model:SceneContainer;

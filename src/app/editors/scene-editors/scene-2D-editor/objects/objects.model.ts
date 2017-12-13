@@ -1,6 +1,6 @@
 export { SceneObjectManager, SceneObjectManagerItem }
 
-import Engineer from "./../../engineer";
+import Engineer from "./../../../../engineer";
 
 class SceneObjectManager
 {
