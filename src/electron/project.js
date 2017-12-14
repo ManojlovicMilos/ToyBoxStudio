@@ -14,8 +14,8 @@ class ProjectIO
     }
     Init()
     {
-        this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this)]);
-        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this)]);
+        this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this), this.SaveCurrentFile.bind(this)]);
+        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this)]);
         ipcMain.on("save-file", this.SaveFile.bind(this));
         ipcMain.on("open-file", this.ReadFile.bind(this));
     }
@@ -49,6 +49,14 @@ class ProjectIO
     AddScene()
     {
         this._Window.Window.webContents.send('add-scene');
+    }
+    AddSpriteSet()
+    {
+        this._Window.Window.webContents.send('add-sprite-set');
+    }
+    SaveCurrentFile()
+    {
+        this._Window.Window.webContents.send('save-current-file');
     }
     SaveFile(Event, Args)
     {

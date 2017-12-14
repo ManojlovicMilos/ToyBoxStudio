@@ -19,7 +19,7 @@ class MainMenu
     {
         let NewOptionItem = new MenuItem({label:"New", click:Actions[0]});
         let OpenOptionItem = new MenuItem({label:"Open", click:Actions[1]});
-        let SaveOptionItem = new MenuItem({label:"Save"});
+        let SaveOptionItem = new MenuItem({label:"Save", click:Actions[2]});
         let Separator = new MenuItem({type:"separator"});
         let ExitOptionItem = new MenuItem({label:"Exit", click:this.Exit.bind(this)});
         this._FileMenuItem = new MenuItem({label:"File", submenu:[NewOptionItem, OpenOptionItem, SaveOptionItem, Separator, ExitOptionItem]});
@@ -28,10 +28,27 @@ class MainMenu
     CreateProjectMenu(Actions)
     {
         let RunOptionItem = new MenuItem({label:"Run"});
+
         let Separator = new MenuItem({type:"separator"});
-        let AddScene = new MenuItem({label:"Scene", click:Actions[0]});
-        let AddOptionItem = new MenuItem({label:"Add", submenu:[AddScene]});
+
+        let TextureResourceItem = new MenuItem({label:"Texture"});
+        let MaterialResourceItem = new MenuItem({label:"Material"});
+        let SpriteSetResourceItem = new MenuItem({label:"SpriteSet", click:Actions[1]});
+        let TileCollectionResourceItem = new MenuItem({label:"ImageCollection"});
+        let SoundResourceItem = new MenuItem({label:"Sound"});
+        let Object3DResourceItem = new MenuItem({label:"Object3D"});
+
+        let AddResourceItem = new MenuItem({label:"Resource", submenu:[SpriteSetResourceItem]});
+        
+        let AddScene2DItem = new MenuItem({label:"Scene2D", click:Actions[0]});
+        let AddScene3DItem = new MenuItem({label:"Scene3D"});
+        let AddPresentationtem = new MenuItem({label:"Presentation"});
+        let AddSceneItem = new MenuItem({label:"Scene", submenu:[AddScene2DItem]});
+
+        let AddOptionItem = new MenuItem({label:"Add", submenu:[AddSceneItem, AddResourceItem]});
+
         this._ProjectMenuItem = new MenuItem({label:"Project", submenu:[RunOptionItem, Separator, AddOptionItem]});
+
         this._Menu.insert(1, this._ProjectMenuItem);
     }
     CreateHelpMenu()

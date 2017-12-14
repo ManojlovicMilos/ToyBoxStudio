@@ -1,0 +1,71 @@
+.def
+{
+    margin: 0px;
+    padding: 0px;
+}
+.title
+{
+    padding-top: 2px;
+    height: 25px;
+    padding-left: 30px;
+    font-size:13px;
+    width:100%;
+    background-color: #333333;
+}
+.body
+{
+    height: 87vh;
+    min-height: 87vh;
+    overflow: auto;
+}
+.footer
+{
+    height: 10vh;
+    min-height: 10vh;
+    overflow: hidden;
+    text-align: center;
+    padding-top:10px;
+}
+.objects
+{
+    padding-top: 5px;
+    height: 100%;
+    color: white;
+}
+.object
+{
+    cursor: default;
+    width: 100%;
+    font-size:11px;
+    list-style: none;
+    text-align: center;
+}
+.object-selected
+{
+    color:black;
+    background-color: #FF8800;
+}
+.object:hover
+{
+    color:white;
+    background-color: #222222;
+}
+.sprite-set-title
+{
+    font-size: 15px;
+}
+.icon
+{
+    width: 50px;
+    height: 50px;
+}
+.add
+{
+    padding: 10px;
+    font-size: 12px;
+    color:white;
+    min-width: 80px;
+    min-height: 35px;
+    background-color: #444444;
+    cursor: pointer;
+}

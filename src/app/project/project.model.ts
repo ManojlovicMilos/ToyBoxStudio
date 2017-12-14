@@ -4,6 +4,8 @@ import Engineer from "./../engineer";
 import { ElectronService } from 'ngx-electron';
 
 import { Tab, TabValueType } from "./../tab-navigation/tab/tab.model";
+import { ResourcesController } from "./resources/resoures.controller";
+import { resource } from "selenium-webdriver/http";
 
 class Project
 {
@@ -12,6 +14,7 @@ class Project
     private _Electron:ElectronService;
     private _CurrentTab:Tab;
     private _OpenTabs:Tab[];
+    private _Resources:ResourcesController;
     public get Name():string { return this._Name; }
     public get Tree():any { return this._Tree; }
     public get CurrentTab():Tab { return this._CurrentTab; }
@@ -33,6 +36,11 @@ class Project
     {
         this._Name = DirTree.Name;
         this._Tree = DirTree;
+        this._Resources = new ResourcesController(this._Tree.Children[1]);
+    }
+    public SaveCurrent()
+    {
+        if(this._CurrentTab != null) this.SaveFile(this._CurrentTab.Node);
     }
     public SaveFile(Node)
     {
@@ -40,10 +48,15 @@ class Project
         {
             if(this._Electron.isElectronApp)
             {
-                let Data = 
+                let Data = null;
+                if(Node.DataType == "SpriteSet")
                 {
-                    Type: Node.DataType,
-                    Data: Node.Value.Serialize()
+                    Data = { Type: Node.DataType, Data: [] };
+                    for(let i in Node.Value) Data.Data.push(Node.Value[i].Serialize());
+                }
+                else
+                {
+                    Data = { Type: Node.DataType, Data: Node.Value.Serialize() };
                 }
                 this._Electron.ipcRenderer.send("save-file", [Node.Path, Data]);
             }
@@ -69,16 +82,34 @@ class Project
         {
             let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
             Node.DataType = Data.Type;
+            let NewTab = null;
             if(Data.Type == "Scene")
             {
                 let Scene = new Engineer.Engine.Scene2D();
                 Scene.Deserialize(Data.Data);
                 Node.Value = Scene;
-                let NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
-                this._OpenTabs.push(NewTab);
-                this._CurrentTab = NewTab;
+                NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
             }
+            else if(Data.Type == "SpriteSet")
+            {
+                let SpriteSet = [];
+                console.log(Data.Data);
+                for(let i in Data.Data)
+                {
+                    let Entry = new Engineer.Engine.SpriteSet();
+                    Entry.Deserialize(Data.Data[i]);
+                    SpriteSet.push(Entry);
+                }
+                Node.Value = SpriteSet;
+                NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+            }
+            this._OpenTabs.push(NewTab);
+            this._CurrentTab = NewTab;
         }
+    }
+    public SwitchTab(Tab:Tab)
+    {
+        this._CurrentTab = Tab;
     }
     public CreateScene(Name:string)
     {
@@ -100,8 +131,13 @@ class Project
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
-    public SwitchTab(Tab:Tab)
+    public CreateSpriteSet(Name:string)
     {
-        this._CurrentTab = Tab;
+        let Node:any = this._Resources.AddSpriteSet(Name);
+        console.log(Node);
+        this.SaveFile(Node);
+        let NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+        this._OpenTabs.push(NewTab);
+        this._CurrentTab = NewTab;
     }
 }

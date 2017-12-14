@@ -2,7 +2,7 @@
 {
     background-color: #282828;
     z-index: 9;
-    position: absolute;
+    position: fixed;
     top:200px;
     left:35%;
     width:30%;
@@ -12,7 +12,7 @@
 {
     background-color: rgba(80,80,80,0.3);
     z-index: 8;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

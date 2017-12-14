@@ -17,8 +17,8 @@ class SpriteSetContainer
     public get Update():Function[] { return this._Update; }
 	constructor (SpriteSet:any)
 	{
-        if(SpriteSet) this._SpriteSet = SpriteSet;
-        else this._SpriteSet = new Engineer.Engine.SpriteSet(null, "NewSpriteSet");
+        if(SpriteSet != null) this._SpriteSet = SpriteSet;
+        else this._SpriteSet = [];
         this._Update = [];
         this._Actions = new ActionController();
     }
@@ -40,5 +40,10 @@ class SpriteSetContainer
     public Redo() : void
     {
         this._Actions.Redo();
+    }
+    public AddSpriteSet(Name:string) : void
+    {
+        let NewSpriteSet = new Engineer.Engine.SpriteSet(null, Name, []);
+        this._SpriteSet.push(NewSpriteSet);
     }
 }

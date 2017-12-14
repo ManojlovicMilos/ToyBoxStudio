@@ -29,25 +29,41 @@ export class AppComponent
     if(this._ElectronService.isElectronApp)
     {
         this._ElectronService.ipcRenderer.on('project-loaded' , this.ProjectLoadedHandler.bind(this));
+        this._ElectronService.ipcRenderer.on('save-current-file' , this.SaveFileHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-scene' , this.AddSceneHandler.bind(this));
+        this._ElectronService.ipcRenderer.on('add-sprite-set' , this.AddSpriteSetHandler.bind(this));
     }
   }
   private ProjectLoadedHandler(Event, Data) { this._Zone.run(function() { this.ProjectLoaded(Data) }.bind(this));}
-  private AddSceneHandler(Event, Data) { this._Zone.run(this.AddScene.bind(this)); }
+  private SaveFileHandler(Event) { this._Zone.run(this.SaveFile.bind(this)); }
+  private AddSceneHandler(Event) { this._Zone.run(this.AddScene.bind(this)); }
+  private AddSpriteSetHandler(Event) { this._Zone.run(this.AddSpriteSet.bind(this)); }
   private ProjectLoaded(Data)
   {
     this._Current.Load(Data);
+  }
+  private SaveFile()
+  {
+    this._Current.SaveCurrent();
   }
   private AddScene()
   {
     this._Modal.Callback = this.AddSceneComplete.bind(this);
     this._Modal.Show("New Scene", "Create Scene");
   }
+  private AddSpriteSet()
+  {
+    this._Modal.Callback = this.AddSpriteSetComplete.bind(this);
+    this._Modal.Show("New SpriteSet", "Create SpriteSet");
+  }
   private AddSceneComplete(Value)
   {
     this._Current.CreateScene(Value);
   }
-  
+  private AddSpriteSetComplete(Value)
+  {
+    this._Current.CreateSpriteSet(Value);
+  }
   private SelectOption(Option:number) : void
   {
     if(Option == this._SideBarOption) this._SideBarOption = -1;

@@ -24,6 +24,10 @@ import { ScenePropertiesComponent } from "./editors/scene-editors/scene-2D-edito
 import { SceneObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/scene-object-properties/scene-object-properties.component";
 import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/draw-object-properties/draw-object-properties.component";
 
+import { SpriteSetEditorComponent } from "./editors/sprite-set-editor/sprite-set-editor.component";
+
+import { SpriteSetListComponent } from "./editors/sprite-set-editor/sprite-set-list/sprite-set-list.component";
+
 @NgModule(
 {
   declarations:
@@ -46,7 +50,10 @@ import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-
     ViewComponent,
     ScenePropertiesComponent,
     SceneObjectPropertiesComponent,
-    DrawObjectPropertiesComponent
+    DrawObjectPropertiesComponent,
+
+    SpriteSetEditorComponent,
+    SpriteSetListComponent
   ],
   imports:
   [

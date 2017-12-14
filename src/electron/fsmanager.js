@@ -34,8 +34,10 @@ class FileSystem
         fs.mkdirSync(Location + "/Resources");
         fs.mkdirSync(Location + "/Resources/Sounds");
         fs.mkdirSync(Location + "/Resources/SpriteSets");
-        fs.mkdirSync(Location + "/Resources/TileCollections");
+        fs.mkdirSync(Location + "/Resources/ImageCollections");
         fs.mkdirSync(Location + "/Resources/Materials");
+        fs.mkdirSync(Location + "/Resources/Textures");
+        fs.mkdirSync(Location + "/Resources/Object3D");
     }
     CreateNewProjectConfig(Location)
     {
