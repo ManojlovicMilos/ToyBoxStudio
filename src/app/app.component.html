@@ -22,7 +22,4 @@
 <div *ngIf="_Current.Tree == null" class="def page">
     <p class="no-project">No Project Is Loaded</p>
 </div>
-<div *ngIf="_ModalShown" class="def modal-overlay" (click)="HideModal($event)"></div>
-<div *ngIf="_ModalShown" class="def modal-content">
-    <text-dialog [Title]="_ModalTitle" [Confirm]="_ModalConfirm" (OnComplete)="ModalComplete($event)"></text-dialog>
-</div>
+<!--<modal [Controller]="Modal"></modal>-->
