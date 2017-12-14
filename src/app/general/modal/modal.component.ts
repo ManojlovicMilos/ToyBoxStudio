@@ -13,8 +13,8 @@ export class ModalComponent
     @Input() private Controller:ModalController;
     public constructor() {}
     public ngOnInit() : void {}
-    public Complete() : void 
+    public Complete(Value) : void 
     {
-        this.Controller.Complete();
+        this.Controller.Complete(Value);
     }
 }

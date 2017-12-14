@@ -5,12 +5,10 @@ class ModalController
     private _Visible:boolean;
     private _Title:string;
     private _Confirm:string;
-    private _TextValue:string;
     private _Callback:Function;
     public get Visible():boolean { return this._Visible; }
     public get Title():string { return this._Title; }
     public get Confirm():string { return this._Confirm; }
-    public get Value():string { return this._TextValue; }
     public get Callback():Function { return this._Callback; }
     public set Callback(value:Function) { this._Callback = value; }
     public constructor()
@@ -29,9 +27,9 @@ class ModalController
     {
       this._Visible = false;
     }
-    public Complete()
+    public Complete(Value)
     {
       this._Visible = false;
-      if(this._Callback) this._Callback(this.Value);
+      if(this._Callback) this._Callback(Value);
     }
 }

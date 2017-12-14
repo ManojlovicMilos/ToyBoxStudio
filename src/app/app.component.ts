@@ -40,8 +40,8 @@ export class AppComponent
   }
   private AddScene()
   {
-    this._ModalCallback = this.AddSceneComplete.bind(this);
-    this.ShowModal("New Scene", "Create Scene");
+    this._Modal.Callback = this.AddSceneComplete.bind(this);
+    this._Modal.Show("New Scene", "Create Scene");
   }
   private AddSceneComplete(Value)
   {

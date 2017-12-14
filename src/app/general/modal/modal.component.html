@@ -1,6 +1,6 @@
 <div *ngIf="Controller && Controller.Visible" class="def">
     <div class="def modal-overlay" (click)="Controller.Hide()"></div>
     <div class="def modal-content">
-        <text-dialog [Title]="Controller.Title" [Confirm]="Controller.Confirm" (OnComplete)="Controller.Complete()"></text-dialog>
+        <text-dialog [Title]="Controller.Title" [Confirm]="Controller.Confirm" (OnComplete)="Controller.Complete($event)"></text-dialog>
     </div>
 </div>
