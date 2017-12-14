@@ -3,6 +3,7 @@ import { Component, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 
 import { Project } from "./project/project.model";
+import { ModalController } from "./general/modal/modal.controller";
 
 @Component(
 {
@@ -12,22 +13,16 @@ import { Project } from "./project/project.model";
 })
 export class AppComponent
 {
-  private _ModalShown:boolean;
-  private _ModalTitle:string;
-  private _ModalConfirm:string;
-  private _ModalTextValue:string;
-  private _ModalCallback:Function;
   private _Title:string;
   private _Current:Project;
   private _SideBarOption:number;
+  private _Modal:ModalController;
   public constructor(private _ElectronService: ElectronService, private _Zone:NgZone)
   {
-    this._ModalShown = false;
-    this._ModalTitle = "Dialog";
-    this._ModalConfirm = "OK";
     this._Title = 'ToyBox Studio';
     this._SideBarOption = 0;
     this._Current = new Project(this._ElectronService);
+    this._Modal = new ModalController();
   }
   public ngOnInit() : void
   {
@@ -52,21 +47,7 @@ export class AppComponent
   {
     this._Current.CreateScene(Value);
   }
-  private ShowModal(Title:string, Confirm:string)
-  {
-    this._ModalShown = true;
-    this._ModalTitle = Title;
-    this._ModalConfirm = Confirm;
-  }
-  private HideModal(Event)
-  {
-    this._ModalShown = false;
-  }
-  private ModalComplete(Result)
-  {
-    this._ModalShown = false;
-    this._ModalCallback(Result);
-  }
+  
   private SelectOption(Option:number) : void
   {
     if(Option == this._SideBarOption) this._SideBarOption = -1;

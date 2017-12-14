@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxElectronModule } from 'ngx-electron';
 
+import { ModalComponent } from "./general/modal/modal.component";
 import { TextDialogComponent } from "./general/modal/modal-content/text-dialog/text-dialog.component";
 
 import { AppComponent } from './app.component';
@@ -11,8 +12,6 @@ import { TreeNodeComponent } from "./project/tree-node/tree-node.component";
 import { SearchComponent } from "./search/search.component";
 import { TabComponent } from "./tab-navigation/tab/tab.component";
 import { TabNavigationComponent } from "./tab-navigation/tab-navigation.component";
-
-import { GamePanelComponent } from "./game-panel/game-panel.component";
 
 import { Scene2DEditorComponent } from "./editors/scene-editors/scene-2D-editor/scene-2D-editor.component";
 
@@ -29,6 +28,7 @@ import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-
 {
   declarations:
   [
+    ModalComponent,
     TextDialogComponent,
 
     AppComponent,
@@ -37,8 +37,6 @@ import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-
     SearchComponent,
     TabComponent,
     TabNavigationComponent,
-
-    GamePanelComponent,
     
     Scene2DEditorComponent,
     ObjectsComponent,
