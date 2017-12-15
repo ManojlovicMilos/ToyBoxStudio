@@ -1,7 +1,8 @@
 <div class="main row">
-    <div class="middle-dock col-md-9">
+    <div class="middle-dock col-md-10">
+        <sprite-collector *ngIf="Model.Selected" [SpriteSet]="Model.Selected" [Resources]="Resources"></sprite-collector>
     </div>
-    <div class="right-dock col-md-3">
+    <div class="right-dock col-md-2">
         <sprite-set-list [Container]="Model"></sprite-set-list>
     </div>
 </div>

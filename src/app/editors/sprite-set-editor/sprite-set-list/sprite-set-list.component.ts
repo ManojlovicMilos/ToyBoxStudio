@@ -19,22 +19,23 @@ export class SpriteSetListComponent
     {
         this._Modal = new ModalController();
     }
-    private Select(Object)
+    private Select(Object) : void
     {
+        console.log(Object);
         this.Container.Selected = Object;
     }
-    private AddSpriteSet()
+    private AddSpriteSet() : void
     {
         this._Modal.Callback = this.AddSpriteSetComplete.bind(this);
         this._Modal.Show("New SpriteSet", "Create SpriteSet");
     }
-    private AddSpriteSetComplete(Value)
+    private AddSpriteSetComplete(Value) : void
     {
         this.Container.AddSpriteSet(Value);
     }
-    private SpriteSetThumbnail(Sprite:any)
+    private SpriteSetThumbnail(Sprite:any) : string
     {
         if(Sprite.Sprites.length == 0) return "./assets/icons/sprite-icon.png";
-        else Sprite.Sprites[0];
+        else return Sprite.Sprites[0];
     }
 }

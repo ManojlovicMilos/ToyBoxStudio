@@ -1,0 +1,22 @@
+<div class="def main">
+    <p class="def title">SpriteSet List</p>
+    <div class="def collection">
+        <li *ngFor="let Image of SpriteSet.Sprites" class="object" (click)="SelectMember(Image)"
+        [ngClass]="{'object-selected': Image == _SelectedMember}">
+            <div>
+                <img class="icon" [src]="Image" />
+            </div>
+        </li>
+    </div>
+    <div class="def controls">
+        <span class="add" (click)="AddTexture()">Add Image</span>
+    </div>
+    <div class="def textures">
+        <li *ngFor="let Image of _AvailableTextures" class="object" (click)="SelectTexture(Image)"
+        [ngClass]="{'object-selected': Image == _SelectedTexture}">
+            <div>
+                <img class="icon" [src]="Image" />
+            </div>
+        </li>
+    </div>
+</div>

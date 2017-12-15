@@ -7,6 +7,7 @@ class ResourcesController
     private _Node:any;
     private _SpriteSets:any;
     private _Textures:any;
+    public get Textures():any { return this._Textures; }
     public get ResourcesNode():any { return this._Node; }
     public get SpriteSetsNode():any { return this._Node.Children[4]; }
     public get TexturesNode():any { return this._Node.Children[5]; }
@@ -18,21 +19,22 @@ class ResourcesController
     private Init() : void
     {
         this.InitSpriteSets(this._Node.Children[4]);
+        this.InitTextures(this._Node.Children[5]);
     }
     private InitSpriteSets(Node:any) : void
     {
         this._SpriteSets = {};
-        for(let i in Node.Children)
+        for(let Element of Node.Children)
         {
-            this._SpriteSets[Node.Children.Name] = new ResourceNode(Node.Children[i].Path);
+            this._SpriteSets[Node.Children.Name] = new ResourceNode(Element.Path);
         }
     }
     private InitTextures(Node:any) : void
     {
         this._Textures = {};
-        for(let i in Node.Children)
+        for(let Element of Node.Children)
         {
-            this._Textures[Node.Children.Name] = new ResourceNode(Node.Children[i].Path);
+            this._Textures[Element.Name] = new ResourceNode(Element.Path);
         }
     }
     public AddSpriteSet(Name:string) : void
@@ -63,6 +65,7 @@ class ResourceNode
 {
     private _Path:string;
     private _Value:any;
+    public get Path():any {return this._Path; }
     public get Value():any {return this._Value; }
     public set Value(value:any) { this._Value = value; }
     public constructor(Path:string)

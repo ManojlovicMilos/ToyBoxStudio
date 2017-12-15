@@ -1,6 +1,7 @@
 import { Input, Component } from '@angular/core';
 
 import { SpriteSetContainer } from "./sprite-set-editor.model";
+import { ResourcesController } from "./../../project/resources/resoures.controller";
 
 @Component(
 {
@@ -11,6 +12,7 @@ import { SpriteSetContainer } from "./sprite-set-editor.model";
 export class SpriteSetEditorComponent
 {
     @Input() private SpriteSet:any;
+    @Input() private Resources:ResourcesController;
     private _Model:SpriteSetContainer;
     public get Model():SpriteSetContainer { return this._Model; }
     public constructor() {}

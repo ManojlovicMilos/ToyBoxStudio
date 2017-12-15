@@ -27,6 +27,7 @@ import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-
 import { SpriteSetEditorComponent } from "./editors/sprite-set-editor/sprite-set-editor.component";
 
 import { SpriteSetListComponent } from "./editors/sprite-set-editor/sprite-set-list/sprite-set-list.component";
+import { SpriteCollectorComponent } from "./editors/sprite-set-editor/sprite-collector/sprite-collector.component";
 
 @NgModule(
 {
@@ -53,7 +54,8 @@ import { SpriteSetListComponent } from "./editors/sprite-set-editor/sprite-set-l
     DrawObjectPropertiesComponent,
 
     SpriteSetEditorComponent,
-    SpriteSetListComponent
+    SpriteSetListComponent,
+    SpriteCollectorComponent
   ],
   imports:
   [

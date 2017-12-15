@@ -24,6 +24,7 @@ class Project
     public get SceneObjects():any { return this.Assets.Children[0]; }
     public get Value():any { return this._CurrentTab.Value; }
     public set Value(value:any) { this._CurrentTab.Value = value; }
+    public get Resources():ResourcesController { return this._Resources; }
 	public constructor (ElectronService: ElectronService)
 	{
         this._Name = "";
@@ -93,7 +94,6 @@ class Project
             else if(Data.Type == "SpriteSet")
             {
                 let SpriteSet = [];
-                console.log(Data.Data);
                 for(let i in Data.Data)
                 {
                     let Entry = new Engineer.Engine.SpriteSet();
@@ -134,7 +134,6 @@ class Project
     public CreateSpriteSet(Name:string)
     {
         let Node:any = this._Resources.AddSpriteSet(Name);
-        console.log(Node);
         this.SaveFile(Node);
         let NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
         this._OpenTabs.push(NewTab);
