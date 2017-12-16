@@ -19,7 +19,7 @@ export class ViewComponent
     public constructor()
     {
         this._Game = new Engineer.Engine.Game();
-        this._Game.Name = "ToyBoxStudio";
+        this._Game.Name = "ToyBox Studio";
     }
     private ngOnInit() : void
     {

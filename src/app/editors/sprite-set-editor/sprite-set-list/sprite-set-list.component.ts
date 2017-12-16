@@ -21,7 +21,6 @@ export class SpriteSetListComponent
     }
     private Select(Object) : void
     {
-        console.log(Object);
         this.Container.Selected = Object;
     }
     private AddSpriteSet() : void
