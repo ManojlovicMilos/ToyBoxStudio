@@ -1,0 +1,9 @@
+<div class="def main">
+    <p class="def title">Sprite</p>
+    <div class="row def body">
+        <label class="label col-md-3">SpriteSets:</label>
+        <select class="option col-md-9" [(ngModel)]="_CurrentSet" (change)="UpdateSet()">
+            <option *ngFor="let Set of Container.Resources.SpriteSetsNode.Children" [value]="Set.Name">{{Set.Name}}</option>
+        </select>
+    </div>
+</div>

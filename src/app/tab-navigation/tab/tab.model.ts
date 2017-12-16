@@ -15,7 +15,8 @@ class Tab
     private _Value:any;
     private _Node:any;
     private _Type:TabValueType;
-    public get Text():string { return this._Text; }
+    private _TypeText:string;
+    public get Text():string { return this._Text + this._TypeText; }
     public set Text(value:string) { this._Text = value; }
     public get Value():any { return this._Value; }
     public set Value(value:any) { this._Value = value; }
@@ -28,5 +29,9 @@ class Tab
         this._Value = Value;
         this._Node = Node;
         this._Type = Type;
+        if(this._Type == TabValueType.Scene) this._TypeText = " - Scene";
+        else if(this._Type == TabValueType.SpriteSet) this._TypeText = " - SpriteSet";
+        else if(this._Type == TabValueType.TileCollection) this._TypeText = " - TileCollection";
+        else if(this._Type == TabValueType.Material) this._TypeText = " - Material";
     }
 }

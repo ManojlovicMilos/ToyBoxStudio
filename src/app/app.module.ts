@@ -23,6 +23,7 @@ import { ViewComponent } from "./editors/scene-editors/scene-2D-editor/view/view
 import { ScenePropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/scene-properties/scene-properties.component";
 import { SceneObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/scene-object-properties/scene-object-properties.component";
 import { DrawObjectPropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/draw-object-properties/draw-object-properties.component";
+import { SpritePropertiesComponent } from "./editors/scene-editors/scene-2D-editor/properties/sprite-properties/sprite-properties.component";
 
 import { SpriteSetEditorComponent } from "./editors/sprite-set-editor/sprite-set-editor.component";
 
@@ -52,6 +53,7 @@ import { SpriteCollectorComponent } from "./editors/sprite-set-editor/sprite-col
     ScenePropertiesComponent,
     SceneObjectPropertiesComponent,
     DrawObjectPropertiesComponent,
+    SpritePropertiesComponent,
 
     SpriteSetEditorComponent,
     SpriteSetListComponent,

@@ -58,7 +58,7 @@ class FileSystem
         {
             if(fs.statSync(Location + "/" +Locations[i]).isFile())
             {
-                TreeNode.Children.push({ Name: Locations[i], Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i], Value:null });
+                TreeNode.Children.push({ FileName: Locations[i], Name: Locations[i].slice(0, -4), Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i], Value:null });
             }
             else
             {

@@ -1,6 +1,7 @@
 import { Input, Component } from '@angular/core';
 
 import { SceneContainer } from "./scene-2D-editor.model";
+import { ResourcesController } from "./../../../project/resources/resoures.controller";
 
 @Component(
 {
@@ -11,11 +12,12 @@ import { SceneContainer } from "./scene-2D-editor.model";
 export class Scene2DEditorComponent
 {
     @Input() private Scene:any;
+    @Input() private Resources:ResourcesController;
     private _Model:SceneContainer;
     public get Model():SceneContainer { return this._Model; }
     public constructor() {}
     private ngOnInit() : void
     {
-        this._Model = new SceneContainer(this.Scene);
+        this._Model = new SceneContainer(this.Scene, this.Resources);
     }
 }

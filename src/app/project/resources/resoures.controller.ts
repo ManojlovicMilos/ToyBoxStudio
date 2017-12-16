@@ -7,6 +7,7 @@ class ResourcesController
     private _Node:any;
     private _SpriteSets:any;
     private _Textures:any;
+    public get SpriteSets():any { return this._SpriteSets; }
     public get Textures():any { return this._Textures; }
     public get ResourcesNode():any { return this._Node; }
     public get SpriteSetsNode():any { return this._Node.Children[4]; }
@@ -14,9 +15,8 @@ class ResourcesController
     public constructor(ResourcesNode:any)
     {
         this._Node = ResourcesNode;
-        this.Init();
     }
-    private Init() : void
+    public Init() : void
     {
         this.InitSpriteSets(this._Node.Children[4]);
         this.InitTextures(this._Node.Children[5]);
@@ -26,7 +26,8 @@ class ResourcesController
         this._SpriteSets = {};
         for(let Element of Node.Children)
         {
-            this._SpriteSets[Node.Children.Name] = new ResourceNode(Element.Path);
+            this._SpriteSets[Element.Name] = new ResourceNode(Element.Path);
+            this._SpriteSets[Element.Name].Value = Element.Value;
         }
     }
     private InitTextures(Node:any) : void
@@ -50,7 +51,8 @@ class ResourcesController
     {
         let Node = 
         {
-            Name: Name + ".tsn",
+            Name: Name,
+            FileName: Name + ".tsn",
             Type: "File",
             DataType: Type,
             Path: Path,

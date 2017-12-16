@@ -1,0 +1,29 @@
+.def
+{
+    margin: 0px;
+    padding: 0px;
+}
+.title
+{
+    padding-top: 2px;
+    height: 25px;
+    text-align: center;
+    font-size:13px;
+    width:100%;
+    background-color: #333333;
+}
+.body
+{
+    background-color: #282828;
+    font-size: 10px;
+    height: auto;
+}
+.label
+{
+    text-align: right;
+    margin-top:7px;
+}
+.option
+{
+    border-style:none;
+}

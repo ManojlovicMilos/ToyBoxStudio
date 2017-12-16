@@ -13,7 +13,7 @@
             <tab-navigation [Current]="_Current"></tab-navigation>
             <div *ngFor="let Tab of _Current.OpenTabs" class="def">
                 <div *ngIf="Tab == _Current.CurrentTab" class="def">
-                    <scene-2D-editor *ngIf="Tab.Type == 0" [Scene]="Tab.Value"></scene-2D-editor>
+                    <scene-2D-editor *ngIf="Tab.Type == 0" [Scene]="Tab.Value" [Resources]="_Current.Resources"></scene-2D-editor>
                     <sprite-set-editor *ngIf="Tab.Type == 1" [SpriteSet]="Tab.Value" [Resources]="_Current.Resources"></sprite-set-editor>
                 </div>
             </div>

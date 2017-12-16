@@ -18,4 +18,5 @@
     min-height: 45vh;
     padding: 10px;
     padding-top:0px;
+    overflow: auto;
 }

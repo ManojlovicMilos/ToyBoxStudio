@@ -25,7 +25,6 @@ export class SpriteCollectorComponent
         {
             this._AvailableTextures.push(this.Resources.Textures[Element].Path);
         }
-        console.log(this._AvailableTextures);
     }
     private SelectMember(ImagePath) : void
     {
@@ -41,6 +40,5 @@ export class SpriteCollectorComponent
         {
             this.SpriteSet.Sprites.push(this._SelectedTexture);
         }
-        console.log(this.SpriteSet);
     }
 }

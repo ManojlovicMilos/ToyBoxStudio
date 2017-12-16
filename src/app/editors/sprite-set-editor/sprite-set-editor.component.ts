@@ -18,6 +18,6 @@ export class SpriteSetEditorComponent
     public constructor() {}
     private ngOnInit() : void
     {
-        this._Model = new SpriteSetContainer(this.SpriteSet);
+        this._Model = new SpriteSetContainer(this.SpriteSet, this.Resources);
     }
 }

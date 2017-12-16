@@ -13,13 +13,19 @@ import { SceneContainer } from "./../scene-2D-editor.model";
 export class PropertiesComponent
 {
     @Input() private Container:SceneContainer;
-    public constructor()
-    {
-        
-    }
+    public constructor() {}
     private IsOfType(Type:string) : boolean
     {
         if(Type == "Drawn") return this.Container.Selected.Type == Engineer.Engine.SceneObjectType.Drawn;
+        return false;
+    }
+    private IsOfDrawnType(DrawType:string) : boolean
+    {
+        if(this.Container.Selected.Type == Engineer.Engine.SceneObjectType.Drawn)
+        {
+            if(DrawType == "Sprite") return this.Container.Selected.DrawType == Engineer.Engine.DrawObjectType.Sprite;
+            if(DrawType == "Tile") return this.Container.Selected.DrawType == Engineer.Engine.DrawObjectType.Tile;
+        }
         return false;
     }
 }

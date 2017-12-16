@@ -38,12 +38,21 @@ class Project
         this._Name = DirTree.Name;
         this._Tree = DirTree;
         this._Resources = new ResourcesController(this._Tree.Children[1]);
+        this.LoadRequired();
+        this._Resources.Init();
     }
-    public SaveCurrent()
+    private LoadRequired() : void
+    {
+        for(let i in this._Resources.SpriteSetsNode.Children)
+        {
+            this.LoadFile(this._Resources.SpriteSetsNode.Children[i]);
+        }
+    }
+    public SaveCurrent() : void
     {
         if(this._CurrentTab != null) this.SaveFile(this._CurrentTab.Node);
     }
-    public SaveFile(Node)
+    public SaveFile(Node) : void
     {
         if(Node.Value != null)
         {
@@ -63,7 +72,7 @@ class Project
             }
         }
     }
-    private CheckOpen(Node)
+    private CheckOpen(Node) : boolean
     {
         for(let i in this._OpenTabs)
         {
@@ -75,7 +84,34 @@ class Project
         }
         return false;
     }
-    public OpenFile(Node)
+    private LoadFile(Node:any) : void
+    {
+        if(Node.Type != "File") return;
+        if(this._Electron.isElectronApp)
+        {
+            let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
+            Node.DataType = Data.Type;
+            let NewTab = null;
+            if(Data.Type == "Scene")
+            {
+                let Scene = new Engineer.Engine.Scene2D();
+                Scene.Deserialize(Data.Data);
+                Node.Value = Scene;
+            }
+            else if(Data.Type == "SpriteSet")
+            {
+                let SpriteSet = [];
+                for(let i in Data.Data)
+                {
+                    let Entry = new Engineer.Engine.SpriteSet();
+                    Entry.Deserialize(Data.Data[i]);
+                    SpriteSet.push(Entry);
+                }
+                Node.Value = SpriteSet;
+            }
+        }
+    }
+    public OpenFile(Node) : void
     {
         if(this.CheckOpen(Node)) return;
         if(Node.Type != "File") return;
@@ -107,18 +143,19 @@ class Project
             this._CurrentTab = NewTab;
         }
     }
-    public SwitchTab(Tab:Tab)
+    public SwitchTab(Tab:Tab) : void
     {
         this._CurrentTab = Tab;
     }
-    public CreateScene(Name:string)
+    public CreateScene(Name:string) : void
     {
         let Scene = new Engineer.Engine.Scene2D();
         Scene.Name = Name;
         Scene.BackColor = Engineer.Math.Color.Black;
         let Node = 
         {
-            Name: Name + ".tsn",
+            Name: Name,
+            FileName: Name + ".tsn",
             Type: "File",
             DataType: "Scene",
             Path: this.Scenes.Path + "/" + Name + ".tsn",
@@ -131,7 +168,7 @@ class Project
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
-    public CreateSpriteSet(Name:string)
+    public CreateSpriteSet(Name:string) : void
     {
         let Node:any = this._Resources.AddSpriteSet(Name);
         this.SaveFile(Node);
