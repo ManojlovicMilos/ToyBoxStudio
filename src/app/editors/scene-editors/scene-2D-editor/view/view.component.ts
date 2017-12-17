@@ -25,6 +25,7 @@ export class ViewComponent
     {
         this._Canvas = <HTMLCanvasElement>document.getElementById("canvas");
         this._Canvas.addEventListener("resize", this.Resize.bind(this));
+        this.Container.Scene.Data["EDITOR_GRID"] = "Classic";
         this._Game.AddScene(this.Container.Scene);
         this._Runner = new Engineer.Runner.Runner(this._Game, Engineer.Draw.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
