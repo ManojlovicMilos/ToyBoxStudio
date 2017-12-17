@@ -6,10 +6,13 @@ class ResourcesController
 {
     private _Node:any;
     private _SpriteSets:any;
+    private _ImageCollections:any;
     private _Textures:any;
     public get SpriteSets():any { return this._SpriteSets; }
+    public get ImageCollections():any { return this._ImageCollections; }
     public get Textures():any { return this._Textures; }
     public get ResourcesNode():any { return this._Node; }
+    public get ImageCollectionsNode():any { return this._Node.Children[0]; }
     public get SpriteSetsNode():any { return this._Node.Children[4]; }
     public get TexturesNode():any { return this._Node.Children[5]; }
     public constructor(ResourcesNode:any)
@@ -19,6 +22,7 @@ class ResourcesController
     public Init() : void
     {
         this.InitSpriteSets(this._Node.Children[4]);
+        this.InitImageCollections(this._Node.Children[0]);
         this.InitTextures(this._Node.Children[5]);
     }
     private InitSpriteSets(Node:any) : void
@@ -28,6 +32,15 @@ class ResourcesController
         {
             this._SpriteSets[Element.Name] = new ResourceNode(Element.Path);
             this._SpriteSets[Element.Name].Value = Element.Value;
+        }
+    }
+    private InitImageCollections(Node:any) : void
+    {
+        this._ImageCollections = {};
+        for(let Element of Node.Children)
+        {
+            this._ImageCollections[Element.Name] = new ResourceNode(Element.Path);
+            this._ImageCollections[Element.Name].Value = Element.Value;
         }
     }
     private InitTextures(Node:any) : void
@@ -45,6 +58,15 @@ class ResourcesController
         this.SpriteSetsNode.Children.push(Node);
         this._SpriteSets[Name] = new ResourceNode(this.SpriteSetsNode.Path + "/" + Name + ".tsn");
         this._SpriteSets[Name].Value = Resource;
+        return Node;
+    }
+    public AddImageCollection(Name:string) : void
+    {
+        let Resource = new Engineer.Engine.TileCollection(null, []);
+        let Node = this.CreateResource(Resource, Name, "ImageCollection", this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
+        this.ImageCollectionsNode.Children.push(Node);
+        this._ImageCollections[Name] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
+        this._ImageCollections[Name].Value = Resource;
         return Node;
     }
     private CreateResource(Resource:any, Name:string, Type:string, Path:string) : any

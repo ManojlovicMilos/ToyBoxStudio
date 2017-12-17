@@ -1,7 +1,7 @@
 <div class="def main">
-    <p class="def title">SpriteSet</p>
+    <p class="def title">ImageCollection</p>
     <div class="def collection">
-        <li *ngFor="let Image of SpriteSet.Sprites" class="object" (click)="SelectMember(Image)"
+        <li *ngFor="let Image of ImageCollection.Images" class="object" (click)="SelectMember(Image)"
         [ngClass]="{'object-selected': Image == _SelectedMember}">
             <div>
                 <img class="icon" [src]="Image" />

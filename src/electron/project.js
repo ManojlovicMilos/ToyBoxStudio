@@ -15,7 +15,7 @@ class ProjectIO
     Init()
     {
         this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this), this.SaveCurrentFile.bind(this)]);
-        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this)]);
+        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this), this.AddImageCollection.bind(this)]);
         ipcMain.on("save-file", this.SaveFile.bind(this));
         ipcMain.on("open-file", this.ReadFile.bind(this));
     }
@@ -54,6 +54,10 @@ class ProjectIO
     {
         this._Window.Window.webContents.send('add-sprite-set');
     }
+    AddImageCollection()
+    {
+        this._Window.Window.webContents.send('add-image-collection');
+    }
     SaveCurrentFile()
     {
         this._Window.Window.webContents.send('save-current-file');
@@ -67,7 +71,6 @@ class ProjectIO
     ReadFile(Event, Args)
     {
         let Path = Args[0];
-        console.log(Path);
         let Data = this._FS.ReadFile(Path);
         Event.returnValue = Data;
     }

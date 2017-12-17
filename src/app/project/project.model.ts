@@ -47,6 +47,10 @@ class Project
         {
             this.LoadFile(this._Resources.SpriteSetsNode.Children[i]);
         }
+        for(let i in this._Resources.ImageCollectionsNode.Children)
+        {
+            this.LoadFile(this._Resources.ImageCollectionsNode.Children[i]);
+        }
     }
     public SaveCurrent() : void
     {
@@ -109,6 +113,12 @@ class Project
                 }
                 Node.Value = SpriteSet;
             }
+            else if(Data.Type == "ImageCollection")
+            {
+                let Entry = new Engineer.Engine.TileCollection();
+                Entry.Deserialize(Data.Data);
+                Node.Value = Entry;
+            }
         }
     }
     public OpenFile(Node) : void
@@ -138,6 +148,13 @@ class Project
                 }
                 Node.Value = SpriteSet;
                 NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+            }
+            else if(Data.Type == "ImageCollection")
+            {
+                let Entry = new Engineer.Engine.TileCollection();
+                Entry.Deserialize(Data.Data);
+                Node.Value = Entry;
+                NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
             }
             this._OpenTabs.push(NewTab);
             this._CurrentTab = NewTab;
@@ -173,6 +190,14 @@ class Project
         let Node:any = this._Resources.AddSpriteSet(Name);
         this.SaveFile(Node);
         let NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+        this._OpenTabs.push(NewTab);
+        this._CurrentTab = NewTab;
+    }
+    public CreateImageCollection(Name:string) : void
+    {
+        let Node:any = this._Resources.AddImageCollection(Name);
+        this.SaveFile(Node);
+        let NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }

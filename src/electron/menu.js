@@ -34,11 +34,11 @@ class MainMenu
         let TextureResourceItem = new MenuItem({label:"Texture"});
         let MaterialResourceItem = new MenuItem({label:"Material"});
         let SpriteSetResourceItem = new MenuItem({label:"SpriteSet", click:Actions[1]});
-        let TileCollectionResourceItem = new MenuItem({label:"ImageCollection"});
+        let TileCollectionResourceItem = new MenuItem({label:"ImageCollection", click:Actions[2]});
         let SoundResourceItem = new MenuItem({label:"Sound"});
         let Object3DResourceItem = new MenuItem({label:"Object3D"});
 
-        let AddResourceItem = new MenuItem({label:"Resource", submenu:[SpriteSetResourceItem]});
+        let AddResourceItem = new MenuItem({label:"Resource", submenu:[SpriteSetResourceItem, TileCollectionResourceItem]});
         
         let AddScene2DItem = new MenuItem({label:"Scene2D", click:Actions[0]});
         let AddScene3DItem = new MenuItem({label:"Scene3D"});

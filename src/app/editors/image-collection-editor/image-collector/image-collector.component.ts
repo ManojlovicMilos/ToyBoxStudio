@@ -1,0 +1,44 @@
+import Engineer from "./../../../engineer";
+
+import { Input, Component } from '@angular/core';
+
+import { ResourcesController } from "./../../../project/resources/resoures.controller";
+
+@Component(
+{
+    selector: 'image-collector',
+    templateUrl: './image-collector.component.html',
+    styleUrls: ['./image-collector.component.css']
+})
+export class ImageCollectorComponent
+{
+    @Input() private ImageCollection:any;
+    @Input() private Resources:any;
+    private _SelectedMember:string;
+    private _SelectedTexture:string;
+    private _AvailableTextures:string[];
+    public constructor() {}
+    public ngOnInit() : void
+    {
+        this._AvailableTextures = [];
+        for(let Element in this.Resources.Textures)
+        {
+            this._AvailableTextures.push(this.Resources.Textures[Element].Path);
+        }
+    }
+    private SelectMember(ImagePath) : void
+    {
+        this._SelectedMember = ImagePath;
+    }
+    private SelectTexture(ImagePath) : void
+    {
+        this._SelectedTexture = ImagePath;
+    }
+    private AddTexture() : void
+    {
+        if(this._SelectedTexture != null)
+        {
+            this.ImageCollection.Images.push(this._SelectedTexture);
+        }
+    }
+}

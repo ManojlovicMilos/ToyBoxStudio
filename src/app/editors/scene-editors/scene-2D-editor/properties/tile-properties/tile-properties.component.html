@@ -1,0 +1,9 @@
+<div class="def main">
+    <p class="def title">Tile</p>
+    <div class="row def body">
+        <label class="label col-md-5">ImageCollection:</label>
+        <select class="option col-md-7" [(ngModel)]="_CurrentCollection" (change)="UpdateCollection()">
+            <option *ngFor="let Collection of Container.Resources.ImageCollectionsNode.Children" [value]="Collection.Name">{{Collection.Name}}</option>
+        </select>
+    </div>
+</div>
