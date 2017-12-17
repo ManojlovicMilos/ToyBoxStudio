@@ -35,6 +35,10 @@ class Project
     }
     public Load(DirTree) : void
     {
+        for(let i in this._OpenTabs)
+        {
+            this.CloseTab(this._OpenTabs[i]);
+        }
         this._Name = DirTree.Name;
         this._Tree = DirTree;
         this._Resources = new ResourcesController(this._Tree.Children[1]);
