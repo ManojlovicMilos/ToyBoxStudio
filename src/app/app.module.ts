@@ -5,6 +5,7 @@ import { NgxElectronModule } from 'ngx-electron';
 
 import { ModalComponent } from "./general/modal/modal.component";
 import { TextDialogComponent } from "./general/modal/modal-content/text-dialog/text-dialog.component";
+import { DataEditorComponent } from "./general/modal/modal-content/data-editor/data-editor.component";
 
 import { AppComponent } from './app.component';
 import { ProjectComponent } from "./project/project.component";
@@ -38,6 +39,7 @@ import { ImageCollectorComponent } from "./editors/image-collection-editor/image
   [
     ModalComponent,
     TextDialogComponent,
+    DataEditorComponent,
 
     AppComponent,
     ProjectComponent,

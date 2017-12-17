@@ -19,10 +19,18 @@
     background-color: #282828;
     font-size: 10px;
     height: auto;
+    overflow: auto;
 }
 .label
 {
+    font-size:8px;
     text-align: right;
+    margin-top:7px;
+}
+.not-editable
+{
+    font-size:8px;
+    text-align: center;
     margin-top:7px;
 }
 .confirm
@@ -34,4 +42,24 @@
     color:white;
     font-size: 12px;
     border-radius: 0px;
+}
+.active-check
+{
+    margin-top: 7px;
+}
+.delete
+{   
+    color:white;
+    padding-top:3px;
+    font-size:16px;
+    background-color: #353535 !important;
+    cursor:pointer;
+}
+.delete:hover
+{
+    background-color: #FF8800 !important;
+}
+.option
+{
+    border-style:none;
 }

@@ -34,4 +34,10 @@ class Tab
         else if(this._Type == TabValueType.TileCollection) this._TypeText = " - TileCollection";
         else if(this._Type == TabValueType.Material) this._TypeText = " - Material";
     }
+    public CloseNodeValue()
+    {
+        if(this._Type == TabValueType.SpriteSet) return;
+        else if(this._Type == TabValueType.TileCollection) return;
+        this._Node.Value = null;
+    }
 }

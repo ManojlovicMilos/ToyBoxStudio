@@ -3,5 +3,8 @@
     <div class="row def body">
         <label class="label col-md-3">Name:</label>
         <input type="text" name="name" class="col-md-9" [(ngModel)]="Container.Selected.Name" />
+        <label class="label col-md-3">Data:</label>
+        <input type="button" name="data-edit" class="col-md-9 edit" value="Edit" (click)="OpenDataEditor()" />
     </div>
 </div>
+<modal [Controller]="_Modal"></modal>

@@ -164,6 +164,14 @@ class Project
     {
         this._CurrentTab = Tab;
     }
+    public CloseTab(Tab:Tab) : void
+    {
+        if(Tab == this._CurrentTab) this._CurrentTab = null;
+        this._OpenTabs.splice(this._OpenTabs.indexOf(Tab), 1);
+        if(this._CurrentTab == null && this._OpenTabs.length > 0) this._CurrentTab = this._OpenTabs[0];
+        Tab.CloseNodeValue();
+        Tab = null;
+    }
     public CreateScene(Name:string) : void
     {
         let Scene = new Engineer.Engine.Scene2D();

@@ -40,38 +40,38 @@ export class AppComponent
   private AddSceneHandler(Event) { this._Zone.run(this.AddScene.bind(this)); }
   private AddSpriteSetHandler(Event) { this._Zone.run(this.AddSpriteSet.bind(this)); }
   private AddImageCollectionHandler(Event) { this._Zone.run(this.AddImageCollection.bind(this)); }
-  private ProjectLoaded(Data)
+  private ProjectLoaded(Data) : void
   {
     this._Current.Load(Data);
   }
-  private SaveFile()
+  private SaveFile() : void
   {
     this._Current.SaveCurrent();
   }
-  private AddScene()
+  private AddScene() : void
   {
     this._Modal.Callback = this.AddSceneComplete.bind(this);
     this._Modal.Show("New Scene", "Create Scene");
   }
-  private AddSpriteSet()
+  private AddSpriteSet() : void
   {
     this._Modal.Callback = this.AddSpriteSetComplete.bind(this);
     this._Modal.Show("New SpriteSet", "Create SpriteSet");
   }
-  private AddImageCollection()
+  private AddImageCollection() : void
   {
     this._Modal.Callback = this.AddImageCollectionComplete.bind(this);
     this._Modal.Show("New ImageColleciton", "Create ImageCollection");
   }
-  private AddSceneComplete(Value)
+  private AddSceneComplete(Value) : void
   {
     this._Current.CreateScene(Value);
   }
-  private AddSpriteSetComplete(Value)
+  private AddSpriteSetComplete(Value) : void
   {
     this._Current.CreateSpriteSet(Value);
   }
-  private AddImageCollectionComplete(Value)
+  private AddImageCollectionComplete(Value) : void
   {
     this._Current.CreateImageCollection(Value);
   }

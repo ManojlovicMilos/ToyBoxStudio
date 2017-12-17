@@ -1,0 +1,24 @@
+<div class="def main">
+    <p class="def title">{{Title}}</p>
+    <div class="row def body">
+        <div *ngFor="let Key of _Keys" class="def col-md-12 row">
+            <div class="def col-md-12 row">
+                <a class="delete col-md-1" (click)="Delete(Key)">X</a>
+                <label class="label col-md-6">{{Key}}:</label>
+                <input *ngIf="Type(Value[Key]) == 'Number'" type="number" class="col-md-5 active-number" [(ngModel)]="Value[Key]" />
+                <input *ngIf="Type(Value[Key]) == 'Boolean'" type="checkbox" class="col-md-5 active-check" [(ngModel)]="Value[Key]" />
+                <input *ngIf="Type(Value[Key]) == 'String'" type="text" class="col-md-5 active-string" [(ngModel)]="Value[Key]" />
+                <span  *ngIf="Type(Value[Key]) == 'Other'" class="col-md-5 not-editable"> Can not Edit. </span>
+            </div>
+        </div>
+        <div class="def col-md-12 row">
+            <a class="delete col-md-1" (click)="AddKey()">+</a>
+            <input type="text" class="col-md-6 active-string" [(ngModel)]="_NewKey" />
+            <select class="option col-md-5" [(ngModel)]="_NewValueType">
+                <option value="Number">Number</option>
+                <option value="Boolean">Boolean</option>
+                <option value="String">String</option>
+            </select>
+        </div>
+    </div>
+</div>

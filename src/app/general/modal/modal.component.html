@@ -1,6 +1,7 @@
 <div *ngIf="Controller && Controller.Visible" class="def">
     <div class="def modal-overlay" (click)="Controller.Hide()"></div>
-    <div class="def modal-content">
-        <text-dialog [Title]="Controller.Title" [Confirm]="Controller.Confirm" (OnComplete)="Controller.Complete($event)"></text-dialog>
+    <div class="def" [ngClass]="{'modal-content': !Controller.Big, 'modal-big':Controller.Big}">
+        <text-dialog *ngIf="Controller.Type == 0" [Title]="Controller.Title" [Confirm]="Controller.Confirm" (OnComplete)="Controller.Complete($event)"></text-dialog>
+        <data-editor *ngIf="Controller.Type == 1" [Title]="Controller.Title" [Confirm]="Controller.Confirm" [Value]="Controller.Value" (OnComplete)="Controller.Complete($event)"></data-editor>
     </div>
 </div>

@@ -8,6 +8,16 @@
     width:30%;
     min-height:100px;
 }
+.modal-big
+{
+    background-color: #282828;
+    z-index: 9;
+    position: fixed;
+    top:100px;
+    left:27%;
+    width:46%;
+    min-height:500px;
+}
 .modal-overlay
 {
     background-color: rgba(80,80,80,0.3);

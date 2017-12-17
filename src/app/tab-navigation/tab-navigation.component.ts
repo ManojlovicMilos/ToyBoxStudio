@@ -20,4 +20,8 @@ export class TabNavigationComponent
     {
         this.Current.SwitchTab(Tab);
     }
+    private CloseTab(Tab:Tab)
+    {
+        this.Current.CloseTab(Tab);
+    }
 }
