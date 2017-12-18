@@ -41,4 +41,11 @@ export class SpriteCollectorComponent
             this.SpriteSet.Sprites.push(this._SelectedTexture);
         }
     }
+    private RemoveTexture() : void
+    {
+        if(this._SelectedMember != null)
+        {
+            this.SpriteSet.Sprites.splice(this.SpriteSet.Sprites.indexOf(this._SelectedMember), 1);
+        }
+    }
 }

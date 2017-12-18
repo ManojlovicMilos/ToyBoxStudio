@@ -41,4 +41,11 @@ export class ImageCollectorComponent
             this.ImageCollection.Images.push(this._SelectedTexture);
         }
     }
+    private RemoveTexture() : void
+    {
+        if(this._SelectedMember != null)
+        {
+            this.ImageCollection.Images.splice(this.ImageCollection.Images.indexOf(this._SelectedMember), 1);
+        }
+    }
 }

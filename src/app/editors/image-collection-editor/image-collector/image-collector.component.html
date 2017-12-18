@@ -10,6 +10,7 @@
     </div>
     <div class="def controls">
         <span class="add" (click)="AddTexture()">Add Image</span>
+        <span class="add" (click)="RemoveTexture()">Remove Image</span>
     </div>
     <div class="def textures">
         <li *ngFor="let Image of _AvailableTextures" class="object" (click)="SelectTexture(Image)"
