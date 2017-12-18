@@ -46,6 +46,7 @@ export class SpriteCollectorComponent
         if(this._SelectedMember != null)
         {
             this.SpriteSet.Sprites.splice(this.SpriteSet.Sprites.indexOf(this._SelectedMember), 1);
+            this._SelectedMember = null;
         }
     }
 }

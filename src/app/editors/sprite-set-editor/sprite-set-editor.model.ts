@@ -49,4 +49,8 @@ class SpriteSetContainer
         let NewSpriteSet = new Engineer.Engine.SpriteSet(null, Name, []);
         this._SpriteSet.push(NewSpriteSet);
     }
+    public RemoveSpriteSet(Set:any)
+    {
+        this._SpriteSet.splice(this._SpriteSet.indexOf(Set), 1);
+    }
 }

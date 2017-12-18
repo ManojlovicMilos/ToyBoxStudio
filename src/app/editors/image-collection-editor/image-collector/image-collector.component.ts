@@ -46,6 +46,7 @@ export class ImageCollectorComponent
         if(this._SelectedMember != null)
         {
             this.ImageCollection.Images.splice(this.ImageCollection.Images.indexOf(this._SelectedMember), 1);
+            this._SelectedMember = null;
         }
     }
 }

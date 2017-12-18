@@ -32,6 +32,14 @@ export class SpriteSetListComponent
     {
         this.Container.AddSpriteSet(Value);
     }
+    private RemoveSpriteSet() : void
+    {
+        if(this.Container.Selected != null)
+        {
+            this.Container.RemoveSpriteSet(this.Container.Selected);
+            this.Container.Selected = null;
+        }
+    }
     private SpriteSetThumbnail(Sprite:any) : string
     {
         if(Sprite.Sprites.length == 0) return "./assets/icons/sprite-icon.png";
