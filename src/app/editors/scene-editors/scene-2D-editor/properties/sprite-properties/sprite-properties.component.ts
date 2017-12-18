@@ -14,10 +14,12 @@ export class SpritePropertiesComponent
 {
     @Input() private Container:SceneContainer;
     private _CurrentSet:string;
+    private _CurrentActivatedSet:string;
     public constructor() {}
     public ngOnInit()
     {
         this._CurrentSet = " - Select - ";
+        this._CurrentActivatedSet = "";
     }
     private UpdateSet() : void
     {
@@ -26,6 +28,17 @@ export class SpritePropertiesComponent
             let Value = this.Container.Resources.SpriteSets[this._CurrentSet].Value;
             this.Container.Selected.SpriteSets = Value;
             this.Container.Selected.Modified = true;
+            if(this.Container.Selected.SpriteSets !== null && this.Container.Selected.SpriteSets.length > 0)
+            {
+                this._CurrentActivatedSet = this.Container.Selected.SpriteSets[0].Name;
+            }
+        }
+    }
+    private ActivateSet(SetName:string) : void
+    {
+        if(this.Container.Selected.SpriteSets !== null && this.Container.Selected.SpriteSets.length > 0)
+        {
+            this.Container.Selected.SetSpriteSetByName(SetName);
         }
     }
 }
