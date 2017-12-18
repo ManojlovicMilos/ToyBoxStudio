@@ -9,6 +9,12 @@
             <label class="label col-md-3">Fixed:</label>
             <input type="checkbox" class="col-md-2 active-check" [(ngModel)]="Container.Selected.Fixed" />
         </div>
+        <label class="label col-md-3">Paint:</label>
+        <div class="def col-md-9 row">
+            <input class="color-picker col-md-12" [(colorPicker)]="_Color" [cpWidth]="'200px'"
+            [style.background]="_Color" [value]="_Color" [cpSaveClickOutside]="true" (colorPickerChange)="ColorChange($event)"
+            [cpOutputFormat]="'rgba'" [cpAlphaChannel]="'always'" [cpPosition]="'bottom'"/>
+        </div>
         <label class="label col-md-3">Translation:</label>
         <input type="number" class="col-md-3" [(ngModel)]="Container.Selected.Trans.Translation.X" />
         <input type="number" class="col-md-3" [(ngModel)]="Container.Selected.Trans.Translation.Y" />

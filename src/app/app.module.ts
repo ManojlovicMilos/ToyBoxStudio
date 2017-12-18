@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxElectronModule } from 'ngx-electron';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { ModalComponent } from "./general/modal/modal.component";
 import { TextDialogComponent } from "./general/modal/modal-content/text-dialog/text-dialog.component";
@@ -71,7 +72,8 @@ import { ImageCollectorComponent } from "./editors/image-collection-editor/image
   [
     BrowserModule,
     FormsModule,
-    NgxElectronModule
+    NgxElectronModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

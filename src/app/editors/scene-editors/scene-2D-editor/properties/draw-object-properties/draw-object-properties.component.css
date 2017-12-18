@@ -27,3 +27,14 @@
 {
     margin-top: 7px;
 }
+.color-picker
+{
+    height: 30px;
+    border: none;
+    color: white;
+}
+.edit
+{
+    border:none;
+    font-size:12px;
+}

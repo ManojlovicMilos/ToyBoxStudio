@@ -13,8 +13,14 @@ import { SceneContainer } from "./../../scene-2D-editor.model";
 export class DrawObjectPropertiesComponent
 {
     @Input() private Container:SceneContainer;
+    private _Paint:any;
     public constructor()
     {
-        
+        this._Paint = 0xFF0000;
+    }
+    private ColorChange(Value:string)
+    {
+        this.Container.Selected.Paint = Engineer.Math.Color.FromString(Value);
+        this.Container.Selected.Modified = true;
     }
 }
