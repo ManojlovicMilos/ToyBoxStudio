@@ -1,6 +1,7 @@
 import Engineer from "./../../../engineer";
 
 import { Input, Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { SpriteSetContainer } from "./../sprite-set-editor.model";
 import { ModalController } from "./../../../general/modal/modal.controller";
@@ -15,7 +16,7 @@ export class SpriteSetListComponent
 {
     @Input() private Container:SpriteSetContainer;
     private _Modal:ModalController;
-    public constructor() 
+    public constructor(private Sanitizer:DomSanitizer)
     {
         this._Modal = new ModalController();
     }
@@ -44,5 +45,9 @@ export class SpriteSetListComponent
     {
         if(Sprite.Sprites.length == 0) return "./assets/icons/sprite-icon.png";
         else return Sprite.Sprites[0];
+    }
+    private Sanitize(Url:string)
+    {
+        return this.Sanitizer.bypassSecurityTrustResourceUrl(Url);
     }
 }

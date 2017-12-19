@@ -1,6 +1,7 @@
 import Engineer from "./../../../engineer";
 
 import { Input, Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { ResourcesController } from "./../../../project/resources/resoures.controller";
 
@@ -17,7 +18,7 @@ export class SpriteCollectorComponent
     private _SelectedMember:string;
     private _SelectedTexture:string;
     private _AvailableTextures:string[];
-    public constructor() {}
+    public constructor(private Sanitizer:DomSanitizer) {}
     public ngOnInit() : void
     {
         this._AvailableTextures = [];
@@ -48,5 +49,9 @@ export class SpriteCollectorComponent
             this.SpriteSet.Sprites.splice(this.SpriteSet.Sprites.indexOf(this._SelectedMember), 1);
             this._SelectedMember = null;
         }
+    }
+    private Sanitize(Url:string)
+    {
+        return this.Sanitizer.bypassSecurityTrustResourceUrl(Url);
     }
 }

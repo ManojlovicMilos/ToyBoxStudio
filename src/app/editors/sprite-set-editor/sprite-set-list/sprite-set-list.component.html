@@ -5,7 +5,7 @@
             <li *ngFor="let Object of Container.SpriteSet" class="object" (click)="Select(Object)"
             [ngClass]="{'object-selected': Object == Container.Selected}">
                 <div>
-                    <img class="icon" [src]="SpriteSetThumbnail(Object)" />
+                    <img class="icon" [src]="Sanitize(SpriteSetThumbnail(Object))" />
                 </div>
                 <p class="sprite-set-title">{{ Object.Name }}</p>
             </li>

@@ -4,7 +4,7 @@
         <li *ngFor="let Image of SpriteSet.Sprites" class="object" (click)="SelectMember(Image)"
         [ngClass]="{'object-selected': Image == _SelectedMember}">
             <div>
-                <img class="icon" [src]="Image" />
+                <img class="icon" [src]="Sanitize(Image)" />
             </div>
         </li>
     </div>
@@ -16,7 +16,7 @@
         <li *ngFor="let Image of _AvailableTextures" class="object" (click)="SelectTexture(Image)"
         [ngClass]="{'object-selected': Image == _SelectedTexture}">
             <div>
-                <img class="icon" [src]="Image" />
+                <img class="icon" [src]="Sanitize(Image)" />
             </div>
         </li>
     </div>
