@@ -62,7 +62,7 @@ class ResourcesController
     }
     public AddImageCollection(Name:string) : void
     {
-        let Resource = new Engineer.Engine.TileCollection(null, []);
+        let Resource = new Engineer.TileCollection(null, []);
         let Node = this.CreateResource(Resource, Name, "ImageCollection", this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
         this.ImageCollectionsNode.Children.push(Node);
         this._ImageCollections[Name] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");

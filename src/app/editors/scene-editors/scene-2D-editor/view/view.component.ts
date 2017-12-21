@@ -18,7 +18,7 @@ export class ViewComponent
     private _Canvas:HTMLCanvasElement;
     public constructor()
     {
-        this._Game = new Engineer.Engine.Game();
+        this._Game = new Engineer.Game();
         this._Game.Name = "ToyBox Studio";
     }
     private ngOnInit() : void
@@ -27,13 +27,13 @@ export class ViewComponent
         this._Canvas.addEventListener("resize", this.Resize.bind(this));
         this.Container.Scene.Data["EDITOR_GRID"] = "Classic";
         this._Game.AddScene(this.Container.Scene);
-        this._Runner = new Engineer.Runner.Runner(this._Game, Engineer.Draw.DrawEngineType.ThreeJS);
-        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
+        this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
+        this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
         this._Runner.SwitchScene(this.Container.Scene.Name);
         this._Runner.Run();
     }
     private Resize() : void
     {
-        this._Runner.SetResolution(new Engineer.Math.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
+        this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
     }
 }

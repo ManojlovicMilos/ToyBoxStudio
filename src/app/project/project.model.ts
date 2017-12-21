@@ -19,10 +19,10 @@ class Project
     public get Tree():any { return this._Tree; }
     public get CurrentTab():Tab { return this._CurrentTab; }
     public get OpenTabs():Tab[] { return this._OpenTabs; }
-    public get Assets():any { return this._Tree.Children[0]; }
-    public get Scenes():any { return this.Assets.Children[1]; }
-    public get SceneObjects():any { return this.Assets.Children[0]; }
-    public get Codes():any { return this._Tree.Children[1]; }
+    public get Assets():any { return this.FindChild(this._Tree, "Assets"); }
+    public get Scenes():any { return this.FindChild(this.Assets, "Scenes"); }
+    public get SceneObjects():any { return this.FindChild(this.Assets, "SceneObjects"); }
+    public get Codes():any { return this.FindChild(this._Tree, "Code"); }
     public get Value():any { return this._CurrentTab.Value; }
     public set Value(value:any) { this._CurrentTab.Value = value; }
     public get Resources():ResourcesController { return this._Resources; }
@@ -34,6 +34,14 @@ class Project
         this._OpenTabs = [];
         this._Electron = ElectronService;
     }
+    private FindChild(Node:any, Name:string) : any
+    {
+        for(let i in Node.Children)
+        {
+            if(Node.Children[i].Name == Name) return Node.Children[i];
+        }
+        return null;
+    }
     public Load(DirTree) : void
     {
         for(let i in this._OpenTabs)
@@ -42,7 +50,7 @@ class Project
         }
         this._Name = DirTree.Name;
         this._Tree = DirTree;
-        this._Resources = new ResourcesController(this._Tree.Children[2]);
+        this._Resources = new ResourcesController(this.FindChild(this._Tree, "Resources"));
         this.LoadRequired();
         this._Resources.Init();
     }
@@ -103,7 +111,7 @@ class Project
             let NewTab = null;
             if(Data.Type == "Scene")
             {
-                let Scene = new Engineer.Engine.Scene2D();
+                let Scene = new Engineer.Scene2D();
                 Scene.Deserialize(Data.Data);
                 Node.Value = Scene;
             }
@@ -112,7 +120,7 @@ class Project
                 let SpriteSet = [];
                 for(let i in Data.Data)
                 {
-                    let Entry = new Engineer.Engine.SpriteSet();
+                    let Entry = new Engineer.SpriteSet();
                     Entry.Deserialize(Data.Data[i]);
                     SpriteSet.push(Entry);
                 }
@@ -120,7 +128,7 @@ class Project
             }
             else if(Data.Type == "ImageCollection")
             {
-                let Entry = new Engineer.Engine.TileCollection();
+                let Entry = new Engineer.TileCollection();
                 Entry.Deserialize(Data.Data);
                 Node.Value = Entry;
             }
@@ -148,7 +156,7 @@ class Project
                 let NewTab = null;
                 if(Data.Type == "Scene")
                 {
-                    let Scene = new Engineer.Engine.Scene2D();
+                    let Scene = new Engineer.Scene2D();
                     Scene.Deserialize(Data.Data);
                     Node.Value = Scene;
                     NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
@@ -158,7 +166,7 @@ class Project
                     let SpriteSet = [];
                     for(let i in Data.Data)
                     {
-                        let Entry = new Engineer.Engine.SpriteSet();
+                        let Entry = new Engineer.SpriteSet();
                         Entry.Deserialize(Data.Data[i]);
                         SpriteSet.push(Entry);
                     }
@@ -167,7 +175,7 @@ class Project
                 }
                 else if(Data.Type == "ImageCollection")
                 {
-                    let Entry = new Engineer.Engine.TileCollection();
+                    let Entry = new Engineer.TileCollection();
                     Entry.Deserialize(Data.Data);
                     Node.Value = Entry;
                     NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
@@ -224,9 +232,9 @@ class Project
     }
     public CreateScene(Name:string) : void
     {
-        let Scene = new Engineer.Engine.Scene2D();
+        let Scene = new Engineer.Scene2D();
         Scene.Name = Name;
-        Scene.BackColor = Engineer.Math.Color.Black;
+        Scene.BackColor = Engineer.Color.Black;
         let Node = 
         {
             Name: Name,

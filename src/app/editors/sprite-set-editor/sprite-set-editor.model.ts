@@ -46,7 +46,7 @@ class SpriteSetContainer
     }
     public AddSpriteSet(Name:string) : void
     {
-        let NewSpriteSet = new Engineer.Engine.SpriteSet(null, Name, []);
+        let NewSpriteSet = new Engineer.SpriteSet(null, Name, []);
         this._SpriteSet.push(NewSpriteSet);
     }
     public RemoveSpriteSet(Set:any)

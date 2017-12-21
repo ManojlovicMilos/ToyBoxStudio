@@ -19,16 +19,16 @@ export class ObjectsComponent
     {
         this._Model = new SceneObjectManager();
 
-        let NewSprite = new Engineer.Engine.Sprite();
+        let NewSprite = new Engineer.Sprite();
         NewSprite.Name = "New Sprite";
-        NewSprite.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
-        NewSprite.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
+        NewSprite.Trans.Scale = new Engineer.Vertex(100,100,100);
+        NewSprite.Paint = Engineer.Color.FromRGBA(255, 255, 255, 255);
         this._Model.AddItem("Sprite", NewSprite, ["SceneObject", "Sprite"], "./assets/icons/sprite-icon.png");
 
-        let NewTile = new Engineer.Engine.Tile();
+        let NewTile = new Engineer.Tile();
         NewTile.Name = "New Tile";
-        NewTile.Trans.Scale = new Engineer.Math.Vertex(100,100,100);
-        NewTile.Paint = Engineer.Math.Color.FromRGBA(255, 255, 255, 255);
+        NewTile.Trans.Scale = new Engineer.Vertex(100,100,100);
+        NewTile.Paint = Engineer.Color.FromRGBA(255, 255, 255, 255);
         this._Model.AddItem("Tile", NewTile, ["SceneObject", "Tile"], "./assets/icons/tile-icon.png");
         
         this._Model.ApplyFilter("All");

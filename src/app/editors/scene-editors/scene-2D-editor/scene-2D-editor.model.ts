@@ -7,7 +7,7 @@ import { ResourcesController } from "./../../../project/resources/resoures.contr
 
 class SceneContainer
 {
-    private _Scene:any;
+    private _Scene:Engineer.Scene2D;
     private _Selected:any;
     private _Update:Function[];
     private _Actions:ActionController;
@@ -21,7 +21,7 @@ class SceneContainer
 	constructor (Scene:any, Resources:ResourcesController)
 	{
         if(Scene) this._Scene = Scene;
-        else this._Scene = new Engineer.Engine.Scene2D();
+        else this._Scene = new Engineer.Scene2D();
         this._Resources = Resources;
         this._Update = [];
         this._Actions = new ActionController();

@@ -20,7 +20,7 @@ export class DrawObjectPropertiesComponent
     }
     private ColorChange(Value:string)
     {
-        this.Container.Selected.Paint = Engineer.Math.Color.FromString(Value);
+        this.Container.Selected.Paint = Engineer.Color.FromString(Value);
         this.Container.Selected.Modified = true;
     }
 }

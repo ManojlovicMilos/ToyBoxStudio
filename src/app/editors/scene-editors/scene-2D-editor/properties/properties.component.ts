@@ -16,15 +16,15 @@ export class PropertiesComponent
     public constructor() {}
     private IsOfType(Type:string) : boolean
     {
-        if(Type == "Drawn") return this.Container.Selected.Type == Engineer.Engine.SceneObjectType.Drawn;
+        if(Type == "Drawn") return this.Container.Selected.Type == Engineer.SceneObjectType.Drawn;
         return false;
     }
     private IsOfDrawnType(DrawType:string) : boolean
     {
-        if(this.Container.Selected.Type == Engineer.Engine.SceneObjectType.Drawn)
+        if(this.Container.Selected.Type == Engineer.SceneObjectType.Drawn)
         {
-            if(DrawType == "Sprite") return this.Container.Selected.DrawType == Engineer.Engine.DrawObjectType.Sprite;
-            if(DrawType == "Tile") return this.Container.Selected.DrawType == Engineer.Engine.DrawObjectType.Tile;
+            if(DrawType == "Sprite") return this.Container.Selected.DrawType == Engineer.DrawObjectType.Sprite;
+            if(DrawType == "Tile") return this.Container.Selected.DrawType == Engineer.DrawObjectType.Tile;
         }
         return false;
     }
