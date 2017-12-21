@@ -7,7 +7,8 @@ enum TabValueType
     Scene = 0,
     SpriteSet = 1,
     TileCollection = 2,
-    Material = 3
+    Material = 3,
+    Script = 4
 }
 class Tab
 {
@@ -33,6 +34,7 @@ class Tab
         else if(this._Type == TabValueType.SpriteSet) this._TypeText = " - SpriteSet";
         else if(this._Type == TabValueType.TileCollection) this._TypeText = " - TileCollection";
         else if(this._Type == TabValueType.Material) this._TypeText = " - Material";
+        else if(this._Type == TabValueType.Script) this._TypeText = " - Script";
     }
     public CloseNodeValue()
     {

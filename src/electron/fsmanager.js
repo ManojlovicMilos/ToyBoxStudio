@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const RootPath = __dirname + "/../../dist/";
 
 class FileSystem
 {
@@ -25,12 +26,17 @@ class FileSystem
     {
         return JSON.parse(fs.readFileSync(Location, "utf8"));
     }
+    ReadTextFile(Location)
+    {
+        return fs.readFileSync(Location, "utf8");
+    }
     CreateProjectDirectories(Location)
     {
         fs.mkdirSync(Location);
         fs.mkdirSync(Location + "/Assets");
         fs.mkdirSync(Location + "/Assets/Scenes");
         fs.mkdirSync(Location + "/Assets/SceneObjects");
+        fs.mkdirSync(Location + "/Code");
         fs.mkdirSync(Location + "/Resources");
         fs.mkdirSync(Location + "/Resources/Sounds");
         fs.mkdirSync(Location + "/Resources/SpriteSets");
@@ -50,6 +56,11 @@ class FileSystem
         };
         this.WriteFile(Location + "/toybox-config.json", JSON.stringify(ProjectConfig));
     }
+    CreateGameLogic(Location)
+    {
+        let GameLogic = this.ReadTextFile(RootPath + "assets/code/GameLogic.ts");
+        this.WriteFile(Location + "/Code/GameLogic.ts", GameLogic);
+    }
     ReadDirectoryTree(Location)
     {
         let TreeNode = { Name:path.basename(Location), Type: "Dir", Path: Location, Children:[] }
@@ -58,7 +69,7 @@ class FileSystem
         {
             if(fs.statSync(Location + "/" +Locations[i]).isFile())
             {
-                TreeNode.Children.push({ FileName: Locations[i], Name: Locations[i].slice(0, -4), Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i], Value:null });
+                TreeNode.Children.push({ FileName: Locations[i], Name: Locations[i].slice(0, Locations[i].lastIndexOf(".")), Type:"File", Extension:path.extname(Locations[i]), Path:Location + "/" + Locations[i], Value:null });
             }
             else
             {

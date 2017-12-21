@@ -31,6 +31,8 @@ class MainMenu
 
         let Separator = new MenuItem({type:"separator"});
 
+        let AddScriptItem = new MenuItem({label:"Script", click:Actions[3]});
+
         let TextureResourceItem = new MenuItem({label:"Texture"});
         let MaterialResourceItem = new MenuItem({label:"Material"});
         let SpriteSetResourceItem = new MenuItem({label:"SpriteSet", click:Actions[1]});
@@ -45,7 +47,7 @@ class MainMenu
         let AddPresentationtem = new MenuItem({label:"Presentation"});
         let AddSceneItem = new MenuItem({label:"Scene", submenu:[AddScene2DItem]});
 
-        let AddOptionItem = new MenuItem({label:"Add", submenu:[AddSceneItem, AddResourceItem]});
+        let AddOptionItem = new MenuItem({label:"Add", submenu:[AddScriptItem, AddSceneItem, AddResourceItem]});
 
         this._ProjectMenuItem = new MenuItem({label:"Project", submenu:[RunOptionItem, Separator, AddOptionItem]});
 

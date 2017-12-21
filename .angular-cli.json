@@ -23,7 +23,12 @@
         "../node_modules/font-awesome/css/font-awesome.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": 
+      [
+        "../node_modules/ace-builds/src-min/ace.js",
+        "../node_modules/ace-builds/src-min/mode-typescript.js",
+        "../node_modules/ace-builds/src-min-noconflict/theme-clouds_midnight.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

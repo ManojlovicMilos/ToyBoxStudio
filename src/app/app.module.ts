@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxElectronModule } from 'ngx-electron';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 import { ModalComponent } from "./general/modal/modal.component";
 import { TextDialogComponent } from "./general/modal/modal-content/text-dialog/text-dialog.component";
@@ -33,6 +34,8 @@ import { SpriteCollectorComponent } from "./editors/sprite-set-editor/sprite-col
 
 import { ImageCollectionEditorComponent } from "./editors/image-collection-editor/image-collection-editor.component";
 import { ImageCollectorComponent } from "./editors/image-collection-editor/image-collector/image-collector.component";
+
+import { CodeEditorComponent } from "./editors/code-editor/code-editor.component";
 
 @NgModule(
 {
@@ -66,14 +69,17 @@ import { ImageCollectorComponent } from "./editors/image-collection-editor/image
     SpriteCollectorComponent,
 
     ImageCollectionEditorComponent,
-    ImageCollectorComponent
+    ImageCollectorComponent,
+
+    CodeEditorComponent
   ],
   imports:
   [
     BrowserModule,
     FormsModule,
     NgxElectronModule,
-    ColorPickerModule
+    ColorPickerModule,
+    AceEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

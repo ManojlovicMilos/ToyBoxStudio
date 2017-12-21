@@ -15,9 +15,10 @@ class ProjectIO
     Init()
     {
         this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this), this.SaveCurrentFile.bind(this)]);
-        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this), this.AddImageCollection.bind(this)]);
+        this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this), this.AddImageCollection.bind(this), this.AddScript.bind(this)]);
         ipcMain.on("save-file", this.SaveFile.bind(this));
         ipcMain.on("open-file", this.ReadFile.bind(this));
+        ipcMain.on("open-text-file", this.ReadTextFile.bind(this));
     }
     NewProject()
     {
@@ -37,6 +38,7 @@ class ProjectIO
         {
             this._FS.CreateProjectDirectories(filename);
             this._FS.CreateNewProjectConfig(filename);
+            this._FS.CreateGameLogic(filename);
             let DirTree = this._FS.ReadDirectoryTree(filename);
             this._Window.Window.webContents.send('project-loaded' , DirTree);
         }
@@ -45,6 +47,10 @@ class ProjectIO
     {
         let DirTree = this._FS.ReadDirectoryTree(filenames[0]);
         this._Window.Window.webContents.send('project-loaded' , DirTree);
+    }
+    AddScript()
+    {
+        this._Window.Window.webContents.send('add-script');
     }
     AddScene()
     {
@@ -72,6 +78,12 @@ class ProjectIO
     {
         let Path = Args[0];
         let Data = this._FS.ReadFile(Path);
+        Event.returnValue = Data;
+    }
+    ReadTextFile(Event, Args)
+    {
+        let Path = Args[0];
+        let Data = this._FS.ReadTextFile(Path);
         Event.returnValue = Data;
     }
 }

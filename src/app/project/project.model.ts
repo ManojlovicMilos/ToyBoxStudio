@@ -22,6 +22,7 @@ class Project
     public get Assets():any { return this._Tree.Children[0]; }
     public get Scenes():any { return this.Assets.Children[1]; }
     public get SceneObjects():any { return this.Assets.Children[0]; }
+    public get Codes():any { return this._Tree.Children[1]; }
     public get Value():any { return this._CurrentTab.Value; }
     public set Value(value:any) { this._CurrentTab.Value = value; }
     public get Resources():ResourcesController { return this._Resources; }
@@ -41,7 +42,7 @@ class Project
         }
         this._Name = DirTree.Name;
         this._Tree = DirTree;
-        this._Resources = new ResourcesController(this._Tree.Children[1]);
+        this._Resources = new ResourcesController(this._Tree.Children[2]);
         this.LoadRequired();
         this._Resources.Init();
     }
@@ -131,37 +132,49 @@ class Project
         if(Node.Type != "File") return;
         if(this._Electron.isElectronApp)
         {
-            let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
-            Node.DataType = Data.Type;
-            let NewTab = null;
-            if(Data.Type == "Scene")
+            if(Node.Path.endsWith("ts") || Node.Path.endsWith("js"))
             {
-                let Scene = new Engineer.Engine.Scene2D();
-                Scene.Deserialize(Data.Data);
-                Node.Value = Scene;
-                NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
+                let Data = this._Electron.ipcRenderer.sendSync("open-text-file", [Node.Path]);
+                Node.DataType = "Script";
+                Node.Value = Data;
+                let NewTab = new Tab(Node, Node.Value, TabValueType.Script);
+                this._OpenTabs.push(NewTab);
+                this._CurrentTab = NewTab;
             }
-            else if(Data.Type == "SpriteSet")
+            else
             {
-                let SpriteSet = [];
-                for(let i in Data.Data)
+                let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
+                Node.DataType = Data.Type;
+                let NewTab = null;
+                if(Data.Type == "Scene")
                 {
-                    let Entry = new Engineer.Engine.SpriteSet();
-                    Entry.Deserialize(Data.Data[i]);
-                    SpriteSet.push(Entry);
+                    let Scene = new Engineer.Engine.Scene2D();
+                    Scene.Deserialize(Data.Data);
+                    Node.Value = Scene;
+                    NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
                 }
-                Node.Value = SpriteSet;
-                NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+                else if(Data.Type == "SpriteSet")
+                {
+                    let SpriteSet = [];
+                    for(let i in Data.Data)
+                    {
+                        let Entry = new Engineer.Engine.SpriteSet();
+                        Entry.Deserialize(Data.Data[i]);
+                        SpriteSet.push(Entry);
+                    }
+                    Node.Value = SpriteSet;
+                    NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+                }
+                else if(Data.Type == "ImageCollection")
+                {
+                    let Entry = new Engineer.Engine.TileCollection();
+                    Entry.Deserialize(Data.Data);
+                    Node.Value = Entry;
+                    NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
+                }
+                this._OpenTabs.push(NewTab);
+                this._CurrentTab = NewTab;
             }
-            else if(Data.Type == "ImageCollection")
-            {
-                let Entry = new Engineer.Engine.TileCollection();
-                Entry.Deserialize(Data.Data);
-                Node.Value = Entry;
-                NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
-            }
-            this._OpenTabs.push(NewTab);
-            this._CurrentTab = NewTab;
         }
     }
     public SwitchTab(Tab:Tab) : void
@@ -175,6 +188,39 @@ class Project
         if(this._CurrentTab == null && this._OpenTabs.length > 0) this._CurrentTab = this._OpenTabs[0];
         Tab.CloseNodeValue();
         Tab = null;
+    }
+    public CreateScript(Name:string) : void
+    {
+        let Script = 
+        `export { ` + Name + ` };
+        
+        import Engineer from "./Engineer";
+        
+        class `+Name+`
+        {
+            public constructor()
+            {
+                this.Init()
+            }
+            public Init() : void
+            {
+            }
+        }`;
+        let Node = 
+        {
+            Name: Name,
+            FileName: Name + ".ts",
+            Type: "File",
+            DataType: "Script",
+            Path: this.Codes.Path + "/" + Name + ".tsn",
+            Extension: "ts",
+            Value: Script
+        }
+        this.Codes.Children.push(Node);
+        this.SaveFile(Node);
+        let NewTab = new Tab(Node, Script, TabValueType.Script);
+        this._OpenTabs.push(NewTab);
+        this._CurrentTab = NewTab;
     }
     public CreateScene(Name:string) : void
     {
