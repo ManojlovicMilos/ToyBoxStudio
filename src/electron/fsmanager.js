@@ -26,6 +26,10 @@ class FileSystem
     {
         return JSON.parse(fs.readFileSync(Location, "utf8"));
     }
+    CopyFile(Source, Destination)
+    {
+        fs.createReadStream(Source).pipe(fs.createWriteStream(Destination));
+    }
     ReadBinaryFile(Location)
     {
         return fs.readFileSync(Location);
@@ -102,8 +106,10 @@ class FileSystem
         let GameScene = this.ReadTextFile(RootPath + "assets/code/GameScene.ts.data");
         this.WriteFile(Location + "/Code/GameScene.ts", GameScene);
 
-        let PlayButton = this.ReadBinaryFile(RootPath + "assets/resources/Play.png");
-        this.WriteFile(Location + "/Resources/Textures/Play.png", GameScene);
+        this.CopyFile(RootPath + "assets/resources/Play.png", Location + "/Resources/Textures/Play.png");
+
+        let GameScene = this.ReadBinaryFile(RootPath + "assets/resources/Game.tsn");
+        this.WriteFile(Location + "/Assets/Scenes/Game.tsn", GameScene);
     }
     ReadDirectoryTree(Location)
     {
