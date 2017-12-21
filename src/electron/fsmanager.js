@@ -66,6 +66,8 @@ class FileSystem
 
         let Package = this.ReadTextFile(RootPath + "assets/code/package.json.data");
         Package = Package.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        Package = Package.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        Package = Package.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
         this.WriteFile(Location + "/package.json", Package);
 
         let TSConfig = this.ReadTextFile(RootPath + "assets/code/tsconfig.json.data");

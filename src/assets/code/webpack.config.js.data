@@ -3,7 +3,7 @@ module.exports =
 {
   entry:
   {
-    app: ["./Code/app.ts"]
+    app: ["./Code/App.ts"]
   },
   output:
   {

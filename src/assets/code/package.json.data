@@ -24,7 +24,7 @@
     },
     "dependencies":
     {
-      "engineer-js": "0.0.34",
+      "engineer-js": "0.0.36",
       "ts-loader": "^2.3.2"
     }
 }

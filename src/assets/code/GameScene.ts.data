@@ -2,7 +2,7 @@ export { GameScene };
 
 import Engineer from "./Engineer";
 
-class GameScene extends Engineer.Engine.Scene2D
+class GameScene extends Engineer.Scene2D
 {
     private _Pause:boolean;
     public get Pause():boolean { return this._Pause; }
@@ -15,16 +15,16 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     public Init(): void
     {
-        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
+        this.BackColor = Engineer.Color.FromRGBA(0, 0, 0, 255);
     }
     private KeyPress(G: any, Args: any): void
     {
         if(this._Pause) return;
-        // Key code here
+        // Key Code here
     }
-    private SceneUpdate()
+    private SceneUpdate() : void
     {
         if(this._Pause) return;
-        // Update code here
+        // Update Code here
     }
 }
