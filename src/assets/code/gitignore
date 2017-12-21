@@ -1,0 +1,4 @@
+/node_modules
+/tscompiled
+/build/[[PROJECT_NAME_SMALL]].js
+package-lock.json

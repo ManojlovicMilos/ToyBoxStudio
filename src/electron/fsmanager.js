@@ -26,6 +26,10 @@ class FileSystem
     {
         return JSON.parse(fs.readFileSync(Location, "utf8"));
     }
+    ReadBinaryFile(Location)
+    {
+        return fs.readFileSync(Location);
+    }
     ReadTextFile(Location)
     {
         return fs.readFileSync(Location, "utf8");
@@ -56,10 +60,48 @@ class FileSystem
         };
         this.WriteFile(Location + "/toybox-config.json", JSON.stringify(ProjectConfig));
     }
-    CreateGameLogic(Location)
+    CreateProjectCode(Location)
     {
-        let GameLogic = this.ReadTextFile(RootPath + "assets/code/GameLogic.ts");
+        let ProjectName = path.basename(Location);
+
+        let Package = this.ReadTextFile(RootPath + "assets/code/package.json.data");
+        Package = Package.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        this.WriteFile(Location + "/package.json", Package);
+
+        let TSConfig = this.ReadTextFile(RootPath + "assets/code/tsconfig.json.data");
+        this.WriteFile(Location + "/tsconfig.json", TSConfig);
+
+        let WebpackConfig = this.ReadTextFile(RootPath + "assets/code/webpack.config.js.data");
+        WebpackConfig = WebpackConfig.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        this.WriteFile(Location + "/webpack.config.js", WebpackConfig);
+
+        let GitIgnore = this.ReadTextFile(RootPath + "assets/code/gitignore");
+        GitIgnore = GitIgnore.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        this.WriteFile(Location + "/.gitignore", GitIgnore);
+
+        let IndexHTML = this.ReadTextFile(RootPath + "assets/code/index.html");
+        IndexHTML = IndexHTML.replace("[[PROJECT_NAME]]", ProjectName);
+        IndexHTML = IndexHTML.replace("[[PROJECT_NAME_SMALL]]", ProjectName.toLowerCase());
+        this.WriteFile(Location + "/index.html", IndexHTML);
+
+        let App = this.ReadTextFile(RootPath + "assets/code/App.ts.data");
+        this.WriteFile(Location + "/Code/App.ts", App);
+
+        let Engineer = this.ReadTextFile(RootPath + "assets/code/Engineer.ts.data");
+        this.WriteFile(Location + "/Code/Engineer.ts", Engineer);
+
+        let GameLogic = this.ReadTextFile(RootPath + "assets/code/GameLogic.ts.data");
+        GameLogic = GameLogic.replace("[[PROJECT_NAME]]", ProjectName);
         this.WriteFile(Location + "/Code/GameLogic.ts", GameLogic);
+
+        let MainMenu = this.ReadTextFile(RootPath + "assets/code/MainMenu.ts.data");
+        this.WriteFile(Location + "/Code/MainMenu.ts", MainMenu);
+
+        let GameScene = this.ReadTextFile(RootPath + "assets/code/GameScene.ts.data");
+        this.WriteFile(Location + "/Code/GameScene.ts", GameScene);
+
+        let PlayButton = this.ReadBinaryFile(RootPath + "assets/resources/Play.png");
+        this.WriteFile(Location + "/Resources/Textures/Play.png", GameScene);
     }
     ReadDirectoryTree(Location)
     {

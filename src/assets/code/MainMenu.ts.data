@@ -1,0 +1,37 @@
+export { MainMenu };
+
+import Engineer from "./Engineer";
+
+import { GameScene } from "./GameScene";
+
+class MainMenu extends Engineer.Engine.Scene2D
+{
+    private _Game:any;
+    private _Runner:any;
+    public constructor(Runner:any, Game:any)
+    {
+        super();
+        this._Game = Game;
+        this._Runner = Runner;
+        this.Init();
+    }
+    public Init()
+    {
+        this.Name = "Menu";
+        let Buttons:any = new Engineer.Engine.TileCollection(null, ["/Resources/Textures/Play.png"]);
+        let Play:any = new Engineer.Engine.Tile();
+        Play.Name = "Play";
+        Play.Collection = Buttons;
+        Play.Index = 0;
+        Play.Trans.Scale = new Engineer.Math.Vertex(300, 150, 1);
+        Play.Trans.Translation = new Engineer.Math.Vertex(200, 200, 0);
+        Play.Events.MouseDown.push(this.PlayClick.bind(this));
+        this.AddSceneObject(Play);
+    }
+    public PlayClick(G:any, Args:any)
+    {
+        let Scene = new GameScene();
+        this._Game.AddScene(Scene);
+        this._Runner.SwitchScene("GameScene", false);
+    }
+}

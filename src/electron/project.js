@@ -38,7 +38,7 @@ class ProjectIO
         {
             this._FS.CreateProjectDirectories(filename);
             this._FS.CreateNewProjectConfig(filename);
-            this._FS.CreateGameLogic(filename);
+            this._FS.CreateProjectCode(filename);
             let DirTree = this._FS.ReadDirectoryTree(filename);
             this._Window.Window.webContents.send('project-loaded' , DirTree);
         }
