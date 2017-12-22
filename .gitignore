@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/toybox-studio-linux-x64
 
 # dependencies
 /node_modules
