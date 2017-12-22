@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /toybox-studio-linux-x64
+/toybox-studio-win32-x64
 
 # dependencies
 /node_modules
