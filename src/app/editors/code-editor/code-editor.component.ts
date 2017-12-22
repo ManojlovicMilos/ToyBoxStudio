@@ -9,6 +9,7 @@ import { Input, Component } from '@angular/core';
 export class CodeEditorComponent
 {
     @Input() private Code:string;
+    @Input() private Type:string;
     private _EditorOptions:any;
     public constructor() 
     {

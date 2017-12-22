@@ -12,8 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "electron . --serve",
-    "electron-prod": "electron-packager . --electronVersion=1.7.10"
+    "electron": "electron .",
+    "electron-prod": "electron-packager . --electronVersion=1.7.10",
+    "set-electron": "sudo npm install -g electron --unsafe-perm=true --allow-root"
   },
   "repository": {
     "type": "git",
@@ -61,6 +62,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
+    "electron": "^1.7.10",
     "electron-packager": "^10.1.0",
     "electron-reload": "^1.2.2",
     "jasmine-core": "~2.6.2",

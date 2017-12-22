@@ -44,6 +44,7 @@ class Project
     }
     public Load(DirTree) : void
     {
+        this.IgnoreNodes(DirTree, ["node_modules","build","tscompiled","package","package-lock","tsconfig","webpack.config"]);
         for(let i in this._OpenTabs)
         {
             this.CloseTab(this._OpenTabs[i]);
@@ -53,6 +54,17 @@ class Project
         this._Resources = new ResourcesController(this.FindChild(this._Tree, "Resources"));
         this.LoadRequired();
         this._Resources.Init();
+    }
+    private IgnoreNodes(Tree:any, Ignored:string[])
+    {
+        for(let i in Ignored)
+        {
+            let Ignore = this.FindChild(Tree, Ignored[i]);
+            if(Ignore)
+            {
+                Tree.Children.splice(Tree.Children.indexOf(Ignore), 1);
+            }
+        }
     }
     private LoadRequired() : void
     {
@@ -140,16 +152,23 @@ class Project
         if(Node.Type != "File") return;
         if(this._Electron.isElectronApp)
         {
-            if(Node.Path.endsWith("ts") || Node.Path.endsWith("js"))
+            if(Node.Extension == ".ts" || Node.Extension == ".js" || Node.Extension == ".json" ||
+                Node.Extension == ".html" || Node.Extension == ".css")
             {
+                let Format = "";
+                if(Node.Extension == ".ts") Format = "typescript";
+                else if(Node.Extension == ".jts") Format = "javascript";
+                else if(Node.Extension == ".json") Format = "json";
+                else if(Node.Extension == ".html") Format = "html";
+                else if(Node.Extension == ".css") Format = "css";
                 let Data = this._Electron.ipcRenderer.sendSync("open-text-file", [Node.Path]);
                 Node.DataType = "Script";
-                Node.Value = Data;
+                Node.Value = {Format:Format, Data:Data};
                 let NewTab = new Tab(Node, Node.Value, TabValueType.Script);
                 this._OpenTabs.push(NewTab);
                 this._CurrentTab = NewTab;
             }
-            else
+            else if(Node.Extension == ".tsn")
             {
                 let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);
                 Node.DataType = Data.Type;
