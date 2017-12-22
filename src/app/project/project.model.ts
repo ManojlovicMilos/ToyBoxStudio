@@ -164,7 +164,7 @@ class Project
                 let Data = this._Electron.ipcRenderer.sendSync("open-text-file", [Node.Path]);
                 Node.DataType = "Script";
                 Node.Value = {Format:Format, Data:Data};
-                let NewTab = new Tab(Node, Node.Value, TabValueType.Script);
+                let NewTab = new Tab(Node, TabValueType.Script);
                 this._OpenTabs.push(NewTab);
                 this._CurrentTab = NewTab;
             }
@@ -178,7 +178,7 @@ class Project
                     let Scene = new Engineer.Scene2D();
                     Scene.Deserialize(Data.Data);
                     Node.Value = Scene;
-                    NewTab = new Tab(Node, Node.Value, TabValueType.Scene);
+                    NewTab = new Tab(Node, TabValueType.Scene);
                 }
                 else if(Data.Type == "SpriteSet")
                 {
@@ -190,14 +190,14 @@ class Project
                         SpriteSet.push(Entry);
                     }
                     Node.Value = SpriteSet;
-                    NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+                    NewTab = new Tab(Node, TabValueType.SpriteSet);
                 }
                 else if(Data.Type == "ImageCollection")
                 {
                     let Entry = new Engineer.TileCollection();
                     Entry.Deserialize(Data.Data);
                     Node.Value = Entry;
-                    NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
+                    NewTab = new Tab(Node, TabValueType.TileCollection);
                 }
                 this._OpenTabs.push(NewTab);
                 this._CurrentTab = NewTab;
@@ -245,7 +245,7 @@ class Project
         }
         this.Codes.Children.push(Node);
         this.SaveFile(Node);
-        let NewTab = new Tab(Node, Script, TabValueType.Script);
+        let NewTab = new Tab(Node, TabValueType.Script);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
@@ -266,7 +266,7 @@ class Project
         }
         this.Scenes.Children.push(Node);
         this.SaveFile(Node);
-        let NewTab = new Tab(Node, Scene, TabValueType.Scene);
+        let NewTab = new Tab(Node, TabValueType.Scene);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
@@ -274,7 +274,7 @@ class Project
     {
         let Node:any = this._Resources.AddSpriteSet(Name);
         this.SaveFile(Node);
-        let NewTab = new Tab(Node, Node.Value, TabValueType.SpriteSet);
+        let NewTab = new Tab(Node, TabValueType.SpriteSet);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
@@ -282,7 +282,7 @@ class Project
     {
         let Node:any = this._Resources.AddImageCollection(Name);
         this.SaveFile(Node);
-        let NewTab = new Tab(Node, Node.Value, TabValueType.TileCollection);
+        let NewTab = new Tab(Node, TabValueType.TileCollection);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }

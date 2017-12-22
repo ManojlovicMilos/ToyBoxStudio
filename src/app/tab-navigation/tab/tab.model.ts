@@ -13,21 +13,19 @@ enum TabValueType
 class Tab
 {
     private _Text:string;
-    private _Value:any;
     private _Node:any;
     private _Type:TabValueType;
     private _TypeText:string;
     public get Text():string { return this._Text + this._TypeText; }
     public set Text(value:string) { this._Text = value; }
-    public get Value():any { return this._Value; }
-    public set Value(value:any) { this._Value = value; }
+    public get Value():any { return this._Node.Value; }
+    public set Value(value:any) { this._Node.Value = value; }
     public get Node():any { return this._Node; }
     public get Type():TabValueType { return this._Type; }
     public set Type(value:TabValueType) { this._Type = value; }
-	constructor (Node:any, Value:any, Type:TabValueType)
+	constructor (Node:any, Type:TabValueType)
 	{
         this._Text = Node.Name;
-        this._Value = Value;
         this._Node = Node;
         this._Type = Type;
         if(this._Type == TabValueType.Scene) this._TypeText = " - Scene";

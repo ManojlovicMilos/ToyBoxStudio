@@ -31,7 +31,7 @@ class ResourcesController
         for(let Element of Node.Children)
         {
             this._SpriteSets[Element.Name] = new ResourceNode(Element.Path);
-            this._SpriteSets[Element.Name].Value = Element.Value;
+            this._SpriteSets[Element.Name].Node = Element;
         }
     }
     private InitImageCollections(Node:any) : void
@@ -40,7 +40,7 @@ class ResourcesController
         for(let Element of Node.Children)
         {
             this._ImageCollections[Element.Name] = new ResourceNode(Element.Path);
-            this._ImageCollections[Element.Name].Value = Element.Value;
+            this._ImageCollections[Element.Name].Node = Element;
         }
     }
     private InitTextures(Node:any) : void
@@ -88,10 +88,11 @@ class ResourcesController
 class ResourceNode
 {
     private _Path:string;
-    private _Value:any;
+    private _Node:any;
     public get Path():any {return this._Path; }
-    public get Value():any {return this._Value; }
-    public set Value(value:any) { this._Value = value; }
+    public get Value():any {return this._Node.Value; }
+    public get Node():any { return this._Node; }
+    public set Node(value:any) { this._Node = value; }
     public constructor(Path:string)
     {
         this._Path = Path;
