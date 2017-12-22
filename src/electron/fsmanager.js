@@ -108,8 +108,8 @@ class FileSystem
 
         this.CopyFile(RootPath + "assets/resources/Play.png", Location + "/Resources/Textures/Play.png");
 
-        let GameScene = this.ReadBinaryFile(RootPath + "assets/resources/Game.tsn");
-        this.WriteFile(Location + "/Assets/Scenes/Game.tsn", GameScene);
+        let GameSceneFile = this.ReadBinaryFile(RootPath + "assets/resources/Game.tsn");
+        this.WriteFile(Location + "/Assets/Scenes/Game.tsn", GameSceneFile);
     }
     ReadDirectoryTree(Location)
     {
