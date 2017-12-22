@@ -60,4 +60,12 @@ class SceneContainer
             this._Scene.AddSceneObject(this._Clipboard.Copy());
         }
     }
+    public Delete() : void
+    {
+        if(this._Selected != null)
+        {
+            this._Scene.RemoveSceneObject(this._Selected);
+            this._Selected = null;
+        }
+    }
 }

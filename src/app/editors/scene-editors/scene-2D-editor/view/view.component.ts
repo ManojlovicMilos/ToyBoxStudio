@@ -47,5 +47,9 @@ export class ViewComponent
         {
             this.Container.Paste();
         }
+        else if(Args.KeyCode == 46)
+        {
+            this.Container.Delete();
+        }
     }
 }
