@@ -34,6 +34,8 @@ export class AppComponent
         this._ElectronService.ipcRenderer.on('add-scene' , this.AddSceneHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-sprite-set' , this.AddSpriteSetHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-image-collection' , this.AddImageCollectionHandler.bind(this));
+        this._ElectronService.ipcRenderer.on('edit-copy' , this.Copy.bind(this));
+        this._ElectronService.ipcRenderer.on('edit-paste' , this.Paste.bind(this));
     }
   }
   private ProjectLoadedHandler(Event, Data) { this._Zone.run(function() { this.ProjectLoaded(Data) }.bind(this));}
@@ -90,5 +92,13 @@ export class AppComponent
   {
     if(Option == this._SideBarOption) this._SideBarOption = -1;
     else this._SideBarOption = Option;
+  }
+  private Copy() : void
+  {
+
+  }
+  private Paste() : void
+  {
+    
   }
 }

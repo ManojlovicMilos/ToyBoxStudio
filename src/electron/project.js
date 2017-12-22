@@ -15,6 +15,7 @@ class ProjectIO
     Init()
     {
         this._Window.MainMenu.CreateFileMenu([this.NewProject.bind(this), this.OpenProject.bind(this), this.SaveCurrentFile.bind(this)]);
+        this._Window.MainMenu.CreateEditMenu([this.Copy.bind(this), this.Paste.bind(this)]);
         this._Window.MainMenu.CreateProjectMenu([this.AddScene.bind(this), this.AddSpriteSet.bind(this), this.AddImageCollection.bind(this), this.AddScript.bind(this)]);
         ipcMain.on("save-file", this.SaveFile.bind(this));
         ipcMain.on("open-file", this.ReadFile.bind(this));
@@ -85,6 +86,14 @@ class ProjectIO
         let Path = Args[0];
         let Data = this._FS.ReadTextFile(Path);
         Event.returnValue = Data;
+    }
+    Copy()
+    {
+        this._Window.Window.webContents.send('edit-copy');
+    }
+    Paste()
+    {
+        this._Window.Window.webContents.send('edit-paste');
     }
 }
 

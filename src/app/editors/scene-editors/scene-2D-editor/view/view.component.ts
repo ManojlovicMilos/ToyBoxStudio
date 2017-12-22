@@ -26,6 +26,7 @@ export class ViewComponent
         this._Canvas = <HTMLCanvasElement>document.getElementById("canvas");
         this._Canvas.addEventListener("resize", this.Resize.bind(this));
         this.Container.Scene.Data["EDITOR_GRID"] = "Classic";
+        this.Container.Scene.Events.KeyDown.push(this.KeyDown.bind(this));
         this._Game.AddScene(this.Container.Scene);
         this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
@@ -35,5 +36,16 @@ export class ViewComponent
     private Resize() : void
     {
         this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
+    }
+    private KeyDown(Game:any, Args:any) : void
+    {
+        if(Args.Ctrl && Args.KeyCode == 67)
+        {
+            this.Container.Copy();
+        }
+        else if(Args.Ctrl && Args.KeyCode == 86)
+        {
+            this.Container.Paste();
+        }
     }
 }

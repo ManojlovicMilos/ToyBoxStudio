@@ -9,6 +9,7 @@ class SceneContainer
 {
     private _Scene:Engineer.Scene2D;
     private _Selected:any;
+    private _Clipboard:any;
     private _Update:Function[];
     private _Actions:ActionController;
     private _Resources:ResourcesController;
@@ -44,5 +45,19 @@ class SceneContainer
     public Redo() : void
     {
         this._Actions.Redo();
+    }
+    public Copy() : void
+    {
+        if(this._Selected != null)
+        {
+            this._Clipboard = this._Selected;
+        }
+    }
+    public Paste() : void
+    {
+        if(this._Clipboard != null)
+        {
+            this._Scene.AddSceneObject(this._Clipboard.Copy());
+        }
     }
 }

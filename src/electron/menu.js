@@ -25,6 +25,13 @@ class MainMenu
         this._FileMenuItem = new MenuItem({label:"File", submenu:[NewOptionItem, OpenOptionItem, SaveOptionItem, Separator, ExitOptionItem]});
         this._Menu.insert(0, this._FileMenuItem);
     }
+    CreateEditMenu(Actions)
+    {
+        let CopyOptionItem = new MenuItem({label:"Copy", click:Actions[0], accelerator:"CommandOrControl+C"});
+        let PasteOptionItem = new MenuItem({label:"Paste", click:Actions[1], accelerator:"CommandOrControl+V"});
+        this._EditMenuItem = new MenuItem({label:"Edit", submenu:[CopyOptionItem, PasteOptionItem]});
+        this._Menu.insert(1, this._EditMenuItem);
+    }
     CreateProjectMenu(Actions)
     {
         let RunOptionItem = new MenuItem({label:"Run"});
@@ -51,7 +58,7 @@ class MainMenu
 
         this._ProjectMenuItem = new MenuItem({label:"Project", submenu:[RunOptionItem, Separator, AddOptionItem]});
 
-        this._Menu.insert(1, this._ProjectMenuItem);
+        this._Menu.insert(2, this._ProjectMenuItem);
     }
     CreateHelpMenu()
     {
