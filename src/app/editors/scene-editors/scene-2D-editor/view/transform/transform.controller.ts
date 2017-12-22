@@ -138,7 +138,7 @@ class TransformController
             if(Args.Sender && this._SceneContainer.Scene.Objects.indexOf(Args.Sender) != -1)
             {
                 this._SceneContainer.Selected = Args.Sender;
-                this._SceneContainer.Selected .Data[TransformLastLocationKey] = Args.Location;
+                this._SceneContainer.Selected.Data[TransformLastLocationKey] = Args.Location;
                 return true;
             }
         }
