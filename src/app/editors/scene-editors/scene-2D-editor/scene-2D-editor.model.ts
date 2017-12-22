@@ -58,6 +58,7 @@ class SceneContainer
         if(this._Clipboard != null)
         {
             this._Scene.AddSceneObject(this._Clipboard.Copy());
+            this._Clipboard = null; // Temp
         }
     }
     public Delete() : void
