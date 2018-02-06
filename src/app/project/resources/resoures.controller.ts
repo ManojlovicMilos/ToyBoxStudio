@@ -12,12 +12,13 @@ class ResourcesController
     public get ImageCollections():any { return this._ImageCollections; }
     public get Textures():any { return this._Textures; }
     public get ResourcesNode():any { return this._Node; }
-    public get ImageCollectionsNode():any { return this._Node.Children[0]; }
-    public get SpriteSetsNode():any { return this._Node.Children[4]; }
-    public get TexturesNode():any { return this._Node.Children[5]; }
+    public get ImageCollectionsNode():any { return this.FindChild(this._Node, "ImageCollections"); }
+    public get SpriteSetsNode():any { return this.FindChild(this._Node, "SpriteSets"); }
+    public get TexturesNode():any { return this.FindChild(this._Node, "Textures"); }
     public constructor(ResourcesNode:any)
     {
         this._Node = ResourcesNode;
+        console.log(this._Node);
     }
     public Init() : void
     {
@@ -57,15 +58,17 @@ class ResourcesController
         let Node = this.CreateResource(Resource, Name, "SpriteSet", this.SpriteSetsNode.Path + "/" + Name + ".tsn");
         this.SpriteSetsNode.Children.push(Node);
         this._SpriteSets[Name] = new ResourceNode(this.SpriteSetsNode.Path + "/" + Name + ".tsn");
+        this._SpriteSets[Name].Node = Node;
         this._SpriteSets[Name].Value = Resource;
         return Node;
     }
     public AddImageCollection(Name:string) : void
     {
-        let Resource = new Engineer.TileCollection(null, []);
+        let Resource = new Engineer.ImageCollection(null, []);
         let Node = this.CreateResource(Resource, Name, "ImageCollection", this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
         this.ImageCollectionsNode.Children.push(Node);
         this._ImageCollections[Name] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
+        this._ImageCollections[Name].Node = Node;
         this._ImageCollections[Name].Value = Resource;
         return Node;
     }
@@ -83,6 +86,14 @@ class ResourcesController
         }
         return Node;
     }
+    private FindChild(Node:any, Name:string) : any
+    {
+        for(let i in Node.Children)
+        {
+            if(Node.Children[i].Name == Name) return Node.Children[i];
+        }
+        return null;
+    }
 }
 
 class ResourceNode
@@ -91,6 +102,7 @@ class ResourceNode
     private _Node:any;
     public get Path():any {return this._Path; }
     public get Value():any {return this._Node.Value; }
+    public set Value(value:any) { this._Node.Value = value; }
     public get Node():any { return this._Node; }
     public set Node(value:any) { this._Node = value; }
     public constructor(Path:string)

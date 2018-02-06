@@ -6,7 +6,7 @@ enum TabValueType
 {
     Scene = 0,
     SpriteSet = 1,
-    TileCollection = 2,
+    ImageCollection = 2,
     Material = 3,
     Script = 4
 }
@@ -30,14 +30,14 @@ class Tab
         this._Type = Type;
         if(this._Type == TabValueType.Scene) this._TypeText = " - Scene";
         else if(this._Type == TabValueType.SpriteSet) this._TypeText = " - SpriteSet";
-        else if(this._Type == TabValueType.TileCollection) this._TypeText = " - TileCollection";
+        else if(this._Type == TabValueType.ImageCollection) this._TypeText = " - ImageCollection";
         else if(this._Type == TabValueType.Material) this._TypeText = " - Material";
         else if(this._Type == TabValueType.Script) this._TypeText = " - Script";
     }
     public CloseNodeValue()
     {
         if(this._Type == TabValueType.SpriteSet) return;
-        else if(this._Type == TabValueType.TileCollection) return;
+        else if(this._Type == TabValueType.ImageCollection) return;
         this._Node.Value = null;
     }
 }

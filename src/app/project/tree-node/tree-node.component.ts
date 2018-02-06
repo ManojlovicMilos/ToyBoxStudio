@@ -15,7 +15,7 @@ export class TreeNodeComponent
     private _Expanded:boolean;
     public constructor()
     {
-        this._Expanded = true;
+        this._Expanded = false;
         this.Open = new EventEmitter();
     }
     public ngOnInit() : void {}

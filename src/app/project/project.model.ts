@@ -34,17 +34,9 @@ class Project
         this._OpenTabs = [];
         this._Electron = ElectronService;
     }
-    private FindChild(Node:any, Name:string) : any
-    {
-        for(let i in Node.Children)
-        {
-            if(Node.Children[i].Name == Name) return Node.Children[i];
-        }
-        return null;
-    }
     public Load(DirTree) : void
     {
-        this.IgnoreNodes(DirTree, ["node_modules","build","tscompiled","package","package-lock","tsconfig","webpack.config"]);
+        this.IgnoreNodes(DirTree, ["node_modules","build","tscompiled","package","package-lock","tsconfig","webpack.config",".git",".gitignore","README","README.md"]);
         for(let i in this._OpenTabs)
         {
             this.CloseTab(this._OpenTabs[i]);
@@ -140,7 +132,7 @@ class Project
             }
             else if(Data.Type == "ImageCollection")
             {
-                let Entry = new Engineer.TileCollection();
+                let Entry = new Engineer.ImageCollection();
                 Entry.Deserialize(Data.Data);
                 Node.Value = Entry;
             }
@@ -194,10 +186,10 @@ class Project
                 }
                 else if(Data.Type == "ImageCollection")
                 {
-                    let Entry = new Engineer.TileCollection();
+                    let Entry = new Engineer.ImageCollection();
                     Entry.Deserialize(Data.Data);
                     Node.Value = Entry;
-                    NewTab = new Tab(Node, TabValueType.TileCollection);
+                    NewTab = new Tab(Node, TabValueType.ImageCollection);
                 }
                 this._OpenTabs.push(NewTab);
                 this._CurrentTab = NewTab;
@@ -282,8 +274,16 @@ class Project
     {
         let Node:any = this._Resources.AddImageCollection(Name);
         this.SaveFile(Node);
-        let NewTab = new Tab(Node, TabValueType.TileCollection);
+        let NewTab = new Tab(Node, TabValueType.ImageCollection);
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
+    }
+    private FindChild(Node:any, Name:string) : any
+    {
+        for(let i in Node.Children)
+        {
+            if(Node.Children[i].Name == Name) return Node.Children[i];
+        }
+        return null;
     }
 }

@@ -30,6 +30,7 @@ export class ViewComponent
         this._Game.AddScene(this.Container.Scene);
         this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
+        console.log(this.Container.Scene.Type);
         this._Runner.SwitchScene(this.Container.Scene.Name);
         this._Runner.Run();
     }
