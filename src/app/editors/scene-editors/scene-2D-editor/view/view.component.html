@@ -2,7 +2,7 @@
     <p class="def title">View</p>
     <div class="row def body">
         <transform [Container]="Container" style="margin:0px; padding:0px; width:100%;"></transform>
-        <div id="canvas-parent" style="margin:0px; padding:0px; width:100%; height:100vh;">
+        <div id="canvas-parent" style="margin:0px; padding:0px; width:100%; height:100vh;" (window:resize)="Resize($event)">
             <canvas id="canvas"></canvas>
         </div>
     </div>
