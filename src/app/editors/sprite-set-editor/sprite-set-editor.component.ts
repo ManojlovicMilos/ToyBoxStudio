@@ -1,6 +1,8 @@
+import Engineer from "./../../engineer";
+
 import { Input, Component } from '@angular/core';
 
-import { SpriteSetContainer } from "./sprite-set-editor.model";
+import { SpriteSetCollectionContainer } from "./sprite-set-editor.model";
 import { ResourcesController } from "./../../project/resources/resoures.controller";
 
 @Component(
@@ -11,13 +13,13 @@ import { ResourcesController } from "./../../project/resources/resoures.controll
 })
 export class SpriteSetEditorComponent
 {
-    @Input() private SpriteSet:any;
+    @Input() private SpriteSetCollection:Engineer.SpriteSetCollection;
     @Input() private Resources:ResourcesController;
-    private _Model:SpriteSetContainer;
-    public get Model():SpriteSetContainer { return this._Model; }
+    private _Model:SpriteSetCollectionContainer;
+    public get Model():SpriteSetCollectionContainer { return this._Model; }
     public constructor() {}
     private ngOnInit() : void
     {
-        this._Model = new SpriteSetContainer(this.SpriteSet, this.Resources);
+        this._Model = new SpriteSetCollectionContainer(this.SpriteSetCollection, this.Resources);
     }
 }

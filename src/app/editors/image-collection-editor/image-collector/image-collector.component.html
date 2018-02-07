@@ -13,11 +13,24 @@
         <span class="add" (click)="RemoveTexture()">Remove Image</span>
     </div>
     <div class="def textures">
-        <li *ngFor="let Image of _AvailableTextures" class="object" (click)="SelectTexture(Image)"
-        [ngClass]="{'object-selected': Image == _SelectedTexture}">
+        <li *ngIf="_CurrentNode && _CurrentNode.Parent" class="object" (click)="SelectFolder(_CurrentNode.Parent)">
             <div>
-                <img class="icon" [src]="Sanitize(Image)" />
+                <img class="icon" [src]="'assets/icons/collection-icon.png'" />
             </div>
+            <p class="centered">^ Go Up</p>
+        </li>
+        <li *ngFor="let Folder of _AvailableFolders" class="object" (click)="SelectFolder(Folder)">
+            <div>
+                <img class="icon" [src]="'assets/icons/collection-icon.png'" />
+            </div>
+            <p class="centered">{{Folder.Name}}</p>
+        </li>
+        <li *ngFor="let Image of _AvailableTextures" class="object" (click)="SelectTexture(Image.Path)"
+        [ngClass]="{'object-selected': Image.Path == _SelectedTexture}">
+            <div>
+                <img class="icon" [src]="Sanitize(Image.Path)" />
+            </div>
+            <p class="centered">{{Image.Name}} ({{Image.Extension}})</p>
         </li>
     </div>
 </div>

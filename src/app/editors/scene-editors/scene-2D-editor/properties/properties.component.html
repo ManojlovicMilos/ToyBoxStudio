@@ -4,7 +4,7 @@
         <scene-properties *ngIf="Container.Selected!=null && Container.Selected == Container.Scene" class="col-md-12" [Container]="Container"></scene-properties>
         <scene-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene" class="col-md-12" [Container]="Container"></scene-object-properties>
         <draw-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfType('Drawn')" class="col-md-12" [Container]="Container"></draw-object-properties>
-        <sprite-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfDrawnType('Sprite')" class="col-md-12" [Container]="Container"></sprite-properties>
-        <tile-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfDrawnType('Tile')" class="col-md-12" [Container]="Container"></tile-properties>
+        <sprite-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfDrawnType('Sprite')" class="col-md-12" [Container]="Container" [Selected]="Container.Selected"></sprite-properties>
+        <tile-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfDrawnType('Tile')" class="col-md-12" [Container]="Container" [Selected]="Container.Selected" ></tile-properties>
     </div>
 </div>

@@ -42,7 +42,7 @@ class MainMenu
 
         let TextureResourceItem = new MenuItem({label:"Texture"});
         let MaterialResourceItem = new MenuItem({label:"Material"});
-        let SpriteSetResourceItem = new MenuItem({label:"SpriteSet", click:Actions[1]});
+        let SpriteSetResourceItem = new MenuItem({label:"SpriteSetCollection", click:Actions[1]});
         let ImageCollectionResourceItem = new MenuItem({label:"ImageCollection", click:Actions[2]});
         let SoundResourceItem = new MenuItem({label:"Sound"});
         let Object3DResourceItem = new MenuItem({label:"Object3D"});

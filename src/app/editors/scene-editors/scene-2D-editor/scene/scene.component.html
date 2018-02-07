@@ -3,9 +3,9 @@
     <div class="row def body">
         <ul class="def objects col-md-12">
             <li class="object" (click)="Select(Container.Scene)"
-            [ngClass]="{'object-selected': Container.Scene == Container.Selected}">{{ Container.Scene.Name }} ( {{(Container.Scene.ID)}} )</li>
+            [ngClass]="{'object-selected': Container.Scene == Container.Selected}">{{ Container.Scene.Name }}</li>
             <li *ngFor="let Object of Container.Scene.Objects" class="object" (click)="Select(Object)"
-            [ngClass]="{'object-selected': Object == Container.Selected}">{{ Object.Name }} ( {{(Object.ID)}} )</li>
+            [ngClass]="{'object-selected': Object == Container.Selected}">{{ Object.Name }}</li>
         </ul>
     </div>
 </div>

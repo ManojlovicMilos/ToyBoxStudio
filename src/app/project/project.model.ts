@@ -80,15 +80,7 @@ class Project
             if(this._Electron.isElectronApp)
             {
                 let Data = null;
-                if(Node.DataType == "SpriteSet")
-                {
-                    Data = { Type: Node.DataType, Data: [] };
-                    for(let i in Node.Value) Data.Data.push(Node.Value[i].Serialize());
-                }
-                else
-                {
-                    Data = { Type: Node.DataType, Data: Node.Value.Serialize() };
-                }
+                Data = { Type: Node.DataType, Data: Node.Value.Serialize() };
                 this._Electron.ipcRenderer.send("save-file", [Node.Path, Data]);
             }
         }
@@ -119,15 +111,10 @@ class Project
                 Scene.Deserialize(Data.Data);
                 Node.Value = Scene;
             }
-            else if(Data.Type == "SpriteSet")
+            else if(Data.Type == "SpriteSetCollection")
             {
-                let SpriteSet = [];
-                for(let i in Data.Data)
-                {
-                    let Entry = new Engineer.SpriteSet();
-                    Entry.Deserialize(Data.Data[i]);
-                    SpriteSet.push(Entry);
-                }
+                let SpriteSet = new Engineer.SpriteSetCollection();
+                SpriteSet.Deserialize(Data.Data);
                 Node.Value = SpriteSet;
             }
             else if(Data.Type == "ImageCollection")
@@ -172,16 +159,11 @@ class Project
                     Node.Value = Scene;
                     NewTab = new Tab(Node, TabValueType.Scene);
                 }
-                else if(Data.Type == "SpriteSet")
+                else if(Data.Type == "SpriteSetCollection")
                 {
-                    let SpriteSet = [];
-                    for(let i in Data.Data)
-                    {
-                        let Entry = new Engineer.SpriteSet();
-                        Entry.Deserialize(Data.Data[i]);
-                        SpriteSet.push(Entry);
-                    }
-                    Node.Value = SpriteSet;
+                    let SpriteSetCollection = new Engineer.SpriteSetCollection();
+                    SpriteSetCollection.Deserialize(Data.Data);
+                    Node.Value = SpriteSetCollection;
                     NewTab = new Tab(Node, TabValueType.SpriteSet);
                 }
                 else if(Data.Type == "ImageCollection")
@@ -262,9 +244,9 @@ class Project
         this._OpenTabs.push(NewTab);
         this._CurrentTab = NewTab;
     }
-    public CreateSpriteSet(Name:string) : void
+    public CreateSpriteSetCollection(Name:string) : void
     {
-        let Node:any = this._Resources.AddSpriteSet(Name);
+        let Node:any = this._Resources.AddSpriteSetCollection(Name);
         this.SaveFile(Node);
         let NewTab = new Tab(Node, TabValueType.SpriteSet);
         this._OpenTabs.push(NewTab);

@@ -3,7 +3,7 @@
     <div class="row def body">
         <label class="label col-md-5">ImageCollection:</label>
         <select class="option col-md-7" [(ngModel)]="_CurrentCollection" (change)="UpdateCollection()">
-            <option *ngFor="let Collection of Container.Resources.ImageCollectionsNode.Children" [value]="''"> - None - </option>
+            <option [value]="''"> - None - </option>
             <option *ngFor="let Collection of Container.Resources.ImageCollectionsNode.Children" [value]="Collection.Value.Origin">{{Collection.Name}}</option>
         </select>
     </div>

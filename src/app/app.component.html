@@ -14,7 +14,7 @@
             <div *ngFor="let Tab of _Current.OpenTabs" class="def">
                 <div *ngIf="Tab == _Current.CurrentTab" class="def">
                     <scene-2D-editor *ngIf="Tab.Type == 0" [Scene]="Tab.Value" [Resources]="_Current.Resources"></scene-2D-editor>
-                    <sprite-set-editor *ngIf="Tab.Type == 1" [SpriteSet]="Tab.Value" [Resources]="_Current.Resources"></sprite-set-editor>
+                    <sprite-set-editor *ngIf="Tab.Type == 1" [SpriteSetCollection]="Tab.Value" [Resources]="_Current.Resources"></sprite-set-editor>
                     <image-collection-editor *ngIf="Tab.Type == 2" [ImageCollection]="Tab.Value" [Resources]="_Current.Resources"></image-collection-editor>
                     <code-editor *ngIf="Tab.Type == 4" [Code]="Tab.Value.Data" [Type]="Tab.Value.Format"></code-editor>
                 </div>

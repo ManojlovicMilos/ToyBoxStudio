@@ -3,7 +3,8 @@
     <div class="row def body">
         <label class="label col-md-5">SpriteSets:</label>
         <select class="option col-md-7" [(ngModel)]="_CurrentSet" (change)="UpdateSet()">
-            <option *ngFor="let Set of Container.Resources.SpriteSetsNode.Children" [value]="Set.Name">{{Set.Name}}</option>
+            <option [value]="''"> - None - </option>
+            <option *ngFor="let Set of Container.Resources.SpriteSetsNode.Children" [value]="Set.Value.Origin">{{Set.Name}}</option>
         </select>
         <label *ngIf="Container.Selected.SpriteSets.length > 1" class="label col-md-5">Active:</label>
         <select *ngIf="Container.Selected.SpriteSets.length > 1" class="option col-md-7" [(ngModel)]="_CurrentActivatedSet" (change)="ActivateSet()">

@@ -5,10 +5,10 @@ import Engineer from "./../../engineer";
 class ResourcesController
 {
     private _Node:any;
-    private _SpriteSets:any;
+    private _SpriteSetsCollections:any;
     private _ImageCollections:any;
     private _Textures:any;
-    public get SpriteSets():any { return this._SpriteSets; }
+    public get SpriteSetsCollections():any { return this._SpriteSetsCollections; }
     public get ImageCollections():any { return this._ImageCollections; }
     public get Textures():any { return this._Textures; }
     public get ResourcesNode():any { return this._Node; }
@@ -27,11 +27,12 @@ class ResourcesController
     }
     private InitSpriteSets(Node:any) : void
     {
-        this._SpriteSets = {};
+        this._SpriteSetsCollections = {};
         for(let Element of Node.Children)
         {
-            this._SpriteSets[Element.Name] = new ResourceNode(Element.Path);
-            this._SpriteSets[Element.Name].Node = Element;
+            this._SpriteSetsCollections[Element.Name] = new ResourceNode(Element.Path);
+            this._SpriteSetsCollections[Element.Name].Node = Element;
+            this._SpriteSetsCollections[Element.Value.Origin] = this._SpriteSetsCollections[Element.Name];
         }
     }
     private InitImageCollections(Node:any) : void
@@ -41,6 +42,7 @@ class ResourcesController
         {
             this._ImageCollections[Element.Name] = new ResourceNode(Element.Path);
             this._ImageCollections[Element.Name].Node = Element;
+            this._ImageCollections[Element.Value.Origin] = this._ImageCollections[Element.Name];
         }
     }
     private InitTextures(Node:any) : void
@@ -51,14 +53,16 @@ class ResourcesController
             this._Textures[Element.Name] = new ResourceNode(Element.Path);
         }
     }
-    public AddSpriteSet(Name:string) : void
+    public AddSpriteSetCollection(Name:string) : void
     {
-        let Resource = [];
-        let Node = this.CreateResource(Resource, Name, "SpriteSet", this.SpriteSetsNode.Path + "/" + Name + ".tsn");
+        let Resource = new Engineer.SpriteSetCollection(null, []);
+        let Node = this.CreateResource(Resource, Name, "SpriteSetCollection", this.SpriteSetsNode.Path + "/" + Name + ".tsn");
         this.SpriteSetsNode.Children.push(Node);
-        this._SpriteSets[Name] = new ResourceNode(this.SpriteSetsNode.Path + "/" + Name + ".tsn");
-        this._SpriteSets[Name].Node = Node;
-        this._SpriteSets[Name].Value = Resource;
+        this._SpriteSetsCollections[Name] = new ResourceNode(this.SpriteSetsNode.Path + "/" + Name + ".tsn");
+        this._SpriteSetsCollections[Name].Node = Node;
+        this._SpriteSetsCollections[Name].Name = Name;
+        this._SpriteSetsCollections[Name].Value = Resource;
+        this._SpriteSetsCollections[Resource.Origin] = this._SpriteSetsCollections[Name];
         return Node;
     }
     public AddImageCollection(Name:string) : void
@@ -66,10 +70,11 @@ class ResourcesController
         let Resource = new Engineer.ImageCollection(null, []);
         let Node = this.CreateResource(Resource, Name, "ImageCollection", this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
         this.ImageCollectionsNode.Children.push(Node);
-        this._ImageCollections[Resource.Origin] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
-        this._ImageCollections[Resource.Origin].Node = Node;
-        this._ImageCollections[Resource.Origin].Name = Name;
-        this._ImageCollections[Resource.Origin].Value = Resource;
+        this._ImageCollections[Name] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
+        this._ImageCollections[Name].Node = Node;
+        this._ImageCollections[Name].Name = Name;
+        this._ImageCollections[Name].Value = Resource;
+        this._ImageCollections[Resource.Origin] = this._ImageCollections[Name];
         return Node;
     }
     private CreateResource(Resource:any, Name:string, Type:string, Path:string) : any

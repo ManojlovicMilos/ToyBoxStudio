@@ -17,21 +17,42 @@ export class ImageCollectorComponent
     @Input() private Resources:any;
     private _SelectedMember:string;
     private _SelectedTexture:string;
-    private _AvailableTextures:string[];
+    private _CurrentNode:any;
+    private _AvailableFolders:any[];
+    private _AvailableTextures:any[];
     public constructor(private Sanitizer:DomSanitizer) {}
     public ngOnInit() : void
     {
+        this.LoadRootNode(this.Resources.TexturesNode);
+    }
+    private LoadRootNode(RootNode:any) : void
+    {
+        this._CurrentNode = RootNode;
+        this._AvailableFolders = [];
         this._AvailableTextures = [];
-        for(let Element in this.Resources.Textures)
+        for(let i in RootNode.Children)
         {
-            this._AvailableTextures.push(this.Resources.Textures[Element].Path);
+            let Node = RootNode.Children[i];
+            if(Node.Type == "Dir")
+            {
+                Node.Parent = RootNode;
+                this._AvailableFolders.push(Node);
+            }
+            else if(Node.Type == "File" && (Node.Extension == ".png" || Node.Extension == ".jpg" || Node.Extension == ".jpeg"))
+            {
+                this._AvailableTextures.push(Node);
+            }
         }
     }
-    private SelectMember(ImagePath) : void
+    private SelectMember(ImagePath : string) : void
     {
         this._SelectedMember = ImagePath;
     }
-    private SelectTexture(ImagePath) : void
+    private SelectFolder(Node) : void
+    {
+        this.LoadRootNode(Node);
+    }
+    private SelectTexture(ImagePath : string) : void
     {
         this._SelectedTexture = ImagePath;
     }

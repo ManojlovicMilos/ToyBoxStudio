@@ -30,7 +30,6 @@ import { TilePropertiesComponent } from "./editors/scene-editors/scene-2D-editor
 
 import { SpriteSetEditorComponent } from "./editors/sprite-set-editor/sprite-set-editor.component";
 import { SpriteSetListComponent } from "./editors/sprite-set-editor/sprite-set-list/sprite-set-list.component";
-import { SpriteCollectorComponent } from "./editors/sprite-set-editor/sprite-collector/sprite-collector.component";
 
 import { ImageCollectionEditorComponent } from "./editors/image-collection-editor/image-collection-editor.component";
 import { ImageCollectorComponent } from "./editors/image-collection-editor/image-collector/image-collector.component";
@@ -66,7 +65,6 @@ import { CodeEditorComponent } from "./editors/code-editor/code-editor.component
 
     SpriteSetEditorComponent,
     SpriteSetListComponent,
-    SpriteCollectorComponent,
 
     ImageCollectionEditorComponent,
     ImageCollectorComponent,

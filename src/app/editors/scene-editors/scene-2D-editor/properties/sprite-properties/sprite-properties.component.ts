@@ -12,34 +12,43 @@ import { SceneContainer } from "./../../scene-2D-editor.model";
 })
 export class SpritePropertiesComponent
 {
+    @Input() private Selected:any;
     @Input() private Container:SceneContainer;
     private _CurrentSet:string;
     private _CurrentActivatedSet:string;
-    public constructor() {}
+    public constructor()
+    {
+        this._CurrentSet = "";
+    }
     public ngOnInit() : void
     {
-        this._CurrentSet = " - Select - ";
+        this._CurrentSet = "";
         this._CurrentActivatedSet = "";
         this.InitSet();
     }
     private InitSet() : void
     {
-        if(this.Container.Selected.SpriteSets !== null && this.Container.Selected.SpriteSets.length > 0)
+        if(this.Container.Selected.Collection != null && this.Container.Resources.SpriteSetsCollections[this.Container.Selected.Collection.Origin] != null)
         {
-            this._CurrentSet = this.Container.Selected.SpriteSets[this.Container.Selected.CurrentSpriteSet].Name;
+            this._CurrentSet = this.Container.Selected.Collection.Origin;
         }
     }
     private UpdateSet() : void
     {
-        if(this._CurrentSet != " - Select - " && this.Container.Resources.SpriteSets[this._CurrentSet] != null)
+        if(this._CurrentSet != "" && this.Container.Resources.SpriteSetsCollections[this._CurrentSet] != null)
         {
-            let Value = this.Container.Resources.SpriteSets[this._CurrentSet].Value;
-            this.Container.Selected.SpriteSets = Value;
+            let Value = this.Container.Resources.SpriteSetsCollections[this._CurrentSet].Value;
+            console.log(Value);
+            this.Container.Selected.Collection = Value;
             this.Container.Selected.Modified = true;
-            if(this.Container.Selected.SpriteSets !== null && this.Container.Selected.SpriteSets.length > 0)
+            if(this.Container.Selected.Collection != null && this.Container.Selected.SpriteSets.length > 0)
             {
                 this._CurrentActivatedSet = this.Container.Selected.SpriteSets[0].Name;
             }
+        }
+        else if(this._CurrentSet == "")
+        {
+            this.Container.Selected.Collection = new Engineer.SpriteSetCollection(null, null);
         }
     }
     private ActivateSet(SetName:string) : void

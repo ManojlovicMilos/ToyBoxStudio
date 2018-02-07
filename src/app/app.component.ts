@@ -32,7 +32,7 @@ export class AppComponent
         this._ElectronService.ipcRenderer.on('save-current-file' , this.SaveFileHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-script' , this.AddScriptHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-scene' , this.AddSceneHandler.bind(this));
-        this._ElectronService.ipcRenderer.on('add-sprite-set' , this.AddSpriteSetHandler.bind(this));
+        this._ElectronService.ipcRenderer.on('add-sprite-set-collection' , this.AddSpriteSetCollectionHandler.bind(this));
         this._ElectronService.ipcRenderer.on('add-image-collection' , this.AddImageCollectionHandler.bind(this));
         this._ElectronService.ipcRenderer.on('edit-copy' , this.Copy.bind(this));
         this._ElectronService.ipcRenderer.on('edit-paste' , this.Paste.bind(this));
@@ -42,7 +42,7 @@ export class AppComponent
   private SaveFileHandler(Event) { this._Zone.run(this.SaveFile.bind(this)); }
   private AddScriptHandler(Event) { this._Zone.run(this.AddScript.bind(this)); }
   private AddSceneHandler(Event) { this._Zone.run(this.AddScene.bind(this)); }
-  private AddSpriteSetHandler(Event) { this._Zone.run(this.AddSpriteSet.bind(this)); }
+  private AddSpriteSetCollectionHandler(Event) { this._Zone.run(this.AddSpriteSetCollection.bind(this)); }
   private AddImageCollectionHandler(Event) { this._Zone.run(this.AddImageCollection.bind(this)); }
   private ProjectLoaded(Data) : void
   {
@@ -62,10 +62,10 @@ export class AppComponent
     this._Modal.Callback = this.AddSceneComplete.bind(this);
     this._Modal.Show("New Scene", "Create Scene");
   }
-  private AddSpriteSet() : void
+  private AddSpriteSetCollection() : void
   {
-    this._Modal.Callback = this.AddSpriteSetComplete.bind(this);
-    this._Modal.Show("New SpriteSet", "Create SpriteSet");
+    this._Modal.Callback = this.AddSpriteSetCollectionComplete.bind(this);
+    this._Modal.Show("New SpriteSetCollection", "Create SpriteSetCollection");
   }
   private AddImageCollection() : void
   {
@@ -80,9 +80,9 @@ export class AppComponent
   {
     this._Current.CreateScene(Value);
   }
-  private AddSpriteSetComplete(Value) : void
+  private AddSpriteSetCollectionComplete(Value) : void
   {
-    this._Current.CreateSpriteSet(Value);
+    this._Current.CreateSpriteSetCollection(Value);
   }
   private AddImageCollectionComplete(Value) : void
   {

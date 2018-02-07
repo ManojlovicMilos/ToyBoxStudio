@@ -1,26 +1,26 @@
-export { SpriteSetContainer }
+export { SpriteSetCollectionContainer }
 
 import Engineer from "./../../engineer";
 
 import { ActionController } from "./../controllers/action-manager.controller";
 import { ResourcesController } from "./../../project/resources/resoures.controller";
 
-class SpriteSetContainer
+class SpriteSetCollectionContainer
 {
-    private _SpriteSet:any;
+    private _SpriteSetCollection:Engineer.SpriteSetCollection;
     private _Selected:any;
     private _Update:Function[];
     private _Actions:ActionController;
     private _Resources:ResourcesController;
-    public get SpriteSet():any { return this._SpriteSet; }
-    public set SpriteSet(value:any) { this._SpriteSet = value; }
+    public get SpriteSetCollection():Engineer.SpriteSetCollection { return this._SpriteSetCollection; }
+    public set SpriteSetCollection(value:Engineer.SpriteSetCollection) { this._SpriteSetCollection = value; }
     public get Selected():any { return this._Selected; }
     public set Selected(value:any) { this._Selected = value; }
     public get Update():Function[] { return this._Update; }
-	constructor (SpriteSet:any, Resources:ResourcesController)
+	constructor (SpriteSetCollection:Engineer.SpriteSetCollection, Resources:ResourcesController)
 	{
-        if(SpriteSet != null) this._SpriteSet = SpriteSet;
-        else this._SpriteSet = [];
+        if(SpriteSetCollection != null) this._SpriteSetCollection = SpriteSetCollection;
+        else this._SpriteSetCollection = new Engineer.SpriteSetCollection(null, []);
         this._Resources = Resources;
         this._Update = [];
         this._Actions = new ActionController();
@@ -46,11 +46,11 @@ class SpriteSetContainer
     }
     public AddSpriteSet(Name:string) : void
     {
-        let NewSpriteSet = new Engineer.SpriteSet(null, Name, []);
-        this._SpriteSet.push(NewSpriteSet);
+        let NewSpriteSet = new Engineer.SpriteSet(null, [], Name);
+        this._SpriteSetCollection.SpriteSets.push(NewSpriteSet);
     }
     public RemoveSpriteSet(Set:any)
     {
-        this._SpriteSet.splice(this._SpriteSet.indexOf(Set), 1);
+        this._SpriteSetCollection.SpriteSets.splice(this._SpriteSetCollection.SpriteSets.indexOf(Set), 1);
     }
 }

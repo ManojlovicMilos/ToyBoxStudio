@@ -2,7 +2,7 @@
     <p class="def title">SpriteSet List</p>
     <div class="row def body">
         <ul class="def objects col-md-12">
-            <li *ngFor="let Object of Container.SpriteSet" class="object" (click)="Select(Object)"
+            <li *ngFor="let Object of Container.SpriteSetCollection.SpriteSets" class="object" (click)="Select(Object)"
             [ngClass]="{'object-selected': Object == Container.Selected}">
                 <div>
                     <img class="icon" [src]="Sanitize(SpriteSetThumbnail(Object))" />
