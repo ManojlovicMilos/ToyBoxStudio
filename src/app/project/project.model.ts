@@ -147,6 +147,14 @@ class Project
                 this._OpenTabs.push(NewTab);
                 this._CurrentTab = NewTab;
             }
+            else if(Node.Extension == ".png" || Node.Extension == ".jpg" || Node.Extension == ".jpeg")
+            {
+                Node.DataType = "Image";
+                Node.Value = Node.Path;
+                let NewTab = new Tab(Node, TabValueType.Image);
+                this._OpenTabs.push(NewTab);
+                this._CurrentTab = NewTab;
+            }
             else if(Node.Extension == ".tsn")
             {
                 let Data = this._Electron.ipcRenderer.sendSync("open-file", [Node.Path]);

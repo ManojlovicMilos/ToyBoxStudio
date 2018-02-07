@@ -34,6 +34,8 @@ import { SpriteSetListComponent } from "./editors/sprite-set-editor/sprite-set-l
 import { ImageCollectionEditorComponent } from "./editors/image-collection-editor/image-collection-editor.component";
 import { ImageCollectorComponent } from "./editors/image-collection-editor/image-collector/image-collector.component";
 
+import { ImageViewerComponent } from "./editors/image-viewer/image-viewer.component";
+
 import { CodeEditorComponent } from "./editors/code-editor/code-editor.component";
 
 @NgModule(
@@ -68,6 +70,8 @@ import { CodeEditorComponent } from "./editors/code-editor/code-editor.component
 
     ImageCollectionEditorComponent,
     ImageCollectorComponent,
+
+    ImageViewerComponent,
 
     CodeEditorComponent
   ],
