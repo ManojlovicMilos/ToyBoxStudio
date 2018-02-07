@@ -1,8 +1,8 @@
 <div *ngIf="Node" class="def">
     <div class="def">
-        <span class="def"><i class="icon fa" *ngIf="Node.Children" [ngClass]="{'fa-plus-square-o': !_Expanded, 'fa-minus-square-o': _Expanded}" (click)="ToggleExpand()"></i></span>
-        <span *ngIf="!NodeChildren" class="filler" ></span>
-        <p (dblclick)="CallOpen()" class="def text">{{Node.Name}}</p>
+        <span class="def"><i class="icon fa" *ngIf="Node.Type == 'Dir'" [ngClass]="{'fa-plus-square-o': !_Expanded, 'fa-minus-square-o': _Expanded}" (click)="ToggleExpand()"></i></span>
+        <p *ngIf="Node.Type == 'Dir'" (dblclick)="CallOpen()" class="def text">{{Node.Name}}</p>
+        <p *ngIf="Node.Type == 'File'" (dblclick)="CallOpen()" class="def text filler">{{Node.Name}}{{Node.Extension}}</p>
     </div>
     <div *ngIf="_Expanded"  class="def children">
         <tree-node *ngFor="let Child of Node.Children" (Open)="PassOpen($event)" [Node]="Child"></tree-node>

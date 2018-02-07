@@ -13,15 +13,20 @@
 }
 .filler
 {
-    float:left;
-    min-width:18px;
+    padding-left:23px;
 }
 .children
 {
     font-size: 12px;
-    padding-left:10px;
+    padding-left:15px;
 }
 .text
 {
     cursor:pointer;
+}
+.icons
+{
+    width: 15px;
+    height: 15px;
+    float:left;
 }

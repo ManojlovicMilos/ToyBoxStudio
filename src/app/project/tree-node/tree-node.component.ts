@@ -11,6 +11,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class TreeNodeComponent
 {
     @Input() private Node:any;
+    @Input() private Expanded:boolean;
     @Output() private Open:any;
     private _Expanded:boolean;
     public constructor()
@@ -18,7 +19,10 @@ export class TreeNodeComponent
         this._Expanded = false;
         this.Open = new EventEmitter();
     }
-    public ngOnInit() : void {}
+    public ngOnInit() : void 
+    {
+        if(this.Expanded) this._Expanded = true;
+    }
     public ToggleExpand() : void
     {
         this._Expanded = !this._Expanded;
