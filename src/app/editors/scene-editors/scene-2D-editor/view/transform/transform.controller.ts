@@ -36,17 +36,27 @@ class TransformController
     public set FixedSnapOffset(value:number) { this._FixedSnapOffset = value; }
 	constructor (SceneContainer:SceneContainer)
 	{
+        this.Init(SceneContainer);
+    }
+    public Init(SceneContainer:SceneContainer)
+    {
         this._Mode = TransformMode.Translate;
         this._SnapMode = TransformSnapMode.NoSnap;
         this._FixedSnapOffset = 100;
         this._SceneContainer = SceneContainer;
-        this._SceneContainer.Update.push(this.Update.bind(this));
-        this.Update();
+        this._SceneContainer.Update.push(this.HookEvents.bind(this));
+        this.UnhookEvents();
+        this.HookEvents();
     }
-    private Update() : void
+    private HookEvents() : void
     {
         this.SetSceneEvents();
         this.SetObjectsEvents();
+    }
+    private UnhookEvents() : void
+    {
+        this.RemoveSceneEvents();
+        this.RemoveObjectsEvents();
     }
     private SetSceneEvents() : void
     {
@@ -58,6 +68,13 @@ class TransformController
             this._SceneContainer.Scene.Data[TransformEventsSetKey] = true;
         }
     }
+    private RemoveSceneEvents() : void
+    {
+        this._SceneContainer.Scene.Events.MouseDown.splice(0, this._SceneContainer.Scene.Events.MouseDown.length);
+        this._SceneContainer.Scene.Events.MouseUp.splice(0, this._SceneContainer.Scene.Events.MouseUp.length);
+        this._SceneContainer.Scene.Events.MouseMove.splice(0, this._SceneContainer.Scene.Events.MouseMove.length);
+        this._SceneContainer.Scene.Data[TransformEventsSetKey] = false;
+    }
     private SetObjectsEvents() : void
     {
         for(let i in this._SceneContainer.Scene.Objects)
@@ -67,6 +84,14 @@ class TransformController
                 this._SceneContainer.Scene.Objects[i].Events.MouseDown.push(this.ObjectMouseDown.bind(this));
                 this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey] = true;
             }
+        }
+    }
+    private RemoveObjectsEvents() : void
+    {
+        for(let i in this._SceneContainer.Scene.Objects)
+        {
+            this._SceneContainer.Scene.Objects[i].Events.MouseDown.splice(0, this._SceneContainer.Scene.Objects[i].Events.MouseDown.length);
+            this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey] = false;
         }
     }
     private SceneMouseDown(Game:any, Args:any) : void
