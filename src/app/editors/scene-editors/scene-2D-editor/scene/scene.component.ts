@@ -13,10 +13,7 @@ import { SceneContainer } from "./../scene-2D-editor.model";
 export class SceneComponent
 {
     @Input() private Container:SceneContainer;
-    public constructor()
-    {
-        
-    }
+    public constructor() { }
     private Select(Object)
     {
         this.Container.Selected = Object;

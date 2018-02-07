@@ -68,9 +68,9 @@ class MainMenu
     }
     ShowHelp()
     {
-        this._HelpWindow = new BrowserWindow({width: 800, height: 600, darkTheme:true});
+        this._HelpWindow = new BrowserWindow({width: 1200, height: 600, darkTheme:true});
         this._HelpWindow.setMenu(null);
-        this._HelpWindow.loadURL("www.google.com");
+        this._HelpWindow.loadURL("https://toybox.deinvented.com");
     }
     Exit()
     {

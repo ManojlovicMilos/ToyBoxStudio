@@ -2,10 +2,10 @@
     <p class="def title">Scene</p>
     <div class="row def body">
         <ul class="def objects col-md-12">
-            <li class="object" (click)="Select(Container.Scene)"
+            <li class="object scene" (click)="Select(Container.Scene)"
             [ngClass]="{'object-selected': Container.Scene == Container.Selected}">{{ Container.Scene.Name }}</li>
             <li *ngFor="let Object of Container.Scene.Objects" class="object" (click)="Select(Object)"
-            [ngClass]="{'object-selected': Object == Container.Selected}">{{ Object.Name }}</li>
+            [ngClass]="{'object-selected': Container.Selected && Object.ID == Container.Selected.ID}">{{ Object.Name }}</li>
         </ul>
     </div>
 </div>

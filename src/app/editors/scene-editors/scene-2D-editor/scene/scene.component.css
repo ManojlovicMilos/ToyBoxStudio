@@ -20,7 +20,6 @@
 }
 .objects
 {
-    padding-top: 5px;
     height: 100%;
     color: white;
 }
@@ -31,6 +30,12 @@
     font-size:11px;
     padding-left: 15px;
     list-style: none;
+}
+.scene
+{
+    color: #DDDDDD;
+    background-color: #282828;
+    font-size:16px;
 }
 .object-selected
 {
