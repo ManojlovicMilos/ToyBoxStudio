@@ -13,8 +13,8 @@ class SceneContainer
     private _Update:Function[];
     private _Actions:ActionController;
     private _Resources:ResourcesController;
-    public get Scene():any { return this._Scene; }
-    public set Scene(value:any) { this._Scene = value; this._Selected = null; }
+    public get Scene():Engineer.Scene2D { return this._Scene; }
+    public set Scene(value:Engineer.Scene2D) { this._Scene = value; this._Selected = null; }
     public get Selected():any { return this._Selected; }
     public set Selected(value:any) { this._Selected = value; }
     public get Update():Function[] { return this._Update; }

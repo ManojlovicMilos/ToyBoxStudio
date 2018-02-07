@@ -18,7 +18,6 @@ class ResourcesController
     public constructor(ResourcesNode:any)
     {
         this._Node = ResourcesNode;
-        console.log(this._Node);
     }
     public Init() : void
     {
@@ -67,9 +66,10 @@ class ResourcesController
         let Resource = new Engineer.ImageCollection(null, []);
         let Node = this.CreateResource(Resource, Name, "ImageCollection", this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
         this.ImageCollectionsNode.Children.push(Node);
-        this._ImageCollections[Name] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
-        this._ImageCollections[Name].Node = Node;
-        this._ImageCollections[Name].Value = Resource;
+        this._ImageCollections[Resource.Origin] = new ResourceNode(this.ImageCollectionsNode.Path + "/" + Name + ".tsn");
+        this._ImageCollections[Resource.Origin].Node = Node;
+        this._ImageCollections[Resource.Origin].Name = Name;
+        this._ImageCollections[Resource.Origin].Value = Resource;
         return Node;
     }
     private CreateResource(Resource:any, Name:string, Type:string, Path:string) : any
@@ -98,8 +98,11 @@ class ResourcesController
 
 class ResourceNode
 {
+    private _Name:string;
     private _Path:string;
     private _Node:any;
+    public get Name():string {return this._Name; }
+    public set Name(value:string) { this._Name = value; }
     public get Path():any {return this._Path; }
     public get Value():any {return this._Node.Value; }
     public set Value(value:any) { this._Node.Value = value; }

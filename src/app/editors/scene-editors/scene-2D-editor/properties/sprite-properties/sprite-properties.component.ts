@@ -16,10 +16,18 @@ export class SpritePropertiesComponent
     private _CurrentSet:string;
     private _CurrentActivatedSet:string;
     public constructor() {}
-    public ngOnInit()
+    public ngOnInit() : void
     {
         this._CurrentSet = " - Select - ";
         this._CurrentActivatedSet = "";
+        this.InitSet();
+    }
+    private InitSet() : void
+    {
+        if(this.Container.Selected.SpriteSets !== null && this.Container.Selected.SpriteSets.length > 0)
+        {
+            this._CurrentSet = this.Container.Selected.SpriteSets[this.Container.Selected.CurrentSpriteSet].Name;
+        }
     }
     private UpdateSet() : void
     {
