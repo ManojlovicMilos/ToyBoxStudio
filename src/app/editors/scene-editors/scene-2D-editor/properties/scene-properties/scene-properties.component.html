@@ -5,6 +5,12 @@
         <input type="text" name="name" class="col-md-9" [(ngModel)]="Container.Selected.Name" />
         <label class="label col-md-3">Data:</label>
         <input type="button" name="data-edit" class="col-md-9 edit" value="Edit" (click)="OpenDataEditor()" />
+        <label class="label col-md-3">BackColor:</label>
+        <div class="def col-md-9 row">
+            <input class="color-picker col-md-12" [(colorPicker)]="_Color" [cpWidth]="'200px'"
+            [style.background]="_Color" [value]="_Color" [cpSaveClickOutside]="true" (colorPickerChange)="ColorChange($event)"
+            [cpOutputFormat]="'rgba'" [cpAlphaChannel]="'always'" [cpPosition]="'bottom'"/>
+        </div>
     </div>
 </div>
 <modal [Controller]="_Modal"></modal>

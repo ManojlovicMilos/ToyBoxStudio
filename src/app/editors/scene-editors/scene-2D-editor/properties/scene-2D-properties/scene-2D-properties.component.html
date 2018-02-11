@@ -1,0 +1,14 @@
+<div class="def main">
+    <p class="def title">Scene2D</p>
+    <div class="row def body">
+        <label class="label col-md-3">Translation:</label>
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Translation.X" />
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Translation.Y" />
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Translation.Z" />
+        <label class="label col-md-3">Scale:</label>
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Scale.X" />
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Scale.Y" />
+        <input type="number" class="col-md-3" [(ngModel)]="Container.Scene.Trans.Scale.Z" />
+    </div>
+</div>
+<modal [Controller]="_Modal"></modal>

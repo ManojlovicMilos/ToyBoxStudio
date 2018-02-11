@@ -2,6 +2,7 @@
     <p class="def title">Properties</p>
     <div class="body">
         <scene-properties *ngIf="Container.Selected!=null && Container.Selected == Container.Scene" class="col-md-12" [Container]="Container"></scene-properties>
+        <scene-2D-properties *ngIf="Container.Selected!=null && Container.Selected.Type == 'Scene2D'" class="col-md-12" [Container]="Container"></scene-2D-properties>
         <scene-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene" class="col-md-12" [Container]="Container"></scene-object-properties>
         <draw-object-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfType('Drawn')" class="col-md-12" [Container]="Container"></draw-object-properties>
         <sprite-properties *ngIf="Container.Selected!=null && Container.Selected != Container.Scene && IsOfDrawnType('Sprite')" class="col-md-12" [Container]="Container" [Selected]="Container.Selected"></sprite-properties>

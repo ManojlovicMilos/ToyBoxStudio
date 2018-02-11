@@ -2,7 +2,6 @@
 {
     margin: 0px;
     padding: 0px;
-    height: auto;
 }
 .title
 {
@@ -17,20 +16,25 @@
 {
     background-color: #282828;
     font-size: 10px;
+    height: auto;
 }
 .label
 {
     text-align: right;
     margin-top:7px;
 }
-.edit
+.active-check
 {
-    border:none;
-    font-size:12px;
+    margin-top: 7px;
 }
 .color-picker
 {
     height: 30px;
     border: none;
     color: white;
+}
+.edit
+{
+    border:none;
+    font-size:12px;
 }

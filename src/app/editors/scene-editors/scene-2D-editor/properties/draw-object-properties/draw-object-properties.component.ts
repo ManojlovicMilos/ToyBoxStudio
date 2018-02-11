@@ -16,7 +16,7 @@ export class DrawObjectPropertiesComponent
     private _Paint:any;
     public constructor()
     {
-        this._Paint = 0xFF0000;
+        this._Paint = 0xFFFFFF;
     }
     private ColorChange(Value:string)
     {

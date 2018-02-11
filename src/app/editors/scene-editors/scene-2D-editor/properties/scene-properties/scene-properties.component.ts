@@ -14,14 +14,20 @@ import { ModalController, ModalControllerType } from "./../../../../../general/m
 export class ScenePropertiesComponent
 {
     @Input() private Container:SceneContainer;
+    private _Color:any;
     private _Modal:ModalController;
     public constructor()
     {
+        this._Color = 0x000000;
         this._Modal = new ModalController()
     }
     private OpenDataEditor() : void
     {
         this._Modal.Big = true;
         this._Modal.Show("Data Collection", "Close", ModalControllerType.DataEditor, this.Container.Selected.Data);
+    }
+    private ColorChange(Value:string)
+    {
+        this.Container.Scene.BackColor = Engineer.Color.FromString(Value);
     }
 }
