@@ -57,7 +57,7 @@ class SceneContainer
     {
         if(this._Clipboard != null)
         {
-            this._Scene.AddSceneObject(this._Clipboard.Copy());
+            this._Scene.Attach(this._Clipboard.Copy());
             this._Clipboard = null; // Temp
         }
     }
@@ -65,7 +65,7 @@ class SceneContainer
     {
         if(this._Selected != null)
         {
-            this._Scene.RemoveSceneObject(this._Selected);
+            this._Scene.Remove(this._Selected);
             this._Selected = null;
         }
     }

@@ -63,8 +63,8 @@ class SceneObjectManagerItem
         if(Icon) this._Icon = Icon;
         else this._Icon = "/assets/icons/default-icon.png";
     }
-    public Apply(Scene:any) : void
+    public Apply(Scene:Engineer.Scene2D) : void
     {
-        Scene.AddSceneObject(this._Object.Copy());
+        Scene.Attach(this._Object.Copy());
     }
 }
