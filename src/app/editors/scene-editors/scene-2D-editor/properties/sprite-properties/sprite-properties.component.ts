@@ -48,7 +48,7 @@ export class SpritePropertiesComponent
         }
         else if(this._CurrentSet == "")
         {
-            this.Container.Selected.Collection = new Engineer.SpriteSetCollection(null, null);
+            this.Container.Selected.Collection = new Engineer.SpriteSetCollection(null, []);
         }
     }
     private ActivateSet(SetName:string) : void

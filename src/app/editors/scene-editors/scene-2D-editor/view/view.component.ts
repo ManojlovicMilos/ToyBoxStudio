@@ -13,7 +13,7 @@ import { SceneContainer } from "./../scene-2D-editor.model";
 export class ViewComponent
 {
     @Input() private Container:SceneContainer;
-    private _Game:any;
+    private _Game:Engineer.Game;
     private _Runner:any;
     private _Parent:HTMLElement;
     private _Canvas:HTMLCanvasElement;
@@ -28,7 +28,7 @@ export class ViewComponent
         this._Canvas = <HTMLCanvasElement>document.getElementById("canvas");
         this.Container.Scene.Data["EDITOR_GRID"] = "Classic";
         this.Container.Scene.Events.KeyDown.push(this.KeyDown.bind(this));
-        this._Game.AddScene(this.Container.Scene);
+        this._Game.Attach(this.Container.Scene);
         this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new Engineer.Vertex(this._Canvas.width, this._Canvas.height, 0), true);
         this._Runner.SwitchScene(this.Container.Scene.Name);

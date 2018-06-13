@@ -81,7 +81,7 @@ class TransformController
         {
             if(!this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey])
             {
-                this._SceneContainer.Scene.Objects[i].Events.MouseDown.push(this.ObjectMouseDown.bind(this));
+                (<Engineer.ImageObjectEventPackage>this._SceneContainer.Scene.Objects[i].Events).MouseDown.push(this.ObjectMouseDown.bind(this));
                 this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey] = true;
             }
         }
@@ -90,7 +90,7 @@ class TransformController
     {
         for(let i in this._SceneContainer.Scene.Objects)
         {
-            this._SceneContainer.Scene.Objects[i].Events.MouseDown.splice(0, this._SceneContainer.Scene.Objects[i].Events.MouseDown.length);
+            (<Engineer.ImageObjectEventPackage>this._SceneContainer.Scene.Objects[i].Events).MouseDown.splice(0, (<Engineer.ImageObjectEventPackage>this._SceneContainer.Scene.Objects[i].Events).MouseDown.length);
             this._SceneContainer.Scene.Objects[i].Data[TransformEventsSetKey] = false;
         }
     }
