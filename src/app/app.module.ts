@@ -5,6 +5,8 @@ import { NgxElectronModule } from 'ngx-electron';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AceEditorModule } from 'ng2-ace-editor';
 
+import { ComponentsModule } from "vynil-ui";
+
 import { ModalComponent } from "./general/modal/modal.component";
 import { TextDialogComponent } from "./general/modal/modal-content/text-dialog/text-dialog.component";
 import { DataEditorComponent } from "./general/modal/modal-content/data-editor/data-editor.component";
@@ -83,7 +85,8 @@ import { CodeEditorComponent } from "./editors/code-editor/code-editor.component
     FormsModule,
     NgxElectronModule,
     ColorPickerModule,
-    AceEditorModule
+    AceEditorModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

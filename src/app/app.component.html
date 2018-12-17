@@ -1,9 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div *ngIf="_Current.Tree != null" class="def page">
-    <div class="def navigation">
-        <i class="icon fa fa-files-o" [ngClass]="{'icon-selected': _SideBarOption == 0}" (click)="SelectOption(0)"></i>
-        <i class="icon fa fa-search" [ngClass]="{'icon-selected': _SideBarOption == 1}" (click)="SelectOption(1)"></i>
-    </div>
+    <vinyl-side-mode-switch [entries]="SideToggleEntries"></vinyl-side-mode-switch>
     <div class="def content row">
         <div *ngIf="_SideBarOption != -1" class="def col-md-2">
             <project *ngIf="_SideBarOption == 0" [Current]="_Current"></project>

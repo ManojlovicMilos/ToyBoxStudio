@@ -17,12 +17,15 @@ export class AppComponent
   private _Current:Project;
   private _SideBarOption:number;
   private _Modal:ModalController;
+  public SideToggleEntries = [];
   public constructor(private _ElectronService: ElectronService, private _Zone:NgZone)
   {
     this._Title = 'ToyBox Studio';
     this._SideBarOption = 0;
     this._Current = new Project(this._ElectronService);
     this._Modal = new ModalController();
+    this.SideToggleEntries.push({tooltip:"Files", icon:"files-o", method:function(){this.SelectOption(0)}.bind(this)});
+    this.SideToggleEntries.push({tooltip:"Search", icon:"search", method:function(){this.SelectOption(1)}.bind(this)});
   }
   public ngOnInit() : void
   {
