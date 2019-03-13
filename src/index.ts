@@ -1,20 +1,20 @@
 import Vue from "vue";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+import "material-design-icons-iconfont/dist/material-design-icons.css";
+
+Vue.use(Vuetify);
+
+import App from "./components/App.vue";
 import HelloComponent from "./components/Hello.vue";
 import HelloDecoratorComponent from "./components/HelloDecorator.vue";
 
 let v = new Vue({
     el: "#app",
-    template: `
-    <div>
-        Name: <input v-model="name" type="text">
-        <h1>Hello Component</h1>
-        <hello-component :name="name" :initialEnthusiasm="5" />
-        <h1>Hello Decorator Component</h1>
-        <hello-decorator-component :name="name" :initialEnthusiasm="5" />
-        </div>
-    `,
+    template: `<app />`,
     data: { name: "World" },
     components: {
+        App,
         HelloComponent,
         HelloDecoratorComponent
     }

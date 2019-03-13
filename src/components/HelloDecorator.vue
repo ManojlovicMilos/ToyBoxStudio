@@ -1,5 +1,3 @@
-<!-- src/components/HelloDecorator.vue -->
-<!-- This is an alternative way to define the Hello component using decorators -->
 <template>
     <div>
         <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>

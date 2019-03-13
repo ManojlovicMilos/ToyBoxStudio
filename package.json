@@ -15,15 +15,19 @@
     "url": "https://github.com/ManojlovicMilos"
   },
   "dependencies": {
+    "material-design-icons-iconfont": "^4.0.5",
     "vue": "^2.6.8",
     "vue-class-component": "^7.0.1",
     "vue-property-decorator": "^8.0.0",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuetify": "^1.5.6"
   },
   "devDependencies": {
     "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
+    "url-loader": "^1.1.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.6",
