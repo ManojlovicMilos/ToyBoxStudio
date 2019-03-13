@@ -4,7 +4,7 @@ var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/frontend/index.ts',
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
