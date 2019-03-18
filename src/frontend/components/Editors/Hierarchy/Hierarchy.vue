@@ -1,12 +1,11 @@
 <template>
-    <v-layout class="hierarchy" column>
-        <v-treeview class='tree' :items="items" :open.sync="open">
+    <v-layout class="hierarchy scrollable" column>
+        <v-treeview class='tree' :items="filteredItems" item-name='Name' item-children='Children' item-key='Path' :open.sync="open">
             <template v-slot:label="{ item }">
-                <span class="label">{{item.name}}</span>
-            </template>
-            <template v-slot:prepend="{ item }">
-                <v-icon v-if="item.children" v-text="`mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`">
-                </v-icon>
+                <span @dblclick='openFile(item)' class='label-parent'>
+                    <v-icon size='14'>{{findIcon(item)}}</v-icon>
+                    <span class="label">{{item.Name}}</span>
+                </span>
             </template>
         </v-treeview>
     </v-layout>
@@ -15,94 +14,84 @@
 <script lang="ts">
 import Vue from "vue";
 
+const FILTERED : string[] = [ '.gitignore', 'LICENSE', 'package.json', 'package-lock.json', 'tsconfig.json', 'webpack.config.js', 'node_modules' ];
+
 export default Vue.extend({
     data() {
         return {
-            items: [
-                {
-                    id: 1,
-                    name: 'Vuetify',
-                    children: [
-                        {
-                            id: 2,
-                            name: 'Core team',
-                            children: [
-                                {
-                                    id: 201,
-                                    name: 'John'
-                                },
-                                {
-                                    id: 202,
-                                    name: 'Kael'
-                                },
-                                {
-                                    id: 203,
-                                    name: 'Nekosaur'
-                                },
-                                {
-                                    id: 204,
-                                    name: 'Jacek'
-                                },
-                                {
-                                    id: 205,
-                                    name: 'Andrew'
-                                }
-                            ]
-                        },
-                        {
-                            id: 3,
-                            name: 'Administrators',
-                            children: [
-                                {
-                                    id: 301,
-                                    name: 'Ranee'
-                                },
-                                {
-                                    id: 302,
-                                    name: 'Rachel'
-                                }
-                            ]
-                        },
-                        {
-                            id: 4,
-                            name: 'Contributors',
-                            children: [
-                                {
-                                    id: 401,
-                                    name: 'Phlow'
-                                },
-                                {
-                                    id: 402,
-                                    name: 'Brandon'
-                                },
-                                {
-                                    id: 403,
-                                    name: 'Sean'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
             open: [1, 2],
             search: null,
-            caseSensitive: false 
+            caseSensitive: false,
+            filtered: FILTERED
         };
+    },
+    mounted() {
+        console.log(this.filtered, this.filteredItems);
+    },
+    computed: {
+        items() : any {
+            return this.$store.state.project.tree.Children;
+        },
+        filteredItems() : any {
+            return this.items.filter((item: any) => this.filtered.indexOf(item.Name) == -1 );
+        }
+    },
+    methods: {
+        openFile(item: any) {
+            console.log(item.Name);
+        },
+        findIcon(item: any) : string {
+            if(item.Type == 'Dir') return 'folder';
+            if(item.Extension == 'html') return 'public';
+            if(item.Extension == '.ts' || item.Extension == '.js') return 'code';
+            if(item.Extension == '' || item.Extension == '.json') return 'settings';
+            if(item.Extension == '.png' || item.Extension == '.jpg' || item.Extension == '.jpeg') return 'photo';
+            if(item.Extension == '.txt' || item.Extension == '.md' || item.Extension == '.rtf') return 'title';
+            if(item.Extension == '.css' || item.Extension == '.scss' || item.Extension == '.sass' || item.Extension == 'less') return 'style';
+            return 'insert_drive_file';
+        }
     }
 });
 </script>
 
+<style>
+    .hierarchy .v-treeview-node__root {
+        max-height: 25px;
+    }
+    .scrollable {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .scrollable.scrollable-x {
+        overflow-x: auto;
+    }
+    .scrollable::-webkit-scrollbar {
+        width: 5px;
+        height: 16px;
+    }
+    .scrollable::-webkit-scrollbar-track {
+        background: #222;
+    }
+    .scrollable::-webkit-scrollbar-thumb {
+        background: #444;
+    }
+</style>
+
 <style scoped>
     .hierarchy {
-        background-color: #111;
-        width: 350px;
+        background-color: #171719;
+        width: 300px;
         padding: 8px;
         height: calc(100vh - 60px);
     }
     .tree {
         
     }
+    .label-parent {
+        cursor: pointer;
+    }
     .label {
+        height: 15px;
         font-size: 12px;
     }
 </style>

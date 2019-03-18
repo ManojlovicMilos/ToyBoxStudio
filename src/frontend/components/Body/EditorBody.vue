@@ -1,16 +1,14 @@
 <template>
     <v-layout class="body" row>
         <hierarchy />
-        <v-tabs class="tabs" height='35' max v-model="active" slider-color="yellow">
+        <v-tabs class="tabs" height='35' max v-model="active" color='#171717' slider-color='orange darken-3'>
             <v-tab grow v-for="n in 3" :key="n" ripple >
                 <span class='tab-title'> Item - {{n}} </span>
                 <v-icon class='tab-close' size='10'>close</v-icon>
             </v-tab>
             <v-tab-item lazy :transition='false' v-for="n in 3" :key="n" >
                 <v-container class='body-container' fluid fill-height>
-                    <v-card flat>
-                        <v-card-text>Card {{n}}</v-card-text>
-                    </v-card>
+                    Card {{n}}
                 </v-container>
             </v-tab-item>
         </v-tabs>
@@ -36,10 +34,12 @@ export default Vue.extend({
 
 <style scoped>
     .body {
+        background-color: #0E0E0E;
         width: 100%;
     }
     .tabs {
         width: 100%;
+        background-color: #0E0E0E;
     }
     .tab-title {
         font-weight: bold;

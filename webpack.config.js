@@ -4,7 +4,9 @@ var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+    mode: 'development',
     entry: './src/frontend/index.ts',
+    target: 'electron-main',
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',

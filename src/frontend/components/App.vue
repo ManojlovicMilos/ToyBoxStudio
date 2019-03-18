@@ -1,5 +1,5 @@
 <template>
-    <v-app class='app' id='inspire' dark>
+    <v-app v-if='projectExists' class='app' id='project' dark>
         <main-header @sidebar='toggleSidebar' />
         <v-content>
             <v-container class='body-container' fluid fill-height>
@@ -8,6 +8,9 @@
             </v-container>
         </v-content>
         <main-footer />
+    </v-app>
+    <v-app v-else class='app' id='home' dark>
+        <home />
     </v-app>
 </template>
 
@@ -18,13 +21,15 @@ import Header from "./Navigations/Header/Header.vue"
 import Footer from "./Navigations/Footer/Footer.vue"
 import Sidebar from "./Navigations/Sidebar/Sidebar.vue"
 import Body from "./Body/Body.vue"
+import Home from "./Home/Home.vue";
 
 export default Vue.extend({
     components: {
         'main-header': Header,
         'main-footer': Footer,
         'main-sidebar': Sidebar,
-        'main-body': Body
+        'main-body': Body,
+        'home': Home
     },
     data() {
         return {
@@ -34,6 +39,11 @@ export default Vue.extend({
     methods: {
         toggleSidebar() : void {
             this.sidebar = !this.sidebar;
+        }
+    },
+    computed: {
+        projectExists() : boolean {
+            return !!this.$store.state.projectExists;
         }
     }
 });

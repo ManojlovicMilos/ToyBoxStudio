@@ -2,8 +2,6 @@
 
 const { app, BrowserWindow, globalShortcut } = require('electron');
 
-const MainMenu = require("./menu");
-
 class Window
 {
     get MainMenu() { return this._Menu; }
@@ -14,8 +12,14 @@ class Window
     }
     Init(Width, Height, Path)
     {
-        this._Menu = new MainMenu();
-        this._Window = new BrowserWindow({width: Width, height: Height, darkTheme:true});
+        this._Window = new BrowserWindow(
+            {
+                width: Width,
+                height: Height,
+                darkTheme: true,
+                webPreferences: { nodeIntegration: true }
+            }
+        );
         this._Window.loadURL('file://' + Path);
         this.Event("closed", this.Close.bind(this));
         globalShortcut.register('CommandOrControl+R', this.Reload.bind(this));
@@ -23,7 +27,7 @@ class Window
     }
     ActivateMenu()
     {
-        this._Window.setMenu(this._Menu.Menu);
+        this._Window.setMenu(null);
     }
     Reload()
     {
@@ -33,9 +37,17 @@ class Window
     {
         this._Window.webContents.openDevTools()
     }
+    Web()
+    {
+        return this._Window.webContents;
+    }
     Event(Name, Callback)
     {
         this._Window.on(Name, () => Callback());
+    }
+    Send(eventName, data)
+    {
+        this._Window.webContents.send(eventName, data);
     }
     Close()
     {

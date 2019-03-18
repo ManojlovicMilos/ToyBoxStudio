@@ -6,7 +6,8 @@
             <sidebar-option :text-visible='textVisible' text='Extensions' icon='extensions' />
             <sidebar-option :text-visible='textVisible' text='Settings' icon='settings' />
             <sidebar-option :text-visible='textVisible' text='Help' icon='help' />
-            <sidebar-option :text-visible='textVisible' text='Hide Text' :icon='textVisibleIcon' @click='onToggleTextVisibility' class='toggler' />
+            <sidebar-option :text-visible='textVisible' text='Exit Project' icon='exit_to_app' @click='onExit' class='exit' />
+            <sidebar-option :text-visible='textVisible' text='Hide Text' :icon='textVisibleIcon' @click='onToggleTextVisibility' />
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -50,6 +51,9 @@ export default Vue.extend({
     methods: {
         onToggleTextVisibility() : void {
             this.textVisible = !this.textVisible;
+        },
+        onExit() : void {
+            this.$store.state.projectExists = false;
         }
     }
 });
@@ -57,9 +61,11 @@ export default Vue.extend({
 
 <style scoped>
     .sidebar {
+        background-color: #111;
         overflow: hidden;
+        border-color: #151515;
     }
-    .toggler {
-        margin-top: calc(100vh - 390px);
+    .exit {
+        margin-top: calc(100vh - 440px);
     }
 </style>

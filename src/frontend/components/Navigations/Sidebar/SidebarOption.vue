@@ -35,10 +35,20 @@ export default Vue.extend({
 });
 </script>
 
+<style>
+    .option .v-list__tile--link:hover {
+        background: #222 !important;
+    }
+</style>
+
 <style scoped>
     .option {
         font-size: 32px;
         padding-left: 5px;
         margin-top: 10px;
+        transition: background 0s;
+    }
+    .option:hover {
+        background-color: #EF6C00;
     }
 </style>

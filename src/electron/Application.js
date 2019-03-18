@@ -15,9 +15,9 @@ if (serve)
 }
 
 const Window = require("./window");
-const ProjectIO = require("./project");
+const ProjectIO = require("./ProjectIO");
 
-class App
+class Application
 {
     constructor()
     {
@@ -56,4 +56,4 @@ class App
     }
 }
 
-module.exports = App;
+module.exports = Application;

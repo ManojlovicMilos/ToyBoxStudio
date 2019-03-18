@@ -18,4 +18,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+    .header {
+        background-color: #1C1C1C;
+    }
 </style>
