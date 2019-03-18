@@ -3,5 +3,6 @@ export type RootState = {
     cliVersion: string;
     project: Object,
     projectExists: boolean;
+    editors: any[],
     [key: string]: any;
 }

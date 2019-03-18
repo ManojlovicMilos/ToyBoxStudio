@@ -38,7 +38,14 @@ export default Vue.extend({
     },
     methods: {
         openFile(item: any) {
-            console.log(item.Name);
+            if(item.Type == 'Dir') return;
+            if(item.Extension == '.png') {
+                this.$store.state.editors.push({
+                    Type: 'Image',
+                    Name: item.FileName,
+                    Path: item.Path
+                });
+            }
         },
         findIcon(item: any) : string {
             if(item.Type == 'Dir') return 'folder';

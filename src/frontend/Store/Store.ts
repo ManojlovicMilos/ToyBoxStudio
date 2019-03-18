@@ -9,6 +9,7 @@ const store: StoreOptions<RootState> = {
         version: '0.1.0',
         cliVersion: '0.0.3',
         project: { },
+        editors: [],
         projectExists: false
     }
 };
