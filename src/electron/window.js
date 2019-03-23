@@ -17,7 +17,7 @@ class Window
                 width: Width,
                 height: Height,
                 darkTheme: true,
-                webPreferences: { nodeIntegration: true }
+                webPreferences: { nodeIntegration: true, webSecurity: false }
             }
         );
         this._Window.loadURL('file://' + Path);

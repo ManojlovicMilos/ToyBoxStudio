@@ -2,14 +2,14 @@
 var path = require('path')
 var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MonocoEditorPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
     mode: 'development',
     entry: './src/frontend/index.ts',
     target: 'electron-main',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, 'dist'),
         filename: 'build.js'
     },
     module: {
@@ -74,7 +74,10 @@ module.exports = {
     },
     devtool: '#eval-source-map',
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MonocoEditorPlugin({
+            languages: ['javascript', 'typescript', 'css', 'html']
+        })
     ]
 }
 

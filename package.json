@@ -5,7 +5,7 @@
   "description": "",
   "main": "./src/electron/Main.js",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack --watch --display-error-detail",
     "start": "webpack-dev-server --hot",
     "electron": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,8 +18,11 @@
   "dependencies": {
     "@types/electron": "^1.6.10",
     "material-design-icons-iconfont": "^4.0.5",
+    "monaco-editor": "^0.16.2",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "vue": "^2.6.8",
     "vue-class-component": "^7.0.1",
+    "vue-monaco": "^0.3.1",
     "vue-property-decorator": "^8.0.0",
     "vue-router": "^3.0.2",
     "vuetify": "^1.5.6",
