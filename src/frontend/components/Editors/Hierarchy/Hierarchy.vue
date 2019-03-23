@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { ipcRenderer } from 'electron';
 
 const FILTERED : string[] = [ '.gitignore', 'LICENSE', 'package.json', 'package-lock.json', 'tsconfig.json', 'webpack.config.js', 'node_modules' ];
 
@@ -42,9 +43,14 @@ export default Vue.extend({
             if(item.Extension == '.png') {
                 this.$store.state.editors.push({
                     Type: 'Image',
-                    Name: item.FileName,
-                    Path: item.Path
+                    File: {
+                        FileName: item.FileName,
+                        Path: item.Path
+                    }
                 });
+            }
+            else if(item.Extension == '.ts' || item.Extension == '.js' || item.Extension == '.html' || item.Extension == '.css') {
+                ipcRenderer.send('to-open-file', item);
             }
         },
         findIcon(item: any) : string {

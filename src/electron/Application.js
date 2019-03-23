@@ -15,6 +15,7 @@ if (serve)
 }
 
 const Window = require("./window");
+const FileIO = require("./FileIO");
 const ProjectIO = require("./ProjectIO");
 
 class Application
@@ -44,6 +45,7 @@ class Application
     }
     CreateProjectIO()
     {
+        this._FileIO = new FileIO(this._MainWindow);
         this._ProjectIO = new ProjectIO(this._MainWindow);
         this._MainWindow.ActivateMenu();
     }

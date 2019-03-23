@@ -35,9 +35,6 @@ export default Vue.extend({
             newProjectStarted: false
         }
     },
-    mounted() {
-        ipcRenderer.on('from-project-data' , this.eleProjectData.bind(this));
-    },
     methods: {
         toggleSidebar() : void {
             this.$emit('sidebar');
@@ -52,11 +49,6 @@ export default Vue.extend({
         },
         onDisabled() : void {
             this.disabled = true;
-        },
-        eleProjectData(event: any, data: any) : void {
-            this.$store.state.project.tree = data;
-            this.$store.state.projectExists = true;
-            this.$forceUpdate();
         }
     }
 });
