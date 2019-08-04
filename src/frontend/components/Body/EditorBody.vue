@@ -8,8 +8,9 @@
             </v-tab>
             <v-tab-item lazy :transition='false' grow v-for="editor in editors" :key="editor.File.Path" >
                 <v-container class='body-container' fluid fill-height>
-                    <image-editor v-if='editor.Type == "Image"' :image='editor.File.Path' />
-                    <code-editor v-if='editor.Type == "Code"' :code='editor.File.Data' :extension='editor.File.Extension' />
+                    <code-editor v-if='editor.Type == "Code"' :file='editor.File' />
+                    <image-editor v-if='editor.Type == "Image"' :file='editor.File' />
+                    <sound-editor v-if='editor.Type == "Sound"' :file='editor.File' />
                 </v-container>
             </v-tab-item>
         </v-tabs>
@@ -22,19 +23,23 @@ import Vue from "vue";
 import Hierarchy from "./../Editors/Hierarchy/Hierarchy.vue";
 import Code from "./../Editors/Code/Code.vue";
 import Image from "./../Editors/Image/Image.vue";
+import Sound from "./../Editors/Sound/Sound.vue";
 
 export default Vue.extend({
     components: {
         'hierarchy' : Hierarchy,
         'code-editor' : Code,
-        'image-editor' : Image
+        'image-editor' : Image,
+        'sound-editor' : Sound
     },
     data() {
         return {
-            active: 0
         }
     },
     computed: {
+        active() : number {
+            return this.$store.state.active;
+        },
         editors() : any[] {
             return this.$store.state.editors;
         }

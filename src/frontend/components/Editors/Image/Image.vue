@@ -1,21 +1,21 @@
 <template>
-    <v-img :src='image' :contain='true' height='calc(100vh - 120px)' />
+    <v-img :src='path' :contain='true' height='calc(100vh - 120px)' />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 
 export default Vue.extend({
     props: {
-        image: {
-            type: String,
+        file: {
+            type: Object,
             required: true
         }
     },
-    data() {
-        return {
-           
-        };
-    },
+    computed: {
+        path() : string {
+            return this.file.Path;
+        }
+    }
 });
 </script>

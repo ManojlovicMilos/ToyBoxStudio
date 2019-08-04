@@ -66,4 +66,21 @@ export default Vue.extend({
         padding: 0px;
         margin: 0px;
     }
+    .scrollable {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .scrollable.scrollable-x {
+        overflow-x: auto;
+    }
+    .scrollable::-webkit-scrollbar {
+        width: 5px;
+        height: 16px;
+    }
+    .scrollable::-webkit-scrollbar-track {
+        background: #222;
+    }
+    .scrollable::-webkit-scrollbar-thumb {
+        background: #444;
+    }
 </style>

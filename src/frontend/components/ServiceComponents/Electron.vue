@@ -22,6 +22,7 @@ export default Vue.extend({
                 Type: 'Code',
                 File: data
             });
+            this.$store.state.active = this.$store.state.editors.length - 1;
         }
     }
 });

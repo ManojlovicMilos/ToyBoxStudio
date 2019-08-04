@@ -40,14 +40,19 @@ export default Vue.extend({
     methods: {
         openFile(item: any) {
             if(item.Type == 'Dir') return;
-            if(item.Extension == '.png') {
+            if(item.Extension == '.png' || item.Extension == '.jpg') {
                 this.$store.state.editors.push({
                     Type: 'Image',
-                    File: {
-                        FileName: item.FileName,
-                        Path: item.Path
-                    }
+                    File: item
                 });
+                this.$store.state.active = this.$store.state.editors.length - 1;
+            }
+            else if(item.Extension == '.mp3' || item.Extension == '.wav') {
+                this.$store.state.editors.push({
+                    Type: 'Sound',
+                    File: item
+                });
+                this.$store.state.active = this.$store.state.editors.length - 1;
             }
             else if(item.Extension == '.ts' || item.Extension == '.js' || item.Extension == '.html' || item.Extension == '.css') {
                 ipcRenderer.send('to-open-file', item);
@@ -70,23 +75,6 @@ export default Vue.extend({
 <style>
     .hierarchy .v-treeview-node__root {
         max-height: 25px;
-    }
-    .scrollable {
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    .scrollable.scrollable-x {
-        overflow-x: auto;
-    }
-    .scrollable::-webkit-scrollbar {
-        width: 5px;
-        height: 16px;
-    }
-    .scrollable::-webkit-scrollbar-track {
-        background: #222;
-    }
-    .scrollable::-webkit-scrollbar-thumb {
-        background: #444;
     }
 </style>
 
